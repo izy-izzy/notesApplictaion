@@ -1,0 +1,82 @@
+.comments {
+    .comment {
+        margin: 20px 0px;
+        display: table;
+        width: 100%;
+        .bubble {
+            position: relative;
+            display: table-cell;
+            width: auto;
+            box-sizing: border-box;
+            background: white;
+            box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+            z-index: 1500;
+            border-radius: 5px;
+            padding: 15px;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                margin-left: -0em;
+                top: 5px;
+                left: 0;
+                box-sizing: border-box;
+                border: 5px solid black;
+                border-color: white white white white;
+                z-index: 1000;
+                transform-origin: 0 0;
+                transform: rotate(-315deg);
+                box-shadow: 0px 1px 0px 0 rgba(0, 0, 0, 0.15);
+            }
+            p {
+                margin-top: 10px;
+                margin-bottom: 0px;
+            }
+            h3 {
+                text-align: right;
+            }
+            .deleteIcon {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                visibility: hidden;
+                opacity: 0;
+                right: 15px;
+                bottom: 15px;
+            }
+            &:hover {
+                .deleteIcon {
+                    visibility: visible;
+                    opacity: 0.5;
+                    &:hover {
+                        .rotate(90deg);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .avatar {
+            display: table-cell;
+            width: 80px;
+            img {
+                border-radius: 55px;
+                height: 55px;
+                width: 55px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @screen-sm-max) {
+    .comments {
+        .comment {
+            .bubble {
+                .deleteIcon{
+                    visibility: visible;
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}

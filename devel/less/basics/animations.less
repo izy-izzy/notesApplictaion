@@ -1,0 +1,72 @@
+// Animation of textarea in note detail. (ng-animate)
+
+.animate-add-comment-show-hide {
+    .transition(all 0.25s ease-in-out);
+    opacity: 1;
+    height: 217px;
+}
+
+.animate-add-comment-show-hide.ng-hide {
+    opacity: 0;
+    height: 0px;
+}
+
+// Text blocks animation in note detail. (ng-animate)
+
+.comment {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    .transition(all 0.4s ease-in-out);
+}
+
+.comment.ng-animate {
+    .transition(all 0.4s ease-in-out);
+    margin-left: 0px !important;
+    margin-left: 0px !important;
+}
+
+.comment.ng-enter {
+    margin-left: 150px !important;
+    opacity: 0;
+}
+
+.comment.ng-enter.ng-enter-active {
+    margin-left: 0px !important;
+    opacity: 1;
+}
+
+.comment.ng-leave {
+    margin-left: 0px !important;
+    opacity: 1;
+}
+
+.comment.ng-leave.ng-leave-active {
+    margin-left: -150px !important;
+    opacity: 0;
+}
+
+// Blocks animation in notes. (ng-animate)
+
+.note {
+    .transition(all 1s ease-in-out);
+}
+
+.note.ng-animate {
+    .transition(all 1s ease-in-out);
+}
+
+.note.ng-enter {
+    opacity: 0;
+}
+
+.note.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.note.ng-leave {
+    opacity: 1;
+}
+
+.note.ng-leave.ng-leave-active {
+    opacity: 0;
+}

@@ -1,0 +1,139 @@
+.btn {
+    background-color: @button-color;
+    border-radius: 0px;
+    border: 0px solid white;
+    padding: 10px 15px;
+    .box-shadow(0 2px 0 darken(@button-color, 20%));
+    color: white;
+    .text-bold();
+    .text-uppercase();
+    font-size: 17px;
+    .transition(all 0.25s ease-in-out);
+    &:hover {
+        color: white;
+        background-color: lighten(@button-color, 10%);
+        box-shadow: none;
+    }
+    &-arrow {
+        &-next {
+            &:after {
+                .transition(all 0.5s ease-in-out);
+                content: " ";
+                background-image: url("../images/btn-arrow.png");
+                background-repeat: no-repeat;
+                background-position: left center;
+                background-size: cover;
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                margin-left: 7px;
+            }
+        }
+        &-prev {
+            &:before {
+                .transition(all 0.5s ease-in-out);
+                content: " ";
+                background-image: url("../images/btn-arrow.png");
+                background-repeat: no-repeat;
+                background-position: left center;
+                background-size: cover;
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                margin-right: 7px;
+                .rotate(180deg);
+            }
+        }
+    }
+    &-clear {
+        text-transform: none;
+        background: transparent;
+        color: @blue;
+        box-shadow: none;
+        padding: 0px;
+        font-size: 14px;
+        .text-regular();
+        &:hover {
+            background: none;
+            color: lighten(@blue, 20%);
+            box-shadow: none;
+        }
+    }
+    &-gray {
+        border: 2px solid @button-gray-color;
+        background: white;
+        color: @button-gray-color;
+        text-transform: none;
+        box-shadow: none;
+        &:hover {
+            background: @button-gray-color;
+            color: white;
+            box-shadow: none;
+        }
+        &.btn-arrow {
+            &-next {
+                &:after {
+                    background-image: url("../images/btn-arrow-gray.png");
+                }
+                &:hover {
+                    &:after {
+                        background-image: url("../images/btn-arrow.png");
+                    }
+                }
+            }
+            &-prev {
+                &:before {
+                    background-image: url("../images/btn-arrow-gray.png");
+                }
+                &:hover {
+                    &:before {
+                        background-image: url("../images/btn-arrow.png");
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:@screen-sm-max){
+    .btn{
+        margin-top: 7px;
+        margin-bottom: 7px;
+        padding: 6px 10px;
+        font-size: 15px;
+        &-arrow {
+            &-next {
+                &:after {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+            &-prev {
+                &:before {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+        &-clear {
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+}
+
+.deleteIcon {
+    border: 0px solid white;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("../images/delete.png");
+    background-size: 100% 100%;
+    height: 80px;
+    width: 80px;
+    background-color: transparent;
+    opacity: 0.8;
+    .transition(all 0.25s ease-in-out);
+    &:hover {
+        oapcity: 1;
+    }
+}

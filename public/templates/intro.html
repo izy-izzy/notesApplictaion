@@ -1,0 +1,33 @@
+<div class="page">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-8 col-lg-offset-2" >
+			<article>
+				<header>
+					<h1>Login</h1>
+				</header>
+				
+				<label for="intro-login" class="required">Username:</label>
+				<div class="form-group">
+			  		<input 	type="text" 
+			  				id="intro-login" 
+			  				class="form-control" 
+			  				ng-model="user.loginData.email" 
+			  				placeholder="Username">
+				</div>
+
+				<label for="intro-password" class="required">Password:</label>
+				<div class="form-group">
+			  		<input  type="password" 
+			  				id="intro-password" 
+			  				class="form-control" 
+			  				ng-model="user.loginData.password" 
+			  				placeholder="Password" 
+			  				ng-keypress="($event.which === 13)?loginUser():0">
+				</div>
+				<button ng-click="loginUser()" class="btn btn-arrow-next">login</button>
+
+				<div ng-show="user.loginFailed" class="infobox infobox-danger">Unable to connect to service. Username or password may be wrong.</div>
+			</article>
+		</div>
+	</div>
+</div> 

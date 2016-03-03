@@ -1,0 +1,5 @@
+{
+    "fireBaseHttp": "https://simplenotestest.firebaseio.com",
+    "pathToUserPictures": "./images/users/",
+    "defaultUserPicture": "default_user.jpg"
+}
