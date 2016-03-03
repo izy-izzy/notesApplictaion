@@ -6,6 +6,8 @@ angular
     .module('notesApp')
     .controller("introController", introController);
 
+introController.$inject = ['$scope', '$state'];
+
 function introController($scope, $state) {
 
 }

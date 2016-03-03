@@ -6,6 +6,8 @@ angular
     .module('notesApp')
     .controller("noteController", noteController);
 
+noteController.$inject = ['$state','$scope','$stateParams','databaseService','uidFactory','SweetAlert'];
+
 function noteController($state, $scope, $stateParams, databaseService, uidFactory, SweetAlert) {
     
     var vm = this;

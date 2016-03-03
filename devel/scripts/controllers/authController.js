@@ -6,6 +6,8 @@ angular
     .module('notesApp')
     .controller("authController", authController);
 
+authController.$inject = ['$scope','databaseService','$state','settingsService','SweetAlert','$firebaseAuth'];
+
 function authController($scope, databaseService, $state, settingsService, SweetAlert, $firebaseAuth) {
 
     $scope.firebaseAuth = undefined;

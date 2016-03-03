@@ -8,7 +8,7 @@ angular
 
 settingsService.$inject = ['$http'];
 
-function settingsService($http, $q) {
+function settingsService($http) {
     var service = {
         data: {},
         getSettings: getSettings

@@ -13,6 +13,8 @@ angular
     .module('notesApp')
     .config(appConfig);
 
+appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+
 function appConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise("/intro");

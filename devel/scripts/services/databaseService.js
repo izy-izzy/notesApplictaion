@@ -7,6 +7,9 @@ angular
     .module('notesApp')
     .service('databaseService', databaseService);
 
+databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
+
+
  function databaseService($firebaseArray, $firebaseObject) {
         
     var service = {
