@@ -27,7 +27,7 @@ gulp.task('autotest', function() {
   	],['test']);
 });
 
-gulp.task('default', ['less', 'scripts', 'test','watch']);
+gulp.task('default', ['less', 'scripts', 'test']);
 
 gulp.task('watch', function(){
 	gulp.watch([
