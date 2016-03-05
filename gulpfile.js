@@ -5,14 +5,19 @@ var concat = require('gulp-concat');
 var minifyJS = require('gulp-minify');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
-var karmaServer = require('karma').Server;
+var karma = require('gulp-karma');
 var cssnano = require('gulp-cssnano');
 
 gulp.task('test', function() {
-  new karmaServer({
-    configFile: __dirname + '/karma.conf.js',
-    action:'run'
-  }).start();
+  return gulp.src('./foobar')
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err) {
+      console.log(err);
+      this.emit('end');
+    });
 });
 
 gulp.task('autotest', function() {
