@@ -25,6 +25,8 @@ password : jane
 login: mary@test.com
 password : mary
 
+demoserver: http://notes.lukaskalcok.com
+
 ## Contributors
 
 lukaskalcok@gmail.com (Lukas Kalcok)
