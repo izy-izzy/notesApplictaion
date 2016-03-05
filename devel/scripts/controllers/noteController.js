@@ -132,5 +132,28 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
         } 
         return imagePath + imageFileName;
     }
+
+    /**
+     *  Logs out a $scope.user.
+     */
+    vm.logoutUser = function() {
+        authService.unAuth();
+    };
+
+    vm.user = authService.getUser();
+
+    vm.getUserName = function(){
+        if (vm.user.uid){
+            return databaseService.getUserFullName(vm.user.uid);
+        } 
+    }
+
+    /**
+    *  @param {string} note id
+    *  @return {string} Full name of note author
+    */
+    vm.getUserFullName = function(note){
+        return databaseService.getUserFullName(note.userID);
+    }
    
 }

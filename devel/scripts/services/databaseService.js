@@ -43,6 +43,8 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 
     function setFirebase(object){
         service.firebaseObj = object;
+        service.getNotes();
+        service.getUsers();
     }
 
     /**
@@ -182,7 +184,6 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
     }
 
     function getUser(userId){
-        console.log(service.getUsers(), service.getUsers()[userId]);
         if (service.getUsers() && service.getUsers()[userId]){
             return service.getUsers()[userId];
         } else {

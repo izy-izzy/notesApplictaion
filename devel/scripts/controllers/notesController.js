@@ -13,6 +13,13 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert, 
     var vm = this;
 
     vm.notes = databaseService.getNotes();
+    vm.user = authService.getUser();
+
+    vm.getUserName = function(){
+        if (vm.user.uid){
+            return databaseService.getUserFullName(vm.user.uid);
+        } 
+    }
 
     /**
     *  @param {string} note id

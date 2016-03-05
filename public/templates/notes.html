@@ -1,14 +1,12 @@
 <div class="page">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-8 col-lg-offset-2">
+			<ng-userline user-name="vm.getUserName()" logout-function="vm.logoutUser()"></ng-userline>
 			<article>
 				<header>
 					<div class="row">
-						<div class="col-xs-6">
+						<div class="col-xs-12">
 							<h1 class="margin-no padding-no">Notes Overview</h1>
-						</div>
-						<div class="col-xs-6">
-							<button ng-click="vm.logoutUser()" class="btn btn-clear pull-right">Logout</button>
 						</div>
 					</div>
 				</header>
