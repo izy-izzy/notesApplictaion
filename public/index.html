@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="notesApp">
+<html ng-app="notesApp" ng-strict-di>
 
 <head>
     <title>Simple notes</title>
@@ -63,6 +63,8 @@
 
 <body>
     <section class="container" ng-controller="authController">
+    </section>
+    <section class="container">
         <div ui-view class="reveal-animation"></div>
     </section>
 </body>

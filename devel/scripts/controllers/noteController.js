@@ -6,9 +6,9 @@ angular
     .module('notesApp')
     .controller("noteController", noteController);
 
-noteController.$inject = ['$state','$scope','$stateParams','databaseService','uidFactory','SweetAlert'];
+noteController.$inject = ['$state','$scope','$stateParams','databaseService','uidFactory','SweetAlert', 'settingsService', 'authService'];
 
-function noteController($state, $scope, $stateParams, databaseService, uidFactory, SweetAlert) {
+function noteController($state, $scope, $stateParams, databaseService, uidFactory, SweetAlert, settingsService, authService) {
     
     var vm = this;
 
@@ -26,8 +26,8 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
      *  Watches for changes in a note. If a change is detected checkNoteStatus() is called.  
      */
     vm.initwatch = function(){
-        if ($scope.note){
-            var watchNode = $scope.note.$watch(function() {
+        if (vm.note){
+            var watchNode = vm.note.$watch(function() {
                 vm.checkNoteStatus();
             });
         }
@@ -38,7 +38,7 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
      *  Checks if the current note is empty. If the note is empty/deleted, warning is shown and user is rerouted to notes overview.
      */
     vm.checkNoteStatus = function(){
-        if ($scope.note && $scope.note.title && $scope.note.created && $scope.note.userID){}
+        if (vm.note && vm.note.title && vm.note.created && vm.note.userID){}
         else {
             SweetAlert.swal({
                 title: "This note has been deleted.",
@@ -46,14 +46,6 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
             $state.go('notes');
         }
     };
-
-    /**
-     *  Redirects to notes
-     */
-    vm.goToNotes = function(){
-        $state.go('notes');
-    }
-
 
     /**
      *  Deletes a comment. Prompts to confirm request and according to selected action it deletes the comment or cancel the request.
@@ -70,7 +62,7 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
             cancelButtonText: "Cancel"
         }, function(isConfirm){
             if (isConfirm){
-                databaseService.removeNoteComment($scope.note.$id, comment.$id).then(function(){
+                databaseService.removeNoteComment(vm.note.$id, comment.$id).then(function(){
                     SweetAlert.swal({
                         title: "Your note has been removed.",
                         type: "success"});
@@ -89,17 +81,17 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
     */
     vm.addNewComment = function(){
         if (vm.newcomment.text != ""){
-            if (!$scope.note.comments){
-                $scope.note.comments = {};
+            if (!vm.note.comments){
+                vm.note.comments = {};
             }
-            $scope.note.comments[""+uidFactory.getUID()+""] = { 
+            vm.note.comments[""+uidFactory.getUID()+""] = { 
                 text: vm.newcomment, 
                 created: Date.now(),
-                userID: $scope.user.uid
+                userID: authService.getUser().uid
             };
             vm.newcomment.created = Date.now();
-            vm.newcomment.userID = $scope.user.uid;
-            databaseService.setNoteComment(vm.newcomment, $scope.note.$id, uidFactory.getUID());
+            vm.newcomment.userID = authService.getUser().uid;
+            databaseService.setNoteComment(vm.newcomment, vm.note.$id, uidFactory.getUID());
         } else {
             SweetAlert.swal({
                 title: "Your note can not be empty.",
@@ -131,11 +123,11 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
     vm.getUserPhoto = function(comment){
         var imagePath = "";
         var imageFileName = "default.jpg";
-        if ($scope.settings){
-            imageFileName = $scope.settings.defaultUserPicture;
-            imagePath = $scope.settings.pathToUserPictures;
+        if (settingsService.getSettings()){
+            imageFileName = settingsService.getSettings().defaultUserPicture;
+            imagePath = settingsService.getSettings().pathToUserPictures;
         } 
-        if (comment && $scope.settings && databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile != ""){
+        if (comment && settingsService.getSettings() &&databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile != ""){
             imageFileName = databaseService.getUser(comment.userID).imagefile;
         } 
         return imagePath + imageFileName;

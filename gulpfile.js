@@ -74,7 +74,7 @@ gulp.task('scripts', function() {
 		])
 	.pipe(concat('app.min.js'))
 	.pipe(sourcemaps.init())
-	/*.pipe(minifyJS({mangle: false}).on('error', 
+	/*.pipe(minifyJS({mangle: true}).on('error', 
     	function(e) {
     		gutil.log(e);
     		this.emit('end');

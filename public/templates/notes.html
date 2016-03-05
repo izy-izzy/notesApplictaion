@@ -8,7 +8,7 @@
 							<h1 class="margin-no padding-no">Notes Overview</h1>
 						</div>
 						<div class="col-xs-6">
-							<button ng-click="logoutUser()" class="btn btn-clear pull-right">Logout</button>
+							<button ng-click="vm.logoutUser()" class="btn btn-clear pull-right">Logout</button>
 						</div>
 					</div>
 				</header>
@@ -27,14 +27,14 @@
 							    <div class="table-body">
 							    	<div ng-repeat="note in vm.notes | orderBy:'created':true"
 							    		class="hoverable table-body-row note">
-							    		<div class="table-body-row-cell creator" ng-click="vm.goToNote(note)">{{vm.getUserFullName(note)}}</div>
-							    		<div class="table-body-row-cell title" ng-click="vm.goToNote(note)">{{note.title}}</div>
-						    			<div class="table-body-row-cell date" ng-click="vm.goToNote(note)">{{note.created | customDateFilter}}</div>
+							    		<div class="table-body-row-cell creator" ui-sref="note({ noteID: note.$id})">{{vm.getUserFullName(note)}}</div>
+							    		<div class="table-body-row-cell title" ui-sref="note({ noteID: note.$id})">{{note.title}}</div>
+						    			<div class="table-body-row-cell date" ui-sref="note({ noteID: note.$id})">{{note.created | customDateFilter}}</div>
 						    			<div class="table-body-row-cell remove"><button class="deleteIcon" ng-click="vm.deleteNote(note)"></button></div>
 							    	</div>
 							    </div>
 							</div>
-					    	<button ng-click="vm.addNote()" class="btn btn-arrow-next">Create a new note</button>
+					    	<button ui-sref="addnote" class="btn btn-arrow-next">Create a new note</button>
 					  	</div>
 					</div>
 				</div>

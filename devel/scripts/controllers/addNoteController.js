@@ -6,9 +6,9 @@ angular
     .module('notesApp')
     .controller("addNoteController", addNoteController);
 
-addNoteController.$inject = ['$scope','databaseService','$state','uidFactory','SweetAlert'];
+addNoteController.$inject = ['$scope','databaseService','$state','uidFactory','SweetAlert', 'authService'];
 
-function addNoteController($scope, databaseService, $state, uidFactory, SweetAlert) {
+function addNoteController($scope, databaseService, $state, uidFactory, SweetAlert, authService) {
 
     var vm = this;
 
@@ -36,10 +36,10 @@ function addNoteController($scope, databaseService, $state, uidFactory, SweetAle
             vm.newnote.comments["" + uidFactory.getUID() + ""] = {
                 text: vm.newcomment,
                 created: Date.now(),
-                userID: $scope.user.uid
+                userID: authService.getUser().uid
             };
             vm.newnote.created = Date.now();
-            vm.newnote.userID = $scope.user.uid;
+            vm.newnote.userID = authService.getUser().uid;
             databaseService.setNote(vm.newnote, uidFactory.getUID()).then(function() {
                 SweetAlert.swal({
                     title: "Your note has been saved.",

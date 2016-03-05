@@ -6,38 +6,20 @@ angular
     .module('notesApp')
     .controller("notesController", notesController);
 
-notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert'];
+notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert', 'authService'];
 
-function notesController($scope, $state,databaseService,uidFactory, SweetAlert) {
+function notesController($scope, $state,databaseService,uidFactory, SweetAlert, authService) {
 
     var vm = this;
 
     vm.notes = databaseService.getNotes();
 
     /**
-    *  Redirect 'addnote'
-    */
-    vm.addNote = function(){
-        $state.go('addnote');
-    }
-
-    /**
-    *  Redirect to 'note'
-    */
-    vm.goToNote = function(note){
-        $state.go('note', {'noteID':note.$id});
-    }
-
-    /**
     *  @param {string} note id
     *  @return {string} Full name of note author
     */
     vm.getUserFullName = function(note){
-        if (note) {
-            return databaseService.getUserFullName(note.userID);
-        } else {
-            return null;
-        }
+        return databaseService.getUserFullName(note.userID);
     }
 
     /**
@@ -68,5 +50,13 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert) 
             };
         });
     }
+
+    /**
+     *  Logs out a $scope.user.
+     */
+    vm.logoutUser = function() {
+        authService.unAuth();
+    };
+
 }
 

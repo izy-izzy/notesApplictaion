@@ -11,22 +11,28 @@ settingsService.$inject = ['$http'];
 function settingsService($http) {
     var service = {
         data: {},
-        getSettings: getSettings
+        getSettings: getSettings,
+        settings : null
     }
 
     return service;
 
     function getSettings() {
-        return $http.get('settings.json')
-            .then(getSettingFileComplete)
-            .catch(getSettingFileFailed);
+        if (!service.settings){
+            return $http.get('settings.json')
+                .then(getSettingFileComplete)
+                .catch(getSettingFileFailed);
 
-        function getSettingFileComplete(response) {
-            return response.data;
-        }
+            function getSettingFileComplete(response) {
+                service.settings = response.data;
+                return service.settings;
+            }
 
-        function getSettingFileFailed(error) {
-            logger.error('XHR Failed for getAvengers.' + error.data);
+            function getSettingFileFailed(error) {
+                logger.error('XHR Failed for getAvengers.' + error.data);
+            }
+        } else {
+            return service.settings;
         }
     }
 }

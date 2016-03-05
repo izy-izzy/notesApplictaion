@@ -6,8 +6,24 @@ angular
     .module('notesApp')
     .controller("introController", introController);
 
-introController.$inject = ['$scope', '$state'];
+introController.$inject = ['$scope', '$state', 'authService' ];
 
-function introController($scope, $state) {
+function introController($scope, $state, authService ) {
+	
+	$scope.user = authService.getUser();
+
+	/**
+     *  Logs in a $scope.user. Credentials are taken from user data.
+     */
+    $scope.loginUser = function() {
+        authService.authWithPassword($scope.user.loginData).then(
+            function(){
+                $state.go('notes');
+            },
+            function(){
+                // nothing
+            })
+        ;
+    };
 
 }

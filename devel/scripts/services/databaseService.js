@@ -15,15 +15,11 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
     var service = {
         firebaseHttp : null,
         firebaseObj : null,
-        notes: {},
-        comments: {},
-        note: {},
-        users: {},
-        user: null,
+        notes: null,
+        comments: null,
+        note: null,
+        users: null,
 
-        setFirebaseHttp: setLocation,
-
-        getFirebase:getFirebase,
         getNotes:getNotes,
         getUsers:getUsers,
         getNote:getNote,
@@ -31,12 +27,10 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 
         setNoteComment:setNoteComment,
         setNote:setNote,
+        setFirebase : setFirebase,
 
         removeNote:removeNote,
         removeNoteComment:removeNoteComment,
-
-        authWithPassword:authWithPassword,
-        unAuth:unAuth,
 
         destroyFirebaseObjects: destroyFirebaseObjects,
 
@@ -47,28 +41,15 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
     };
     return service;
 
-    function setLocation(location) { 
-        service.firebaseHttp = location;
-    }
-
-    /**
-     *  Connect to firebase database.
-     *  @return {object} Firebase object.
-     */
-    function getFirebase() {
-        if (service.firebaseHttp){
-            service.firebaseObj = new Firebase(service.firebaseHttp);
-            service.getNotes();
-            service.getUsers();
-        }  
-        return service.firebaseObj;
+    function setFirebase(object){
+        service.firebaseObj = object;
     }
 
     /**
      *  @return {object} $firebaseArray of all notes
      */
     function getNotes() {
-        if (service.firebaseObj){
+        if (service.firebaseObj && !service.notes){
             service.notes = $firebaseArray(service.firebaseObj.child("notes"));
         } 
         return service.notes;
@@ -78,7 +59,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
      *  @return {object} $firebaseObject of all users
      */
     function getUsers() {
-        if (service.firebaseObj){
+        if (service.firebaseObj && !service.users){
             service.users = $firebaseObject(service.firebaseObj.child("users"));
         } 
         return service.users;
@@ -169,49 +150,6 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
     }
 
     /**
-     *  Authenticate user to database
-     *  @param {oject} {email:string, password:string} user's credentials
-     *  @return {object} promise containing information about authentication result
-     */
-    function authWithPassword(user) {
-        if (service.firebaseObj){
-            var deferred = $.Deferred();
-            service.firebaseObj.authWithPassword(user, function onAuth(err, user) {
-                if (err) {
-                    deferred.reject(err);
-                }
-                if (user) {
-                    deferred.resolve(user);
-                }
-            });
-            return deferred.promise();
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     *  Unauthenticate user from database
-     *  @return {object} promise containing information about unauthentication result
-     */
-    function unAuth() {
-        var deferred = $.Deferred();
-        if (service.firebaseObj){
-            service.firebaseObj.unauth(function onAuth(value) {
-                if (value == null) {
-                    service.destroyFirebaseObjects();
-                    deferred.resolve(true);
-                } else {
-                    deferred.reject(false);
-                }
-            });
-            return deferred.promise();
-        } else {
-            return null;
-        }
-    }
-
-    /**
      *  Destroys all firebase objects
      */
     function destroyFirebaseObjects() {
@@ -224,26 +162,18 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
     };
 
     function getUserFirstName(userId){
-        if (service.firebaseObj){
-            var authorName = "";
-            if (userId && service.users && service.users[userId]) {
-                authorName = service.users[userId].firstname;
-            } 
-            return authorName;
+        if (service.getUsers() && service.getUsers()[userId] && service.getUsers()[userId]['firstname']){
+            return service.getUsers()[userId]['firstname'];
         } else {
-            return null;
+            return "";
         }
     }
 
     function getUserSurName(userId){
-        if (service.firebaseObj){
-            var authorName = "";
-            if (userId && service.users && service.users[userId]) {
-                authorName = service.users[userId].surname;
-            } 
-            return authorName;
+        if (service.getUsers() && service.getUsers()[userId] && service.getUsers()[userId]['surname']){
+            return service.getUsers()[userId]['surname'];
         } else {
-            return null;
+            return "";
         }
     }
 
@@ -252,13 +182,11 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
     }
 
     function getUser(userId){
-        var imageFileName = "";
-        if (service.firebaseObj){
-            if (service.users && service.users[userId]){
-                return service.users[userId];
-            } 
+        console.log(service.getUsers(), service.getUsers()[userId]);
+        if (service.getUsers() && service.getUsers()[userId]){
+            return service.getUsers()[userId];
         } else {
-            return null;
+            return "";
         }
     }
 

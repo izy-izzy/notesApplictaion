@@ -24,7 +24,8 @@ function appConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('intro', {
             url: "/",
             templateUrl: "./templates/intro.html",
-            controller: 'introController'
+            controller: 'introController',
+            controllerAs: 'vm'
         })
         .state('notes', {
             url: "/notes",
