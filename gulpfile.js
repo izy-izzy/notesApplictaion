@@ -7,6 +7,7 @@ var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
 var karma = require('gulp-karma');
 var cssnano = require('gulp-cssnano');
+var jshint = require('gulp-jshint');
 
 gulp.task('test', function() {
   return gulp.src('./foobar')
@@ -27,9 +28,9 @@ gulp.task('autotest', function() {
   	],['test']);
 });
 
-gulp.task('default', ['less', 'scripts', 'test']);
+gulp.task('default', ['less', 'scripts', 'lint', 'test']);
 
-gulp.task('watch', function(){
+gulp.task('watch', ['less', 'scripts', 'lint', 'test'], function(){
 	gulp.watch([
 		'./devel/less/*.less',
 		'./devel/less/*/*.less'
@@ -86,4 +87,11 @@ gulp.task('scripts', function() {
     	}))
 	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest('./public/js/'))
+});
+
+
+gulp.task('lint', function() {
+  return gulp.src('./public/js/app.min.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
