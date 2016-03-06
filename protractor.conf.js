@@ -8,5 +8,6 @@ exports.config = {
       // add jasmine spec reporter
       jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
   },
+  baseUrl:'http://127.0.0.1:8080',
   reporters: ['spec']
 };
