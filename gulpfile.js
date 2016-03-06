@@ -5,32 +5,42 @@ var concat = require('gulp-concat');
 var minifyJS = require('gulp-minify');
 var gutil = require('gulp-util');
 var sourcemaps = require('gulp-sourcemaps');
-var karma = require('gulp-karma');
+var karmaServer = require('karma').Server;
 var cssnano = require('gulp-cssnano');
 var jshint = require('gulp-jshint');
+var gulpProtractorAngular = require('gulp-angular-protractor');
+var runSequence = require('run-sequence');
 
-gulp.task('test', function() {
-  return gulp.src('./foobar')
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }))
-    .on('error', function(err) {
-      console.log(err);
-      this.emit('end');
-    });
+gulp.task('karma', function (done) {
+  new karmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
-gulp.task('autotest', function() {
-  return gulp.watch([
-  	'./devel/assets/js/**/*.js',
-  	'./devel/tests/*.js'
-  	],['test']);
+gulp.task('protractor', function(callback) {
+    gulp
+        .src('app.min.js')
+        .pipe(gulpProtractorAngular({
+            configFile: 'protractor.conf.js',
+            debug: false,
+            autoStartStopServer: true
+        }))
+        .on('error', function(e) {
+            console.log(e);
+        })
+        .on('end', callback);
 });
 
-gulp.task('default', ['less', 'scripts', 'lint', 'test']);
+gulp.task('test', function(){
+  return runSequence('karma', 'protractor');
+});
 
-gulp.task('watch', ['less', 'scripts', 'lint', 'test'], function(){
+gulp.task('default', function(){
+  return runSequence('less', 'scripts', 'lint', 'test')
+});
+
+gulp.task('watch', ['default'], function(){
 	gulp.watch([
 		'./devel/less/*.less',
 		'./devel/less/*/*.less'
@@ -38,7 +48,7 @@ gulp.task('watch', ['less', 'scripts', 'lint', 'test'], function(){
 	gulp.watch([
 		'./devel/scripts/*.js',
 		'./devel/scripts/*/*.js',
-		], ['scripts', 'test']);
+		], ['test']);
 	});
 
 gulp.task('less', function () {

@@ -25,7 +25,7 @@ module.exports = function(config) {
         './devel/scripts/services/*.js',
         './devel/scripts/factories/*.js',
         './devel/scripts/controllers/*.js',
-        './devel/scripts/tests/*.js'
+        './devel/scripts/tests/karma/*.js'
     ],
     exclude: [],
     preprocessors: {},
