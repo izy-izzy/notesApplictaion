@@ -2,7 +2,7 @@ var LOCALSERVERHTTP = 'http://localhost:8080';
 
 describe('angularjs homepage', function() {
   it('should add a todo', function() {
-    browser.get('http://localhost:4444/');
+    browser.get(LOCALSERVERHTTP);
 
     //element(by.model('todoList.todoText')).sendKeys('write first protractor test');
     expect(element(by.id('intro-login')).isPresent()).toBe(true);
