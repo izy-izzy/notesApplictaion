@@ -48,7 +48,7 @@ gulp.task('watch', ['default'], function(){
 	gulp.watch([
 		'./devel/scripts/*.js',
 		'./devel/scripts/*/*.js',
-		], ['test']);
+		], ['scripts']);
 	});
 
 gulp.task('less', function () {

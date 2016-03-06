@@ -1,12 +1,11 @@
 var LOCALSERVERHTTP = 'http://localhost:8080';
 
-describe('angularjs homepage', function() {
-  it('should add a todo', function() {
+describe('appNotesIntroPageTest', function() {
+  it('able to start a homepage', function() {
     browser.get(LOCALSERVERHTTP);
 
     //element(by.model('todoList.todoText')).sendKeys('write first protractor test');
     expect(element(by.id('intro-login')).isPresent()).toBe(true);
-    console.log("LOL");
     /*element(by.css('[value="add"]')).click();
 
     var todoList = element.all(by.repeater('todo in todoList.todos'));
