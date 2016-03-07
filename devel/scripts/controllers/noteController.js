@@ -22,6 +22,20 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
     vm.comments = databaseService.getNoteComments(vm.noteId);
     vm.note = databaseService.getNote(vm.noteId);
 
+    vm.settings = {
+        "pathToUserPictures": "./",
+        "defaultUserPicture": "default.jpg"
+    };
+    settingsService.getSettings().get(
+        {},
+        function(data){
+            vm.settings = data;
+            console.log(data);
+        },
+        function(){
+        }
+    );
+
     /**
      *  Watches for changes in a note. If a change is detected checkNoteStatus() is called.  
      */
@@ -121,16 +135,11 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
     *  @return {string} relative path to author's photo
     */
     vm.getUserPhoto = function(comment){
-        var imagePath = "";
         var imageFileName = "default.jpg";
-        if (settingsService.getSettings()){
-            imageFileName = settingsService.getSettings().defaultUserPicture;
-            imagePath = settingsService.getSettings().pathToUserPictures;
-        } 
-        if (comment && settingsService.getSettings() &&databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile != ""){
+        if (comment && settingsService.getSettings() && databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile != ""){
             imageFileName = databaseService.getUser(comment.userID).imagefile;
         } 
-        return imagePath + imageFileName;
+        return vm.settings.pathToUserPictures + imageFileName;
     }
 
     /**
