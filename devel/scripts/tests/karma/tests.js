@@ -132,8 +132,9 @@ describe("settings service", function() {
             "pathToUserPictures": "./images/users/",
             "defaultUserPicture": "default_user.jpg"
         });
-        settingsService.getSettings()
-            .then(function(data) {
+        settingsService.getSettings().get(
+            {}, 
+            function(data) {
                 expect(data.fireBaseHttp).toEqual("https://simplenotestest.firebaseio.com");
             });
         httpBackend.flush();

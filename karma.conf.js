@@ -11,12 +11,15 @@ module.exports = function(config) {
         './node_modules/sweetalert/dist/sweetalert.min.js',
         './node_modules/angular/angular.min.js',
         './node_modules/angular-aria/angular-aria.min.js',
+        './node_modules/angular-resource/angular-resource.min.js',
         './node_modules/angular-ui-router/release/angular-ui-router.min.js',
         './node_modules/angularfire/dist/angularfire.min.js',
         './node_modules/angular-animate/angular-animate.min.js',
         './node_modules/angular-sweetalert/SweetAlert.min.js',
 
         './node_modules/angular-mocks/angular-mocks.js',
+
+        './devel/scripts/serviceModules/settingServiceS.js',
 
         './devel/scripts/app.js',
         './devel/scripts/filters/*.js',

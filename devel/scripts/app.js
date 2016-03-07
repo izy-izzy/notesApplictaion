@@ -6,7 +6,8 @@ angular.module('notesApp', [
     'ui.router',
     'ngAnimate',
     'ngAria',
-    'oitozero.ngSweetAlert'
+    'oitozero.ngSweetAlert',
+    'ngResource'
 ]);
 
 angular

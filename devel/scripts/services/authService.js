@@ -85,12 +85,11 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
                     defer.resolve(true);
                 }
                 if (user) {
-                    defer.reject(false);
+                    defer.reject();
                 }
             });
         } 
         return defer.promise;
-
     }
 
     /**

@@ -20,7 +20,7 @@ function authController($scope, databaseService, $state, settingsService, SweetA
      *  If initialisation of setting service fails, user is informed.
      */
     vm.loadApplication = function() {
-        settingsService.getSettings().then(function(data) {
+        settingsService.getSettings().get(null,function(data) {
             vm.settings = data;
             authService.setLocation(vm.settings.fireBaseHttp);
             databaseService.setFirebase(authService.getFirebase());

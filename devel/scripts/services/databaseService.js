@@ -51,7 +51,6 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
      *  @return {object} $firebaseArray of all notes
      */
     function getNotes() {
-        console.log(service.firebaseObj ,!service.notes);
         if (service.firebaseObj && !service.notes){
             service.notes = $firebaseArray(service.firebaseObj.child("notes"));
         } 
@@ -62,7 +61,6 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
      *  @return {object} $firebaseObject of all users
      */
     function getUsers() {
-        console.log(service.firebaseObj ,!service.users);
         if (service.firebaseObj && !service.users){
             service.users = $firebaseObject(service.firebaseObj.child("users"));
         } 

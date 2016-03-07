@@ -18,7 +18,11 @@ function introController($scope, $state, authService ) {
     $scope.loginUser = function() {
         authService.authWithPassword($scope.user.loginData).then(
             function(){
-                $state.go('notes');
+                if ($scope.user.authenticated){
+                    $state.go('notes');
+                } else {
+                    // not authenticated :(
+                }
             },
             function(){
                 // nothing

@@ -75,10 +75,14 @@ gulp.task('scripts', function() {
         './node_modules/sweetalert/bootstrap.min.js',
         './node_modules/angular/angular.min.js',
         './node_modules/angular-aria/angular-aria.min.js',
+        './node_modules/angular-resource/angular-resource.js',
         './node_modules/angular-ui-router/release/angular-ui-router.min.js',
         './node_modules/angularfire/dist/angularfire.min.js',
         './node_modules/angular-animate/angular-animate.min.js',
         './node_modules/angular-sweetalert/SweetAlert.min.js',
+
+        './devel/scripts/serviceModules/settingServiceS.js',
+        
 
         './devel/scripts/app.js',
         './devel/scripts/filters/*.js',
@@ -90,11 +94,11 @@ gulp.task('scripts', function() {
 		])
 	.pipe(concat('app.min.js'))
 	.pipe(sourcemaps.init())
-	.pipe(minifyJS({mangle: true}).on('error', 
+	/*.pipe(minifyJS({mangle: true}).on('error', 
     	function(e) {
     		gutil.log(e);
     		this.emit('end');
-    	}))
+    	}))*/
 	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest('./public/js/'))
 });
