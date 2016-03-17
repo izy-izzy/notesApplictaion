@@ -22,38 +22,29 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
     vm.comments = databaseService.getNoteComments(vm.noteId);
     vm.note = databaseService.getNote(vm.noteId);
 
-    vm.settings = {
-        "pathToUserPictures": "./",
-        "defaultUserPicture": "default.jpg"
-    };
-    settingsService.getSettings().get(
-        {},
-        function(data){
-            vm.settings = data;
-            console.log(data);
-        },
-        function(){
-        }
-    );
+    vm.settings = undefined;
+    settingsService.getSettings().then(function(data){
+        vm.settings = data;
+    });
 
     /**
      *  Watches for changes in a note. If a change is detected checkNoteStatus() is called.  
      */
     vm.initwatch = function(){
         if (vm.note){
-            var watchNode = vm.note.$watch(function() {
+            vm.note.$watch(function() {
                 vm.checkNoteStatus();
             });
         }
-    }
+    };
     vm.initwatch();
 
     /**
      *  Checks if the current note is empty. If the note is empty/deleted, warning is shown and user is rerouted to notes overview.
      */
     vm.checkNoteStatus = function(){
-        if (vm.note && vm.note.title && vm.note.created && vm.note.userID){}
-        else {
+        if (vm.note && vm.note.title && vm.note.created && vm.note.userID){
+        } else {
             SweetAlert.swal({
                 title: "This note has been deleted.",
                 type: "warning"});  
@@ -87,14 +78,14 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
                 });
             }
         });
-    }
+    };
 
     /**
     *  Adds a new comment. Checks whether text is not empty and inserts the comment to the active note. If text is empty, user is warned and action is canceled. 
     *  New comment is added with text, current time and userID of the active user.
     */
     vm.addNewComment = function(){
-        if (vm.newcomment.text != ""){
+        if (vm.newcomment.text !== ""){
             if (!vm.note.comments){
                 vm.note.comments = {};
             }
@@ -114,7 +105,7 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
         vm.newcomment = {
             text: ""
         };
-    }
+    };
 
     /**
     *  Returns a name of an author who created a comment
@@ -125,9 +116,9 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
         if (comment) {
             return databaseService.getUserFirstName(comment.userID);
         } else {
-            return null;
+            return undefined;
         }
-    }
+    };
 
     /**
     *  Returns imagePath of an author who created a comment
@@ -136,11 +127,11 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
     */
     vm.getUserPhoto = function(comment){
         var imageFileName = "default.jpg";
-        if (comment && settingsService.getSettings() && databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile != ""){
+        if (comment && settingsService.getSettings() && databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile !== ""){
             imageFileName = databaseService.getUser(comment.userID).imagefile;
         } 
         return vm.settings.pathToUserPictures + imageFileName;
-    }
+    };
 
     /**
      *  Logs out a $scope.user.
@@ -155,7 +146,7 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
         if (vm.user.uid){
             return databaseService.getUserFullName(vm.user.uid);
         } 
-    }
+    };
 
     /**
     *  @param {string} note id
@@ -163,6 +154,6 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
     */
     vm.getUserFullName = function(note){
         return databaseService.getUserFullName(note.userID);
-    }
+    };
    
 }

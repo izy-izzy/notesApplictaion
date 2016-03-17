@@ -34,6 +34,12 @@ function appConfig($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'notesController',
             controllerAs: 'vm'
         })
+        .state('userSettings', {
+            url: "/usersettings",
+            templateUrl: "./templates/usersettings.html",
+            controller: 'userSettingsController',
+            controllerAs: 'vm'
+        })
         .state('note', {
             url: "/note/:noteID",
             templateUrl: "./templates/note.html",

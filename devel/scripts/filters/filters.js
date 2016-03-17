@@ -36,5 +36,5 @@ function customDateFilter() {
             return 0;
         }
         return returnDate;
-    }
+    };
 }

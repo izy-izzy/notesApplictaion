@@ -13,12 +13,12 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
  function databaseService($firebaseArray, $firebaseObject) {
         
     var service = {
-        firebaseHttp : null,
-        firebaseObj : null,
-        notes: null,
-        comments: null,
-        note: null,
-        users: null,
+        firebaseHttp : undefined,
+        firebaseObj : undefined,
+        notes: undefined,
+        comments: undefined,
+        note: undefined,
+        users: undefined,
 
         getNotes:getNotes,
         getUsers:getUsers,
@@ -103,7 +103,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
             var fbReg = service.firebaseObj.child("notes").child(noteId).child("comments").child(commentId);
             return fbReg.set(newComment);
         } else {
-            return null;
+            return undefined;
         }
     }
 
@@ -118,7 +118,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
             var fbReg = service.firebaseObj.child("notes").child(noteId);
             return fbReg.set(newNote);
         } else {
-            return null;
+            return undefined;
         }
     }
 
@@ -132,7 +132,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
             var fbReg = service.firebaseObj.child("notes").child(noteId);
             return fbReg.remove();
         } else {
-            return null;
+            return undefined;
         }
     }
 
@@ -147,7 +147,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
             var fbReg = service.firebaseObj.child("notes").child(noteId).child("comments").child(commentId);
             return fbReg.remove();
         } else {
-            return null;
+            return undefined;
         }
     }
 
@@ -157,23 +157,23 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
     function destroyFirebaseObjects() {
         var arr = [service.notes, service.users, service.note, service.comments];
         angular.forEach(arr, function(value, key) {
-            if (value != null) { 
+            if (value !== undefined) { 
                 value('name', value).$destroy(); 
             }
         });
-    };
+    }
 
     function getUserFirstName(userId){
-        if (service.getUsers() && service.getUsers()[userId] && service.getUsers()[userId]['firstname']){
-            return service.getUsers()[userId]['firstname'];
+        if (service.getUsers() && service.getUsers()[userId] && service.getUsers()[userId].firstname){
+            return service.getUsers()[userId].firstname;
         } else {
             return "";
         }
     }
 
     function getUserSurName(userId){
-        if (service.getUsers() && service.getUsers()[userId] && service.getUsers()[userId]['surname']){
-            return service.getUsers()[userId]['surname'];
+        if (service.getUsers() && service.getUsers()[userId] && service.getUsers()[userId].surname){
+            return service.getUsers()[userId].surname;
         } else {
             return "";
         }

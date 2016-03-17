@@ -67,7 +67,7 @@ describe('Filter tests', function() {
 
 describe('IntroController', function() {
     var scope,
-        $controller;
+        vm;
 
     beforeEach(function() {
         module('notesApp');
@@ -76,24 +76,22 @@ describe('IntroController', function() {
     beforeEach(
         inject(function($rootScope, _$controller_) {
             scope = $rootScope.$new();
-            $controller = _$controller_('introController', {
+            vm = _$controller_('introController', {
                 '$scope': scope,
-                "user": {
-
-                }
+                "user": {}
             });
         }));
 
 
     it('introController loaded', function() {
-        expect(scope.user).toBeDefined();
+        expect(vm.user).toBeDefined();
     });
 
 });
 
 describe('authController', function() {
     var scope,
-        $controller;
+        vm;
 
     beforeEach(function() {
         module('notesApp');
@@ -102,7 +100,7 @@ describe('authController', function() {
     beforeEach(
         inject(function($rootScope, _$controller_) {
             scope = $rootScope.$new();
-            $controller = _$controller_('authController', {
+            vm = _$controller_('authController', {
                 '$scope': scope,
                 "user": {
 
@@ -111,7 +109,7 @@ describe('authController', function() {
         }));
 
     it('authController loaded', function() {
-        expect(scope.user).toBeDefined();
+        expect(vm.user).toBeDefined();
     });
 
 });
@@ -132,8 +130,7 @@ describe("settings service", function() {
             "pathToUserPictures": "./images/users/",
             "defaultUserPicture": "default_user.jpg"
         });
-        settingsService.getSettings().get(
-            {}, 
+        settingsService.getSettings().then(
             function(data) {
                 expect(data.fireBaseHttp).toEqual("https://simplenotestest.firebaseio.com");
             });

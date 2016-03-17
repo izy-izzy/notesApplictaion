@@ -9,20 +9,20 @@ angular
 introController.$inject = ['$scope', '$state', 'authService' ];
 
 function introController($scope, $state, authService ) {
+
+    var vm = this;
 	
-	$scope.user = authService.getUser();
+	vm.user = authService.getUser();
 
 	/**
-     *  Logs in a $scope.user. Credentials are taken from user data.
+     *  Logs in a vm.user. Credentials are taken from user data.
      */
     $scope.loginUser = function() {
-        authService.authWithPassword($scope.user.loginData).then(
+        authService.authWithPassword(vm.user.loginData).then(
             function(){
-                if ($scope.user.authenticated){
+                if (vm.user.authenticated){
                     $state.go('notes');
-                } else {
-                    // not authenticated :(
-                }
+                } 
             },
             function(){
                 // nothing

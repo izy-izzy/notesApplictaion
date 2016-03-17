@@ -1,0 +1,26 @@
+<div class="page">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-8 col-lg-offset-2">
+			<article>
+				<header>
+					<div class="row">
+						<div class="col-xs-12">
+							<h1 class="margin-no padding-no">User Settings</h1>
+						</div>
+						<div class="col-xs-4">
+							<div class="avatar">
+								<img  ng-src="{{vm.getUserPhoto()}}"/>
+							</div>
+						</div>
+						<div class="col-xs-8">
+							<h2>{{vm.getUserName()}}</h2>
+						</div>
+					</div>
+				</header>
+				<div class="">
+					<button class="logout btn pull-right" ng-click="vm.logoutUser()">logout</button>
+				</div>
+			</article>
+		</div>
+	</div>
+</div>

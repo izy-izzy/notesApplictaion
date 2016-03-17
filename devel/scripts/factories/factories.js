@@ -11,8 +11,8 @@ function uidFactory() {
         getUID: function() {
             var getS4 = function() {
                 return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-            }
+            };
             return getS4() + getS4() + '-' + getS4() + getS4() + '-' + getS4() + getS4();
         }
-    }
-};
+    };
+}

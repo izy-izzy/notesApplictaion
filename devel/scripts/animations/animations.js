@@ -13,13 +13,13 @@ function revealAnimation() {
             element.fadeIn(250, done);
             return function() {
                 element.stop();
-            }
+            };
         },
         leave: function(element, done) {
-            element.fadeOut(250, done)
+            element.fadeOut(250, done);
             return function() {
                 element.stop();
-            }
+            };
         }
-    }
+    };
 }

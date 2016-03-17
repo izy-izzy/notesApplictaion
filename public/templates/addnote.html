@@ -13,7 +13,7 @@
 				<div class="form-group">
 			  		<textarea type="text" id="note-text" class="form-control" ng-model="vm.newcomment" ng-keypress="($event.which === 13)?vm.addNewNote():0"></textarea>
 				</div>
-				<button ng-click="vm.goToNotes()" class="btn btn-gray">Cancel</button>
+				<button ui-sref="notes" class="btn btn-gray">Cancel</button>
 				<button ng-click="vm.addNewNote()" class="btn btn-arrow-next pull-right">Add note</button>
 				<hr>
 			</article>

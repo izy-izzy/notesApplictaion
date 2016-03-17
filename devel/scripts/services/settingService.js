@@ -6,25 +6,34 @@ angular
     .module('notesApp')
     .service('settingsService', settingsService);
 
-settingsService.$inject = ['$http', '$resource'];
+settingsService.$inject = ['$http', '$resource', '$q'];
 
-function settingsService($http, $resource) {
+function settingsService($http, $resource, $q) {
     var service = {
         data: {},
         getSettings: getSettings,
-        settings : null
-    }
+        settings : {
+            fireBaseHttp: "",
+            pathToUserPictures: "",
+            defaultUserPicture: ""
+        },
+        settingsResource : undefined
+    };
 
     return service;
-
+    
     function getSettings(){
-        service.settings = $resource('settings.json', {}, {
-            query: {
-                method:'GET', 
-                params:{}, 
-                isArray:false
-            }
-        });
-        return service.settings;
-    };
+        if (service.settingsResource === undefined){
+            service.settingsResource = $q.defer();
+            $http.get('settings.json').then(function(object){
+                    service.settings = object.data;
+                    service.settingsResource.resolve(service.settings);
+                })
+                .catch(function(){
+
+                });
+        }
+        return service.settingsResource.promise;
+    }
+
 }

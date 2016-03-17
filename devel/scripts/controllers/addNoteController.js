@@ -20,19 +20,12 @@ function addNoteController($scope, databaseService, $state, uidFactory, SweetAle
     vm.newcomment = "";
 
     /**
-     *  Redirects to notes
-     */
-    vm.goToNotes = function() {
-        $state.go('notes');
-    };
-
-    /**
     *  Adds a new note. Checks whether text and title is not empty and inserts a note. 
     *  If text or title is empty user, is warned and action is canceled.
     *  New note is added with current time, title, active user id and comment (which includes text, current time and active user's id) to this note.
     */
     vm.addNewNote = function() {
-        if (vm.newnote.title != "" && vm.newcomment != "") {
+        if (vm.newnote.title !== "" && vm.newcomment !== "") {
             vm.newnote.comments["" + uidFactory.getUID() + ""] = {
                 text: vm.newcomment,
                 created: Date.now(),

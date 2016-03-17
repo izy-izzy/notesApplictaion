@@ -10,9 +10,9 @@ authService.$inject = ['$firebaseArray', '$firebaseObject', '$firebaseAuth', '$q
 
 function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
     var service = {
-        firebaseHttp : null,
-        firebaseObj : null,
-        firebaseAuthObj : null,
+        firebaseHttp : undefined,
+        firebaseObj : undefined,
+        firebaseAuthObj : undefined,
         user: {
 	        loginData: {
 	            email: "",
@@ -34,8 +34,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
         getAuth: getAuth,
         loginRoutine: loginRoutine,
         logoutRoutine: logoutRoutine
-
-    }
+    };
 
     return service;
 
@@ -58,12 +57,12 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
     function clearUser(){
     	service.user.uid = "";
         service.user.token = "";
-        service.user.loginData.email = "",
-	    service.user.loginData.password = "",
-	   	loginFailed = false,
-	    logoutFailed = false,
-	    authenticated = false,
-	    unAuthRequest = false
+        service.user.loginData.email = "";
+	    service.user.loginData.password = "";
+	   	service.user.loginFailed = false;
+	    service.user.logoutFailed = false;
+	    service.user.authenticated = false;
+	    service.user.unAuthRequest = false;
     }
 
     function getUser(){
@@ -75,7 +74,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
      *  @param {oject} {email:string, password:string} user's credentials
      *  @return {object} promise containing information about authentication result
      */
-    function authWithPassword(user, funcSucc, funcError) {
+    function authWithPassword(user) {
         var defer;
         defer = $q.defer();
         if (service.firebaseObj){
@@ -101,7 +100,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
     }
 
     function getAuth(){
-        if(service.firebaseObj != null){
+        if(service.firebaseObj !== undefined){
             service.firebaseAuthObj = $firebaseAuth(service.firebaseObj);
             return service.firebaseAuthObj;
         }
@@ -130,7 +129,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
         service.user.authenticated = false;
         service.user.uid = "";
         service.user.token = "";
-    };
+    }
 
    
 }

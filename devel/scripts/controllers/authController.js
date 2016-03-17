@@ -12,7 +12,7 @@ function authController($scope, databaseService, $state, settingsService, SweetA
 
     var vm = this;
 
-    $scope.user = authService.getUser();
+    vm.user = authService.getUser();
 
     /**
      *  Sets database service based on data received from setting service.
@@ -20,7 +20,7 @@ function authController($scope, databaseService, $state, settingsService, SweetA
      *  If initialisation of setting service fails, user is informed.
      */
     vm.loadApplication = function() {
-        settingsService.getSettings().get(null,function(data) {
+        settingsService.getSettings().then(function(data) {
             vm.settings = data;
             authService.setLocation(vm.settings.fireBaseHttp);
             databaseService.setFirebase(authService.getFirebase());
@@ -28,10 +28,11 @@ function authController($scope, databaseService, $state, settingsService, SweetA
         }, function(response) {
             SweetAlert.swal({
                 title: "Web service initialisation failed.",
+                text: response,
                 type: "error"
             });
         });
-    }
+    };
 
     vm.loadApplication();
 
@@ -43,14 +44,14 @@ function authController($scope, databaseService, $state, settingsService, SweetA
         authService.getAuth().$onAuth(
             function(authData){
                 if (authData){
-                    if ($state.current.name == 'intro'){
+                    if ($state.current.name === 'intro'){
                         $state.go('notes');
-                    };
+                    }
                     authService.loginRoutine(authData);
                 } else {
                     $state.go('intro');
-                    if ($scope.user.authenticated) {
-                        if (!$scope.user.unAuthRequest) {
+                    if (vm.user.authenticated) {
+                        if (!vm.user.unAuthRequest) {
                             SweetAlert.swal({
                                 title: "Your session expired.",
                                 type: "warning"

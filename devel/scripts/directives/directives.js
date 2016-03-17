@@ -1,8 +1,8 @@
 angular.module('notesApp').directive('ngUserline', ngUserline);
 
-ngUserline.$inject = ['authService', '$compile'];
+ngUserline.$inject = ['$compile'];
 
-function ngUserline(authService, $compile) {
+function ngUserline($compile) {
     var directive = {
         restrict: 'AE',
         templateUrl: 'templates/directives/userinfodirective.html',
@@ -12,14 +12,18 @@ function ngUserline(authService, $compile) {
         },
         controller: userLineController,
         controllerAs: 'vm',
-        bindToController: true // because the scope is isolated
-    }
+        bindToController: true 
+    };
 
     return directive;
-};
+}
 
-userLineController.$inject = ["$scope"];
+userLineController.$inject = ["$scope","$state"];
 
-function userLineController($scope){
+function userLineController($scope, $state){
     var vm = this;
+
+    vm.gotoSettings = function(){
+        $state.go('userSettings');
+    };
 }

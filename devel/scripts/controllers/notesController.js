@@ -19,7 +19,7 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert, 
         if (vm.user.uid){
             return databaseService.getUserFullName(vm.user.uid);
         } 
-    }
+    };
 
     /**
     *  @param {string} note id
@@ -27,7 +27,7 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert, 
     */
     vm.getUserFullName = function(note){
         return databaseService.getUserFullName(note.userID);
-    }
+    };
 
     /**
     *  Deletes a note. Prompts to confirm request and according to selected action it deletes the note or cancel the request.
@@ -54,9 +54,9 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert, 
                         title: "Unable to remove this note.",
                         type: "error"});
                 });
-            };
+            }
         });
-    }
+    };
 
     /**
      *  Logs out a $scope.user.
