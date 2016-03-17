@@ -9,9 +9,12 @@ bower install (required for angularfire, latest NPM version lacks module export)
 gulp
 node httpserver.js (for local HTTP server)
 
+## Requirements
+Ruby, GEM, Node
+
 ## Technology
 
-Firebase, Angular.js, GULP, GRUNT, CSS3, HTML5, Karma, Jasmine 
+Firebase, Angular.js, GULP, CSS3, HTML5, Karma, Jasmine 
 
 ## Tests
 

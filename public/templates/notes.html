@@ -28,7 +28,7 @@
 							    		<div class="table-body-row-cell creator" ui-sref="note({ noteID: note.$id})">{{vm.getUserFullName(note)}}</div>
 							    		<div class="table-body-row-cell title" ui-sref="note({ noteID: note.$id})">{{note.title}}</div>
 						    			<div class="table-body-row-cell date" ui-sref="note({ noteID: note.$id})">{{note.created | customDateFilter}}</div>
-						    			<div class="table-body-row-cell remove"><button class="deleteIcon" ng-click="vm.deleteNote(note)"></button></div>
+						    			<div class="table-body-row-cell remove"><button class="delete-icon" ng-click="vm.deleteNote(note)"></button></div>
 							    	</div>
 							    </div>
 							</div>

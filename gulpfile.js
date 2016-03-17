@@ -1,5 +1,6 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var scss = require('gulp-sass');
+var scsslint = require('gulp-scss-lint');
 var watch = require('gulp-watch');
 var concat = require('gulp-concat');
 var minifyJS = require('gulp-minify');
@@ -37,24 +38,24 @@ gulp.task('test', function(){
 });
 
 gulp.task('default', function(){
-  return runSequence('sass', 'scripts', 'lint', 'test')
+  return runSequence('scss', 'scripts', 'lint', 'scss-lint', 'test')
 });
 
 gulp.task('watch', ['default'], function(){
 	gulp.watch([
 		'./devel/scss/*.scss',
 		'./devel/scss/*/*.scss'
-		], ['sass']);
+		], ['scss']);
 	gulp.watch([
 		'./devel/scripts/*.js',
 		'./devel/scripts/*/*.js',
 		], ['scripts']);
 	});
 
-gulp.task('sass', function () {
+gulp.task('scss', function () {
   return gulp.src('./devel/scss/style.scss')
   	.pipe(sourcemaps.init())
-    .pipe(sass().on('error', 
+    .pipe(scss().on('error', 
     	function(e) {
     		gutil.log(e);
     		this.emit('end');
@@ -107,4 +108,9 @@ gulp.task('lint', function() {
   return gulp.src('./devel/scripts/*/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('scss-lint', function() {
+  return gulp.src('./devel/scss/*/*.scss')
+    .pipe(scsslint({'config': 'lintscss.yml'}));
 });

@@ -1,41 +1,41 @@
 .table {
-    display: table;
-    width: 100%;
-    &-head {
-        width: 100%;
-        display: table-row-group;
-        background: $table-main-color;
-        &-row {
-            display: table-row;
-            &-cell {
-                display: table-cell;
-                padding: 13px;
-                @extend .text-bold;
-                border-bottom: 0px solid white;
-                vertical-align: middle;
-                position: relative;
-            }
-        }
-    }
-    &-body {
-        width: 100%;
-        display: table-row-group;
-        &-row {
-            display: table-row;
-            &-cell {
-                display: table-cell;
-                padding: 13px;
-                border-top: 0px solid white;
-                border-bottom: 1px solid $table-main-color;
-                vertical-align: middle;
-                position: relative;
-            }
-            &.hoverable {
-                @transition(all 0.15s ease-in-out);
-                &:hover {
-                    background: $table-line-hover-color;
-                }
-            }
-        }
-    }
+	display: table;
+	width: 100%;
+	&-head {
+		width: 100%;
+		display: table-row-group;
+		background: $table-main-color;
+		&-row {
+			display: table-row;
+			&-cell {
+				@extend %text-bold;
+				display: table-cell;
+				padding: 13px;
+				border-bottom: 0 solid $white;
+				vertical-align: middle;
+				position: relative;
+			}
+		}
+	}
+	&-body {
+		width: 100%;
+		display: table-row-group;
+		&-row {
+			display: table-row;
+			&-cell {
+				display: table-cell;
+				padding: 13px;
+				border-top: 0 solid $white;
+				border-bottom: 1px solid $table-main-color;
+				vertical-align: middle;
+				position: relative;
+			}
+			&.hoverable {
+				@include transition(all 0.15s ease-in-out);
+				&:hover {
+					background: $table-line-hover-color;
+				}
+			}
+		}
+	}
 }
