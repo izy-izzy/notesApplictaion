@@ -12,18 +12,18 @@
 
 h1 {
     font-size: 20px;
-    .text-bold();
-    color: @h1-color;
+    @extend .text-bold;
+    color: $h1-color;
 }
 
 h2 {
     font-size: 13px;
-    .text-bold();
-    color: @font-color;
+    @extend .text-bold;
+    color: $font-color;
 }
 
 h3 {
     font-size: 13px;
-    .text-bold();
-    color: @font-color;
+    @extend .text-bold;
+    color: $font-color;
 }

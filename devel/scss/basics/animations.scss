@@ -1,7 +1,7 @@
 // Animation of textarea in note detail. (ng-animate)
 
 .animate-add-comment-show-hide {
-    .transition(all 0.25s ease-in-out);
+    @transition(all 0.25s ease-in-out);
     opacity: 1;
     height: 217px;
 }
@@ -16,11 +16,11 @@
 .comment {
     margin-left: 0px !important;
     margin-right: 0px !important;
-    .transition(all 0.4s ease-in-out);
+    @transition(all 0.4s ease-in-out);
 }
 
 .comment.ng-animate {
-    .transition(all 0.4s ease-in-out);
+    @transition(all 0.4s ease-in-out);
     margin-left: 0px !important;
     margin-left: 0px !important;
 }
@@ -48,11 +48,11 @@
 // Blocks animation in notes. (ng-animate)
 
 .note {
-    .transition(all 1s ease-in-out);
+    @transition(all 1s ease-in-out);
 }
 
 .note.ng-animate {
-    .transition(all 1s ease-in-out);
+    @transition(all 1s ease-in-out);
 }
 
 .note.ng-enter {

@@ -38,7 +38,7 @@
                 visibility: visible;
                 opacity: 0.5;
                 &:hover {
-                    .rotate(90deg);
+                    @rotate(90deg);
                     opacity: 1;
                 }
             }
@@ -46,7 +46,7 @@
     }
 }
 
-@media screen and (max-width: @screen-sm-max) {
+@media screen and (max-width: $screen-sm-max) {
     .notes {
         .note {
             .deleteIcon{

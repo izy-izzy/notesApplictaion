@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 var concat = require('gulp-concat');
 var minifyJS = require('gulp-minify');
@@ -37,24 +37,24 @@ gulp.task('test', function(){
 });
 
 gulp.task('default', function(){
-  return runSequence('less', 'scripts', 'lint', 'test')
+  return runSequence('sass', 'scripts', 'lint', 'test')
 });
 
 gulp.task('watch', ['default'], function(){
 	gulp.watch([
-		'./devel/less/*.less',
-		'./devel/less/*/*.less'
-		], ['less']);
+		'./devel/scss/*.scss',
+		'./devel/scss/*/*.scss'
+		], ['sass']);
 	gulp.watch([
 		'./devel/scripts/*.js',
 		'./devel/scripts/*/*.js',
 		], ['scripts']);
 	});
 
-gulp.task('less', function () {
-  return gulp.src('./devel/less/style.less')
+gulp.task('sass', function () {
+  return gulp.src('./devel/scss/style.scss')
   	.pipe(sourcemaps.init())
-    .pipe(less().on('error', 
+    .pipe(sass().on('error', 
     	function(e) {
     		gutil.log(e);
     		this.emit('end');
@@ -82,7 +82,6 @@ gulp.task('scripts', function() {
         './node_modules/angular-sweetalert/SweetAlert.min.js',
 
         './devel/scripts/serviceModules/settingServiceS.js',
-        
 
         './devel/scripts/app.js',
         './devel/scripts/filters/*.js',
