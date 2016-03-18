@@ -6,9 +6,9 @@ angular
 	.module('notesApp')
 	.service('settingsService', settingsService);
 
-settingsService.$inject = ['$http', '$resource', '$q'];
+settingsService.$inject = ['$http', '$q'];
 
-function settingsService($http, $resource, $q) {
+function settingsService($http, $q) {
 	var service = {
 		data: {},
 		getSettings: getSettings,

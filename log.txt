@@ -1,0 +1,235 @@
+[22:58:46] Using gulpfile j:\praca\notesApplictaion\gulpfile.js
+[22:58:46] Starting 'default'...
+[22:58:46] Starting 'scss'...
+[22:58:46] Finished 'default' after 14 ms
+[22:58:51] Finished 'scss' after 4.9 s
+[22:58:51] Starting 'scripts'...
+[22:59:05] Finished 'scripts' after 14 s
+[22:59:05] Starting 'lint'...
+
+devel\scripts\controllers\noteController.js
+  line 46  col 75  Empty block.
+
+  ‼  1 warning
+
+
+devel\scripts\directives\directives.js
+  line 5  col 21  '$compile' is defined but never used.
+
+  ‼  1 warning
+
+
+devel\scripts\services\databaseService.js
+  line 159  col 46  'key' is defined but never used.
+
+  ‼  1 warning
+
+[22:59:06] Finished 'lint' after 302 ms
+[22:59:06] Starting 'scss-lint'...
+[22:59:07] 7 issues found in j:\praca\notesApplictaion\devel\scss\basics\animations.scss
+[22:59:07] basics\animations.scss:15 [W] ImportantRule: !important should not be used
+[22:59:07] basics\animations.scss:16 [W] ImportantRule: !important should not be used
+[22:59:07] basics\animations.scss:19 [W] ImportantRule: !important should not be used
+[22:59:07] basics\animations.scss:22 [W] ImportantRule: !important should not be used
+[22:59:07] basics\animations.scss:25 [W] ImportantRule: !important should not be used
+[22:59:07] basics\animations.scss:30 [W] ImportantRule: !important should not be used
+[22:59:07] basics\animations.scss:33 [W] ImportantRule: !important should not be used
+[22:59:07] 2 issues found in j:\praca\notesApplictaion\devel\scss\basics\buttons.scss
+[22:59:07] basics\buttons.scss:80 [W] NestingDepth: Nesting should be no greater than 5, but was 6
+[22:59:07] basics\buttons.scss:90 [W] NestingDepth: Nesting should be no greater than 5, but was 6
+[22:59:07] 8 issues found in j:\praca\notesApplictaion\devel\scss\pages\note.scss
+[22:59:07] pages\note.scss:32 [W] SelectorDepth: Selector should have depth of applicability no greater than 3, but was 4
+[22:59:07] pages\note.scss:36 [W] SelectorDepth: Selector should have depth of applicability no greater than 3, but was 4
+[22:59:07] pages\note.scss:39 [W] SelectorDepth: Selector should have depth of applicability no greater than 3, but was 4
+[22:59:07] pages\note.scss:49 [W] SelectorDepth: Selector should have depth of applicability no greater than 3, but was 4
+[22:59:07] pages\note.scss:52 [W] SelectorDepth: Selector should have depth of applicability no greater than 3, but was 4
+[22:59:07] pages\note.scss:52 [W] NestingDepth: Nesting should be no greater than 5, but was 6
+[22:59:07] pages\note.scss:62 [W] SelectorDepth: Selector should have depth of applicability no greater than 3, but was 4
+[22:59:07] pages\note.scss:75 [W] SelectorDepth: Selector should have depth of applicability no greater than 3, but was 4
+[22:59:07] Finished 'scss-lint' after 1.38 s
+[22:59:07] Starting 'test'...
+[22:59:07] Starting 'karma'...
+[22:59:07] Finished 'test' after 94 ms
+[32m18 03 2016 22:59:07.650:INFO [karma]: [39mKarma v0.13.21 server started at http://localhost:9876/
+[32m18 03 2016 22:59:07.657:INFO [launcher]: [39mStarting browser PhantomJS
+[32m18 03 2016 22:59:08.550:INFO [PhantomJS 1.9.8 (Windows 8 0.0.0)]: [39mConnected on socket /#1BKV6lQmqrV6RS1CAAAA with id 18594613
+  [32m✓ [39mKarma and Jasmine runs properly
+
+  Controllers Test
+    [31m✗ [39m[31mExistence of controllers[39m
+	Error: [$injector:unpr] http://errors.angularjs.org/1.4.9/$injector/unpr?p0=%24resourceProvider%20%3C-%20%24resource%20%3C-%20settingsService
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:37
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:80
+	    at j:/praca/notesApplictaion/node_modules/angular-mocks/angular-mocks.js:1960
+	    at j:/praca/notesApplictaion/devel/scripts/tests/karma/tests.js:27
+
+
+  Filter tests
+    [32m✓ [39mreturns "1/1/1970 at 00:00" when given 1 ms
+    [32m✓ [39mreturns "12/8/1974 at 16:03" when given 145555428421 ms
+    [32m✓ [39mreturns Accurate time when given time right now
+
+  IntroController
+    [32m✓ [39mintroController loaded
+
+  authController
+    [31m✗ [39m[31mauthController loaded[39m
+	Error: [$injector:unpr] http://errors.angularjs.org/1.4.9/$injector/unpr?p0=%24resourceProvider%20%3C-%20%24resource%20%3C-%20settingsService
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:37
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:80
+	    at j:/praca/notesApplictaion/node_modules/angular-mocks/angular-mocks.js:1960
+	    at j:/praca/notesApplictaion/devel/scripts/tests/karma/tests.js:107
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at workFn (j:/praca/notesApplictaion/node_modules/angular-mocks/angular-mocks.js:2517)
+	undefined
+
+	TypeError: 'undefined' is not an object (evaluating 'vm.user')
+	    at j:/praca/notesApplictaion/devel/scripts/tests/karma/tests.js:112
+
+
+  settings service
+    [31m✗ [39m[31mtestings settings service[39m
+	Error: [$injector:unpr] http://errors.angularjs.org/1.4.9/$injector/unpr?p0=%24resourceProvider%20%3C-%20%24resource%20%3C-%20settingsService
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:37
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+	    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+	    at workFn (j:/praca/notesApplictaion/node_modules/angular-mocks/angular-mocks.js:2517)
+	undefined
+
+	TypeError: 'undefined' is not an object (evaluating 'httpBackend.whenGET')
+	    at j:/praca/notesApplictaion/devel/scripts/tests/karma/tests.js:128
+
+
+  uidFactory
+    [32m✓ [39muid generator testing
+
+PhantomJS 1.9.8 (Windows 8 0.0.0): Executed 9 of 9[31m (3 FAILED)[39m (0.003 secs / 0.056 secs)
+[31mTOTAL: 3 FAILED, 6 SUCCESS[39m
+
+
+[31m1) Existence of controllers
+[39m[31m     Controllers Test
+[39m     [90mError: [$injector:unpr] http://errors.angularjs.org/1.4.9/$injector/unpr?p0=%24resourceProvider%20%3C-%20%24resource%20%3C-%20settingsService
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:37
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:80
+    at j:/praca/notesApplictaion/node_modules/angular-mocks/angular-mocks.js:1960
+    at j:/praca/notesApplictaion/devel/scripts/tests/karma/tests.js:27
+[39m
+[31m2) authController loaded
+[39m[31m     authController
+[39m     [90mError: [$injector:unpr] http://errors.angularjs.org/1.4.9/$injector/unpr?p0=%24resourceProvider%20%3C-%20%24resource%20%3C-%20settingsService
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:37
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:80
+    at j:/praca/notesApplictaion/node_modules/angular-mocks/angular-mocks.js:1960
+    at j:/praca/notesApplictaion/devel/scripts/tests/karma/tests.js:107
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at workFn (j:/praca/notesApplictaion/node_modules/angular-mocks/angular-mocks.js:2517)
+undefined
+[39m     [90mTypeError: 'undefined' is not an object (evaluating 'vm.user')
+    at j:/praca/notesApplictaion/devel/scripts/tests/karma/tests.js:112
+[39m
+[31m3) testings settings service
+[39m[31m     settings service
+[39m     [90mError: [$injector:unpr] http://errors.angularjs.org/1.4.9/$injector/unpr?p0=%24resourceProvider%20%3C-%20%24resource%20%3C-%20settingsService
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:40
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:37
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at j:/praca/notesApplictaion/node_modules/angular/angular.min.js:41
+    at d (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at e (j:/praca/notesApplictaion/node_modules/angular/angular.min.js:39)
+    at workFn (j:/praca/notesApplictaion/node_modules/angular-mocks/angular-mocks.js:2517)
+undefined
+[39m     [90mTypeError: 'undefined' is not an object (evaluating 'httpBackend.whenGET')
+    at j:/praca/notesApplictaion/devel/scripts/tests/karma/tests.js:128
+[39m
+
+[22:59:08] 'karma' errored after 1.22 s
+[22:59:08] Error: 1
+    at formatError (C:\Users\izy\AppData\Roaming\npm\node_modules\gulp\bin\gulp.js:169:10)
+    at Gulp.<anonymous> (C:\Users\izy\AppData\Roaming\npm\node_modules\gulp\bin\gulp.js:195:15)
+    at emitOne (events.js:82:20)
+    at Gulp.emit (events.js:169:7)
+    at Gulp.Orchestrator._emitTaskDone (j:\praca\notesApplictaion\node_modules\gulp\node_modules\orchestrator\index.js:264:8)
+    at j:\praca\notesApplictaion\node_modules\gulp\node_modules\orchestrator\index.js:275:23
+    at finish (j:\praca\notesApplictaion\node_modules\gulp\node_modules\orchestrator\lib\runTask.js:21:8)
+    at cb (j:\praca\notesApplictaion\node_modules\gulp\node_modules\orchestrator\lib\runTask.js:29:3)
+    at removeAllListeners (j:\praca\notesApplictaion\node_modules\karma\lib\server.js:336:7)
+    at Server.<anonymous> (j:\praca\notesApplictaion\node_modules\karma\lib\server.js:347:9)
+    at Server.g (events.js:260:16)
+    at emitNone (events.js:72:20)
+    at Server.emit (events.js:166:7)
+    at emitCloseNT (net.js:1523:8)
+    at nextTickCallbackWith1Arg (node.js:426:9)
+    at process._tickCallback (node.js:348:17)
+[22:59:08] Error in plugin 'run-sequence'
+Message:
+    An error occured in task 'karma'.

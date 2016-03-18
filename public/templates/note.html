@@ -36,7 +36,7 @@
 						<div class="col-xs-12 comments">
 							<article ng-repeat="comment in vm.comments | orderBy:'created':true" class="comment zipper">
 								<div class="avatar">
-									<img  ng-src="{{vm.getUserPhoto(comment)}}"/>
+									<img ng-src="{{vm.getUserPhoto(comment)}}"/>
 								</div>
 								<div class="bubble">
 									<header>
