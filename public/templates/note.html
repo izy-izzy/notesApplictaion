@@ -6,12 +6,12 @@
 		<div class="row">
 			<div class="col-xs-12 animate-add-comment-show-hide" ng-show="vm.commentsAddingMode == true">
 				<div class="form-group">
-	  				<textarea  type="text" 
-	  					id="note-text" 
-		  				class="form-control" 
-	  					ng-model="vm.newcomment.text" 
-	  					ng-keypress="($event.which === 13)?vm.addNewComment():0">
-	  				</textarea>
+					<textarea
+						id="note-text" 
+						class="form-control" 
+						ng-model="vm.newcomment.text" 
+						ng-keypress="($event.which === 13)?vm.addNewComment():0">
+					</textarea>
 				</div>
 				<button ng-click="vm.commentsAddingMode = false" class="btn btn-gray">Cancel</button>
 				<button ng-click="vm.addNewComment()" class="btn btn-arrow-next pull-right">Add note</button>
@@ -27,13 +27,13 @@
 				</div>
 			</div>
 		</div>
-		<hr>
+		<hr />
 		<section>
 			<div class="row">
 				<div class="col-xs-12 comments">
 					<article ng-repeat="comment in vm.comments | orderBy:'created':true" class="comment zipper">
 						<div class="avatar">
-							<img ng-src="{{vm.getUserPhoto(comment)}}"/>
+							<img ng-src="{{vm.getUserPhoto(comment)}}" alt="user avatar" />
 						</div>
 						<div class="bubble">
 							<header>

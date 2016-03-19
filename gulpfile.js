@@ -11,6 +11,8 @@ var cssnano = require('gulp-cssnano');
 var jshint = require('gulp-jshint');
 var gulpProtractorAngular = require('gulp-angular-protractor');
 var runSequence = require('run-sequence');
+var htmlify = require('gulp-angular-htmlify');
+var htmlhint = require("gulp-htmlhint");
 
 gulp.task('karma', function (done) {
   new karmaServer({
@@ -38,7 +40,7 @@ gulp.task('test', function(){
 });
 
 gulp.task('default', function(){
-  return runSequence('scss', 'scripts', 'lint', 'scss-lint', 'test')
+  return runSequence('scss', 'scripts', 'lint', 'scss-lint', 'html-lint', 'test')
 });
 
 gulp.task('watch', ['default'], function(){
@@ -112,4 +114,24 @@ gulp.task('lint', function() {
 gulp.task('scss-lint', function() {
   return gulp.src('./devel/scss/*/*.scss')
     .pipe(scsslint({'config': 'lintscss.yml'}));
+});
+
+gulp.task('html-lint',['html-validate','html-validateClear'],function(){
+    return true;
+});
+
+//Also transforming ui-attributes to data-ui-attributes
+gulp.task('html-validate', function() {
+    gulp.src('./public/**/*.html')
+        .pipe(htmlify({
+            customPrefixes: ['ui-']
+        }))
+        .pipe(htmlhint('.htmlhintafteruirc'))
+        .pipe(htmlhint.reporter());
+});
+
+gulp.task('html-validateClear', function() {
+    gulp.src('./public/**/*.html')
+        .pipe(htmlhint('.htmlhintrc'))
+        .pipe(htmlhint.reporter());
 });
