@@ -1,64 +1,59 @@
 <div class="page">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-8 col-lg-offset-2" >
-			<ng-userline user-name="vm.getUserName()" logout-function="vm.logoutUser()"></ng-userline>
-			<article>
-				<header>
-					<h1>{{vm.note.title}}</h1>
-				</header>
+	<article>
+		<header>
+			<h1>{{vm.note.title}}</h1>
+		</header>
+		<div class="row">
+			<div class="col-xs-12 animate-add-comment-show-hide" ng-show="vm.commentsAddingMode == true">
+				<div class="form-group">
+	  				<textarea  type="text" 
+	  					id="note-text" 
+		  				class="form-control" 
+	  					ng-model="vm.newcomment.text" 
+	  					ng-keypress="($event.which === 13)?vm.addNewComment():0">
+	  				</textarea>
+				</div>
+				<button ng-click="vm.commentsAddingMode = false" class="btn btn-gray">Cancel</button>
+				<button ng-click="vm.addNewComment()" class="btn btn-arrow-next pull-right">Add note</button>
+			</div>
+			<div class="col-xs-12" ng-show="vm.commentsAddingMode == false">
 				<div class="row">
-					<div class="col-xs-12 animate-add-comment-show-hide" ng-show="vm.commentsAddingMode == true">
-						<div class="form-group">
-			  				<textarea  type="text" 
-			  					id="note-text" 
-				  				class="form-control" 
-			  					ng-model="vm.newcomment.text" 
-			  					ng-keypress="($event.which === 13)?vm.addNewComment():0">
-			  				</textarea>
-						</div>
-						<button ng-click="vm.commentsAddingMode = false" class="btn btn-gray">Cancel</button>
-						<button ng-click="vm.addNewComment()" class="btn btn-arrow-next pull-right">Add note</button>
+					<div class="col-xs-12 col-sm-6">
+						<button ui-sref="notes" class="btn btn-gray btn-arrow btn-arrow-prev">Back To Overview</button>
 					</div>
-					<div class="col-xs-12" ng-show="vm.commentsAddingMode == false">
-						<div class="row">
-							<div class="col-xs-12 col-sm-6">
-								<button ui-sref="notes" class="btn btn-gray btn-arrow btn-arrow-prev">Back To Overview</button>
-							</div>
-							<div class="col-xs-12 col-sm-6">
-								<button ng-click="vm.commentsAddingMode = true" class="btn btn-arrow-next pull-md-right pull-lg-right pull-sm-right pull-xs-left">Add additional note</button>
-							</div>
-						</div>
+					<div class="col-xs-12 col-sm-6">
+						<button ng-click="vm.commentsAddingMode = true" class="btn btn-arrow-next pull-md-right pull-lg-right pull-sm-right pull-xs-left">Add additional note</button>
 					</div>
 				</div>
-				<hr>
-				<section>
-					<div class="row">
-						<div class="col-xs-12 comments">
-							<article ng-repeat="comment in vm.comments | orderBy:'created':true" class="comment zipper">
-								<div class="avatar">
-									<img ng-src="{{vm.getUserPhoto(comment)}}"/>
-								</div>
-								<div class="bubble">
-									<header>
-										<div class="row">
-											<div class="col-xs-8">
-												<h2 class="padding-no margin-no">{{vm.getUserFirstName(comment)}}</h2>
-											</div>
-											<div class="col-xs-4">
-												<h3 class="padding-no margin-no pull-right">{{comment.created | customDateFilter}}</h3>
-											</div>
-										</div>
-									</header>
-									<p>
-										{{comment.text}}
-									</p>
-									<button class="delete-icon" ng-click="vm.deleteComment(comment)"></button>
-								</div>
-							</article>
-						</div>
-					</div>
-				</section>
-			</article>
+			</div>
 		</div>
-	</div>
+		<hr>
+		<section>
+			<div class="row">
+				<div class="col-xs-12 comments">
+					<article ng-repeat="comment in vm.comments | orderBy:'created':true" class="comment zipper">
+						<div class="avatar">
+							<img ng-src="{{vm.getUserPhoto(comment)}}"/>
+						</div>
+						<div class="bubble">
+							<header>
+								<div class="row">
+									<div class="col-xs-8">
+										<h2 class="padding-no margin-no">{{vm.getUserFirstName(comment)}}</h2>
+									</div>
+									<div class="col-xs-4">
+										<h3 class="padding-no margin-no pull-right">{{comment.created | customDateFilter}}</h3>
+									</div>
+								</div>
+							</header>
+							<p>
+								{{comment.text}}
+							</p>
+							<button class="delete-icon" ng-click="vm.deleteComment(comment)"></button>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+	</article>
 </div>

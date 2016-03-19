@@ -6,20 +6,13 @@ angular
 	.module('notesApp')
 	.controller("notesController", notesController);
 
-notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert', 'authService'];
+notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert'];
 
-function notesController($scope, $state,databaseService,uidFactory, SweetAlert, authService) {
+function notesController($scope, $state,databaseService,uidFactory, SweetAlert) {
 
 	var vm = this;
 
 	vm.notes = databaseService.getNotes();
-	vm.user = authService.getUser();
-
-	vm.getUserName = function(){
-		if (vm.user.uid){
-			return databaseService.getUserFullName(vm.user.uid);
-		} 
-	};
 
 	/**
 	*  @param {string} note id
@@ -57,13 +50,5 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert, 
 			}
 		});
 	};
-
-	/**
-	 *  Logs out a $scope.user.
-	 */
-	vm.logoutUser = function() {
-		authService.unAuth();
-	};
-
 }
 

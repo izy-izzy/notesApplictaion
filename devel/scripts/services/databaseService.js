@@ -156,7 +156,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	 */
 	function destroyFirebaseObjects() {
 		var arr = [service.notes, service.users, service.note, service.comments];
-		angular.forEach(arr, function(value, key) {
+		angular.forEach(arr, function(value) {
 			if (value !== undefined) { 
 				value('name', value).$destroy(); 
 			}

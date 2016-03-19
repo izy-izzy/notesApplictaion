@@ -1,10 +1,9 @@
-<div class="row">
-	<div class="userInfo col-md-6">
-		Logged as:
-		<strong ng-bind="vm.userName"></strong>
-		<button class="settings-button" ng-click="vm.gotoSettings()"></button>
+<button class="logout btn pull-right" ng-click="vm.logoutFunction()">logout</button>	
+<div class="avatar pull-right">
+	<strong ng-bind="vm.userName" class="pull-right avatar-name" ng-click="vm.gotoSettings()"></strong>
+	<div class="avatar-wrapper pull-right" ng-click="vm.gotoSettings()"> 
+		<img class="avatar-photo" ng-src="{{vm.userPhoto}}" src="./images/users/avatar_default.png"></img>
+		<button class="settings-button"></button>
 	</div>
-	<div class="col-md-6">
-		<button class="logout btn pull-right" ng-click="vm.logoutFunction()">logout</button>	
-	</div> 
-</div> 
+</div>
+

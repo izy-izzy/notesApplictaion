@@ -126,26 +126,11 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	*  @return {string} relative path to author's photo
 	*/
 	vm.getUserPhoto = function(comment){
-		var imageFileName = "default.jpg";
+		var imageFileName = "avatar_default.png";
 		if (comment && settingsService.getSettings() && databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile !== ""){
 			imageFileName = databaseService.getUser(comment.userID).imagefile;
 		} 
 		return vm.settings.pathToUserPictures + imageFileName;
-	};
-
-	/**
-	 *  Logs out a $scope.user.
-	 */
-	vm.logoutUser = function() {
-		authService.unAuth();
-	};
-
-	vm.user = authService.getUser();
-
-	vm.getUserName = function(){
-		if (vm.user.uid){
-			return databaseService.getUserFullName(vm.user.uid);
-		} 
 	};
 
 	/**

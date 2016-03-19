@@ -1,0 +1,12 @@
+<div class="header" ng-controller="headerController as vm">
+	<div class="row">
+		<div class="col-xs-4">
+			<div class="logo pull-left" ui-sref="notes"></div>
+		</div>
+		<div class="col-xs-8">
+			<div class="pull-right">
+				<ng-userline user-photo="vm.getUserPhoto()" user-name="vm.getUserName()" logout-function="vm.logoutUser()"></ng-userline>
+			</div>
+		</div>
+	</div>
+</div>

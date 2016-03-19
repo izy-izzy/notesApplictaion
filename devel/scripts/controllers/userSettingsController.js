@@ -19,19 +19,10 @@ function userSettingsController($scope, $state, databaseService, authService, se
 	});
 	
 	/**
-	 *  Logs out a $scope.user.
-	 */
-	vm.logoutUser = function() {
-		authService.unAuth();
-	};
-
-	/**
 	 *  @return {string} Full name of note author
 	 */
 	vm.getUserName = function(){
-		if (vm.user.uid){
-			return databaseService.getUserFullName(vm.user.uid);
-		}
+		return databaseService.getUserFullName(vm.user.uid);
 	};
 
 	vm.getUserPhoto = function(){

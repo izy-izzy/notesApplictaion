@@ -1,42 +1,37 @@
 <div class="page">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-8 col-lg-offset-2">
-			<ng-userline user-name="vm.getUserName()" logout-function="vm.logoutUser()"></ng-userline>
-			<article>
-				<header>
-					<div class="row">
-						<div class="col-xs-12">
-							<h1 class="margin-no padding-no">Notes Overview</h1>
-						</div>
-					</div>
-				</header>
-				<div class="content">
-					<div class="panel panel-default">
-					  	<div class="panel-body">
-					    	<div class="table notes">
-								<div class="table-head">
-									<div class="table-head-row">
-								        <div class="table-head-row-cell creator">Created By</div>
-								        <div class="table-head-row-cell title">Title</div>
-								        <div class="table-head-row-cell date">Date</div>
-								        <div class="table-head-row-cell remove"></div>
-								    </div>
-							    </div>
-							    <div class="table-body">
-							    	<div ng-repeat="note in vm.notes | orderBy:'created':true"
-							    		class="hoverable table-body-row note">
-							    		<div class="table-body-row-cell creator" ui-sref="note({ noteID: note.$id})">{{vm.getUserFullName(note)}}</div>
-							    		<div class="table-body-row-cell title" ui-sref="note({ noteID: note.$id})">{{note.title}}</div>
-						    			<div class="table-body-row-cell date" ui-sref="note({ noteID: note.$id})">{{note.created | customDateFilter}}</div>
-						    			<div class="table-body-row-cell remove"><button class="delete-icon" ng-click="vm.deleteNote(note)"></button></div>
-							    	</div>
-							    </div>
-							</div>
-					    	<button ui-sref="addnote" class="btn btn-arrow-next">Create a new note</button>
-					  	</div>
-					</div>
+	<article>
+		<header>
+			<div class="row">
+				<div class="col-xs-12">
+					<h1 class="margin-no padding-no">Notes Overview</h1>
 				</div>
-			</article>
+			</div>
+		</header>
+		<div class="content">
+			<div class="panel panel-default">
+			  	<div class="panel-body">
+			    	<div class="table notes">
+						<div class="table-head">
+							<div class="table-head-row">
+						        <div class="table-head-row-cell creator">Created By</div>
+						        <div class="table-head-row-cell title">Title</div>
+						        <div class="table-head-row-cell date">Date</div>
+						        <div class="table-head-row-cell remove"></div>
+						    </div>
+					    </div>
+					    <div class="table-body">
+					    	<div ng-repeat="note in vm.notes | orderBy:'created':true"
+					    		class="hoverable table-body-row note">
+					    		<div class="table-body-row-cell creator" ui-sref="note({ noteID: note.$id})">{{vm.getUserFullName(note)}}</div>
+					    		<div class="table-body-row-cell title" ui-sref="note({ noteID: note.$id})">{{note.title}}</div>
+				    			<div class="table-body-row-cell date" ui-sref="note({ noteID: note.$id})">{{note.created | customDateFilter}}</div>
+				    			<div class="table-body-row-cell remove"><button class="delete-icon" ng-click="vm.deleteNote(note)"></button></div>
+					    	</div>
+					    </div>
+					</div>
+			    	<button ui-sref="addnote" class="btn btn-arrow-next">Create a new note</button>
+			  	</div>
+			</div>
 		</div>
-	</div>
+	</article>
 </div> 

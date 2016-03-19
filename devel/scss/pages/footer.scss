@@ -1,0 +1,24 @@
+.footer{
+	@include transition(all 0.125s ease-in-out);
+	height: 28px;
+	opacity: 1;
+	&.fadeingout{
+		opacity: 0;
+	}
+	.logo-github{
+		@include transition(all 0.25s ease-in-out);
+		height: 28px;
+		color: $black;
+		&:hover{
+			color: $github-color;
+		}
+	}
+	.logo-codeship{
+		margin-top: 5px;
+		margin-right: 30px;
+		line-height: 28px;
+	}
+	.octicon{
+		fill: currentColor;
+	}
+}

@@ -1,12 +1,13 @@
 angular.module('notesApp').directive('ngUserline', ngUserline);
 
-ngUserline.$inject = ['$compile'];
+ngUserline.$inject = [];
 
-function ngUserline($compile) {
+function ngUserline() {
 	var directive = {
 		restrict: 'AE',
 		templateUrl: 'templates/directives/userinfodirective.html',
 		scope: {
+			userPhoto: '=',
 			userName: '=',
 			logoutFunction: '&'
 		},
@@ -22,6 +23,8 @@ userLineController.$inject = ["$scope","$state"];
 
 function userLineController($scope, $state){
 	var vm = this;
+
+	console.log("inset");
 
 	vm.gotoSettings = function(){
 		$state.go('userSettings');

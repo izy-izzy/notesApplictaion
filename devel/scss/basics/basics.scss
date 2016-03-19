@@ -27,6 +27,16 @@ hr {
 .reveal-animation {
 	width: 100%;
 	position: relative;
+	&.entered{
+		.page{
+			position: relative;
+		}
+	}
+	&.leaved{
+		.page{
+			position: absolute;
+		}
+	}
 	.page {
 		position: absolute;
 		width: 100%;

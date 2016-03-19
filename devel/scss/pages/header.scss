@@ -1,0 +1,47 @@
+.header{
+	.logo{
+		min-height: 60px;
+		min-width: 60px;
+		background-image: url('../images/logo.png');
+		background-position: left top;
+		background-size: contain;
+		background-repeat: no-repeat;
+		cursor: pointer;
+		&-text{
+			@include transition(all 0.5s ease-in-out);
+			margin-left: 10px;
+			line-height: 60px;
+			opacity: 0.25;
+			&:hover{
+				opacity: 1;
+			}
+		}
+	}
+	.avatar{
+		@include transition(all 0.5s ease-in-out);
+		margin-right: 20px;
+		&:hover{
+			.settings-button{
+				@include rotate(90deg);
+			}
+		}
+		&-name{
+			line-height: 44px;
+		}
+		&-photo{
+			@include transition(all 0.5s ease-in-out);
+			margin-right: 10px;
+			height: 44px;
+			width: 44px;
+		}
+		&-wrapper{
+			position: relative;
+			.settings-button{
+				position: absolute;
+				bottom: -5px;
+				left: -5px;
+				margin-left: 0;
+			}
+		}
+	}
+}
