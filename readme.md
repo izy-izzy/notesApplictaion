@@ -1,3 +1,5 @@
+[ ![Codeship Status for izy-izzy/notesApplictaion](https://codeship.com/projects/30c48e10-c497-0133-8fe4-1e716c1e31dd/status?branch=master)](https://codeship.com/projects/138430)
+
 ## Synopsis
 
 Simple notes application is and online Angular.js application that supports multiple users and online change of notes without the need of refreshing the page. It supports multiple users and notes can be deleted, created and viewed.
