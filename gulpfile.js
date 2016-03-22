@@ -13,6 +13,9 @@ var gulpProtractorAngular = require('gulp-angular-protractor');
 var runSequence = require('run-sequence');
 var htmlify = require('gulp-angular-htmlify');
 var htmlhint = require("gulp-htmlhint");
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
+var gulpDocs = require('gulp-ngdocs');
 
 gulp.task('karma', function (done) {
   new karmaServer({
@@ -40,7 +43,7 @@ gulp.task('test', function(){
 });
 
 gulp.task('default', function(){
-  return runSequence('scss', 'scripts', 'lint', 'scss-lint', 'html-lint', 'test')
+  return runSequence('imagemin', 'scss', 'scripts', 'lint', 'scss-lint', 'html-lint', 'test', 'documentation')
 });
 
 gulp.task('watch', ['default'], function(){
@@ -83,8 +86,6 @@ gulp.task('scripts', function() {
         './node_modules/angular-animate/angular-animate.min.js',
         './node_modules/angular-sweetalert/SweetAlert.min.js',
 
-        './devel/scripts/serviceModules/settingServiceS.js',
-
         './devel/scripts/app.js',
         './devel/scripts/filters/*.js',
         './devel/scripts/animations/*.js',
@@ -122,7 +123,7 @@ gulp.task('html-lint',['html-validate','html-validateClear'],function(){
 
 //Also transforming ui-attributes to data-ui-attributes
 gulp.task('html-validate', function() {
-    gulp.src('./public/**/*.html')
+    return gulp.src('./public/**/*.html')
         .pipe(htmlify({
             customPrefixes: ['ui-']
         }))
@@ -131,7 +132,37 @@ gulp.task('html-validate', function() {
 });
 
 gulp.task('html-validateClear', function() {
-    gulp.src('./public/**/*.html')
+    return gulp.src('./public/**/*.html')
         .pipe(htmlhint('.htmlhintrc'))
         .pipe(htmlhint.reporter());
+});
+
+gulp.task('imagemin', function(){
+    return gulp.src('./devel/images/**/*')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('./public/images'));
+});
+
+var ngDocsOptions = {
+    html5Mode: false // required for good documentation generation
+}
+
+gulp.task('documentation', function(){
+    return gulp.src('./devel/scripts/**/*.js')
+        .pipe(gulpDocs.process(ngDocsOptions))
+        .pipe(gulp.dest('./docs'));
+});
+
+gulp.task('view_ngDocs', ['documentation'], function() {
+var connect = require('gulp-connect');
+  connect.server({
+    root: 'docs',
+    livereload: false,
+    fallback: './docs/index.html',
+    port: 8083
+  });
 });

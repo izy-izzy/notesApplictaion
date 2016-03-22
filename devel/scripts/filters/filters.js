@@ -1,8 +1,16 @@
 /**
- *  Modifies date to a specific string, eg. 'Today at 12:35', 'Yesterday at 12:35', '15/1/1988 at 12:35'.
- *  @param {number} date in ms from start of 1970
- *  @return {string} time with modified format
+ * @ngdoc filter
+ * @name notesApp.customDateFilter
+ * @function
+ *
+ * @description
+ * Modifies date to a specific string, eg. 'Today at 12:35', 'Yesterday at 12:35', '15/1/1988 at 12:35'.
+ *
+ * @param {number} date in ms from start of 1970
+ * @return {string} time with modified format
+ *
  */
+ 
 angular
 	.module('notesApp')
 	.filter('customDateFilter', customDateFilter);
