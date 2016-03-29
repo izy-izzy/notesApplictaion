@@ -1,12 +1,9 @@
 /**
  * @ngdoc directive
- * @scope 
- * @name notesApp.ngUserline
- * @restrict AE
- * @function
+ * @name notesApp.directive:ngUserline
+ * @restrict 'AE'
  *
- * @description
- * Render area with user avatar and information
+ * @description Render area with user avatar and information
  *
  * <pre>
  * <ng-userline user-photo="avatar.png" user-name="Mike Stevensons" logout-function="function()">
@@ -43,7 +40,7 @@ function userLineController($scope, $state){
 	/**
 	 * @ngdoc method
 	 * @name vm.gotoSettings
-	 * @methodOf notesApp.ngUserline
+	 * @methodOf notesApp.directive:ngUserline
 	 * @description swich state to 'userSettings'
 	 */
 	vm.gotoSettings = function(){

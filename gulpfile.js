@@ -54,7 +54,7 @@ gulp.task('watch', ['default'], function(){
 	gulp.watch([
 		'./devel/scripts/*.js',
 		'./devel/scripts/*/*.js',
-		], ['scripts']);
+		], ['scripts', 'documentation']);
 	});
 
 gulp.task('scss', function () {

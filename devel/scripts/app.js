@@ -1,6 +1,26 @@
 /**
- *  @author lukaskalcok@gmail.com
- */
+ * @ngdoc overview
+ * @name notesApp
+ * @requires module:firebase
+ * @requires module:ui.router
+ * @requires module:ngAnimate
+ * @requires module:ngAria
+ * @requires module:oitozero.ngSweetAlert
+ *
+ * @description
+ * 
+ * Some sophisticated text about the application.
+ *
+ * states:
+ * <pre>
+ * 'intro', url: '/'
+ * 'notes', url: '/notes'
+ * 'userSettings', url: '/usersettings'
+ * 'note', url: '/note/:noteID'
+ * 'addnote', url: '/addnote'
+ * </pre>
+ **/
+
 angular.module('notesApp', [
 	'firebase',
 	'ui.router',

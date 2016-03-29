@@ -1,0 +1,129 @@
+<h1><code ng:non-bindable="">databaseService</code>
+<div><span class="hint">service in module <code ng:non-bindable="">notesApp</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="notesapp-service-page notesapp-service-databaseservice-page"><p>Service for firebase database connection. Holds all database accessible object except user. This service needs to be initialised via setFirebaseHttp and getFirebase methods.</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/api/angularfire">angularfire</a></code>
+</li>
+</ul>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_destroyfirebaseobjects">destroyFirebaseObjects()</h3>
+<div class="destroyfirebaseobjects"><div class="destroyfirebaseobjects-page"><p>Destroys all firebase objects.</p>
+</div></div>
+</li>
+<li><h3 id="methods_getnote">getNote(noteId)</h3>
+<div class="getnote"><div class="getnote-page"><p>Load note from database</p>
+</div><h5 id="methods_getnote_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>noteId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getnote-page"><p>Id of note to be returned</p>
+</div></td></tr></tbody></table><h5 id="methods_getnote_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getnote-page"><p>note as $firebaseObject</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getnotecomments">getNoteComments(noteId, noteId)</h3>
+<div class="getnotecomments"><div class="getnotecomments-page"><p>Searches for a specific note and returns its comments</p>
+</div><h5 id="methods_getnotecomments_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>noteId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getnotecomments-page"><p>Id of note to be returned</p>
+</div></td></tr><tr><td>noteId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getnotecomments-page"><p>Id of note which comments should be loaded</p>
+</div></td></tr></tbody></table><h5 id="methods_getnotecomments_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getnotecomments-page"><p>Note&#39;s comments as $firebaseArray.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getnotecomments">getNoteComments(newComment, noteId, commentId)</h3>
+<div class="getnotecomments"><div class="getnotecomments-page"><p>Adds a new comment to a specific note.</p>
+</div><h5 id="methods_getnotecomments_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>newComment</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getnotecomments-page"><p>New comment that should be added</p>
+</div></td></tr><tr><td>noteId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getnotecomments-page"><p>note id</p>
+</div></td></tr><tr><td>commentId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getnotecomments-page"><p>comment id</p>
+</div></td></tr></tbody></table><h5 id="methods_getnotecomments_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getnotecomments-page"><p>result of comment insertion</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getnotes">getNotes()</h3>
+<div class="getnotes"><div class="getnotes-page"><p>Load notes from database</p>
+</div><h5 id="methods_getnotes_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getnotes-page"><p>notes as $firebaseObject</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getuser">getUser(userId)</h3>
+<div class="getuser"><h5 id="methods_getuser_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuser-page"><p>ID of user which should be returned.</p>
+</div></td></tr></tbody></table><h5 id="methods_getuser_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getuser-page"><p>user</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getuserfirstname">getUserFirstName(userId)</h3>
+<div class="getuserfirstname"><h5 id="methods_getuserfirstname_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfirstname-page"><p>ID of user whose first name should be returned.</p>
+</div></td></tr></tbody></table><h5 id="methods_getuserfirstname_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfirstname-page"><p>firstname of user or clear <code>string</code></p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getuserfullname">getUserFullName(userId)</h3>
+<div class="getuserfullname"><div class="getuserfullname-page"><p>uses <code>getUserFirstName</code> and <code>getUserSurName</code></p>
+</div><h5 id="methods_getuserfullname_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfullname-page"><p>ID of user whose full name should be returned.</p>
+</div></td></tr></tbody></table><h5 id="methods_getuserfullname_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfullname-page"><p>fullname or partial name or clear <code>string</code></p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getusersurname">getUserSurName(userId)</h3>
+<div class="getusersurname"><h5 id="methods_getusersurname_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getusersurname-page"><p>ID of user whose surname should be returned.</p>
+</div></td></tr></tbody></table><h5 id="methods_getusersurname_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getusersurname-page"><p>surname of user or clear <code>string</code></p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getusers">getUsers()</h3>
+<div class="getusers"><div class="getusers-page"><p>Load users from database</p>
+</div><h5 id="methods_getusers_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getusers-page"><p>users as $firebaseObject</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_removenote">removeNote(noteId)</h3>
+<div class="removenote"><div class="removenote-page"><p>Removes a note.</p>
+</div><h5 id="methods_removenote_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>noteId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="removenote-page"><p>note id</p>
+</div></td></tr></tbody></table><h5 id="methods_removenote_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="removenote-page"><p>result of note insertion</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_removenote">removeNote(noteId, commentId)</h3>
+<div class="removenote"><div class="removenote-page"><p>Removes note&#39;s comment.</p>
+</div><h5 id="methods_removenote_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>noteId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="removenote-page"><p>note id</p>
+</div></td></tr><tr><td>commentId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="removenote-page"><p>comment id</p>
+</div></td></tr></tbody></table><h5 id="methods_removenote_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="removenote-page"><p>result of note deletion</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_setfirebase">setFirebase(loadedFirebase)</h3>
+<div class="setfirebase"><div class="setfirebase-page"><p>Sets firebase object and loads all notes and users.</p>
+</div><h5 id="methods_setfirebase_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>loadedFirebase</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="setfirebase-page"><p>Already connected firebase object.</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_setnote">setNote(newNote, noteId)</h3>
+<div class="setnote"><div class="setnote-page"><p>Adds a new note.</p>
+</div><h5 id="methods_setnote_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>newNote</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="setnote-page"><p>Note to be added</p>
+</div></td></tr><tr><td>noteId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="setnote-page"><p>note id</p>
+</div></td></tr></tbody></table><h5 id="methods_setnote_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="setnote-page"><p>result of note insertion</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+<div class="member property"><h2 id="properties">Properties</h2>
+<ul class="properties"><li><h3 id="properties_notes">notes</h3>
+<div class="notes"><h5 id="properties_notes_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">$firebaseObject</a></td><td><div class="-notes-page"><p>Never access directly. Use <code>getNotes()</code> method instead.</p>
+<pre class="prettyprint linenums">
+note: {
+ comments : [
+  XXXXXXXX-XXXXXXXX-XXXXXXXX : {
+   created: int (ms),
+   text: string,
+   userID: string
+  }
+  created: int (ms),
+  title: string, 
+  userID: string
+}
+</pre>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="properties_users">users</h3>
+<div class="users"><h5 id="properties_users_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">$firebaseObject</a></td><td><div class="-users-page"><p>Never access directly. Use <code>getUsers()</code> or <code>getUser()</code> method instead.</p>
+<pre class="prettyprint linenums">
+user: {
+ firstname: string,
+ imagefile: string,
+ rightslevel: int, 
+ surname: string
+}
+</pre>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

@@ -1,14 +1,14 @@
 /**
  *  Controller of intro 
- *  @author lukaskalcok@gmail.com
+ *  author lukaskalcok@gmail.com
  */
 angular
 	.module('notesApp')
 	.controller("introController", introController);
 
-introController.$inject = ['$scope', '$state', 'authService' ];
+introController.$inject = ['$scope', '$state', 'authService', 'SweetAlert' ];
 
-function introController($scope, $state, authService ) {
+function introController($scope, $state, authService, SweetAlert ) {
 
 	var vm = this;
 	
@@ -17,7 +17,7 @@ function introController($scope, $state, authService ) {
 	/**
 	 *  Logs in a vm.user. Credentials are taken from user data.
 	 */
-	$scope.loginUser = function() {
+	vm.loginUser = function() {
 		authService.authWithPassword(vm.user.loginData).then(
 			function(){
 				if (vm.user.authenticated){
@@ -30,4 +30,53 @@ function introController($scope, $state, authService ) {
 		;
 	};
 
+	vm.sweetTest = function(type){
+		switch(type) {
+			case "success": 
+				SweetAlert.swal({
+					title: "Swal Title",
+					text: "Swal text",
+					type: type,
+					showCancelButton: true
+					});
+				break;
+			case "warning": 
+				SweetAlert.swal({
+					title: "Swal Title",
+					text: "Swal text",
+					type: type,
+					showCancelButton: true
+					});
+				break;
+			case "error": 
+				SweetAlert.swal({
+					title: "Swal Title",
+					text: "Swal text",
+					type: type,
+					showCancelButton: true
+					});
+				break;
+			case "info": 
+				SweetAlert.swal({
+					title: "Swal Title",
+					text: "Swal text",
+					type: type,
+					showCancelButton: true
+					});
+				break;
+			case "input": 
+				SweetAlert.swal({
+					title: "Swal Title",
+					text: "Swal text",
+					type: type,
+					closeOnConfirm: false,
+					showCancelButton: true},
+					function(inputValue){
+						    SweetAlert.swal.showInputError("You need to write something else! not just "+inputValue);
+				            return false;
+				       	}
+				    );
+				break;
+		}
+	};
 }

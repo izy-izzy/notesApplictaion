@@ -1,6 +1,6 @@
 /**
  *  Controller of a note 
- *  @author lukaskalcok@gmail.com
+ *  author lukaskalcokgmail.com
  */
 angular
 	.module('notesApp')

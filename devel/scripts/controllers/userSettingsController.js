@@ -1,6 +1,6 @@
 /**
  *  Controller of userSettings 
- *  @author lukaskalcok@gmail.com
+ *  author lukaskalcok@gmail.com
  */
 angular
 	.module('notesApp')
@@ -19,7 +19,7 @@ function userSettingsController($scope, $state, databaseService, authService, se
 	});
 	
 	/**
-	 *  @return {string} Full name of note author
+	 *  return {string} Full name of note author
 	 */
 	vm.getUserName = function(){
 		return databaseService.getUserFullName(vm.user.uid);

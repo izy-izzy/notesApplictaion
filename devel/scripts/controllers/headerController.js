@@ -1,6 +1,6 @@
 /**
  *  Controller of header 
- *  @author lukaskalcok@gmail.com
+ *  author lukaskalcok@gmail.com
  */
 angular
 	.module('notesApp')

@@ -110,11 +110,11 @@ linters:
 
   NestingDepth:
     enabled: true
-    max_depth: 5
+    max_depth: 6
     ignore_parent_selectors: false
 
   PlaceholderInExtend:
-    enabled: true
+    enabled: false
 
   PrivateNamingConvention:
     enabled: false
@@ -160,7 +160,7 @@ linters:
 
   SelectorDepth:
     enabled: true
-    max_depth: 3
+    max_depth: 4
 
   SelectorFormat:
     enabled: true

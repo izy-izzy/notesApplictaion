@@ -1,0 +1,79 @@
+<h1><code ng:non-bindable="">authService</code>
+<div><span class="hint">service in module <code ng:non-bindable="">notesApp</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="notesapp-service-page notesapp-service-authservice-page"><p>Authorize user and CRUD his data.</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/api/angularfire">angularfire</a></code>
+</li>
+</ul>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_authwithpassword">authWithPassword(userdata)</h3>
+<div class="authwithpassword"><div class="authwithpassword-page"><p>Authenticate user to database</p>
+</div><h5 id="methods_authwithpassword_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userdata</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="authwithpassword-page"><p>email:string, password:string user&#39;s credentials</p>
+</div></td></tr></tbody></table><h5 id="methods_authwithpassword_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="authwithpassword-page"><p>promise containing information about authentication result</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_clearuser">clearUser()</h3>
+<div class="clearuser"><div class="clearuser-page"><p>clears user</p>
+</div></div>
+</li>
+<li><h3 id="methods_getauth">getAuth()</h3>
+<div class="getauth"><div class="getauth-page"><p>get user authentification with database</p>
+</div><h5 id="methods_getauth_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">promise</a></td><td><div class="getauth-page"><p>$firebaseAuth</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getauth">getAuth(authData)</h3>
+<div class="getauth"><div class="getauth-page"><p>Sets application to logged / notlogged mode after authentication process. If a user is authenticated and his current location is &#39;intro&#39;, user is redirected to notes overview.</p>
+</div><h5 id="methods_getauth_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>authData</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getauth-page"><p>authentication data.</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getauth">getAuth()</h3>
+<div class="getauth"><div class="getauth-page"><p>Sets application to notlogged mode. If user&#39;s session expires, user is informed about session expiration. If a user requested log out, user is informed about logout.</p>
+</div></div>
+</li>
+<li><h3 id="methods_getfirebase">getFirebase()</h3>
+<div class="getfirebase"><div class="getfirebase-page"><p>returns connection to database</p>
+</div><h5 id="methods_getfirebase_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getfirebase-page"><p>firebaseObj</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getuser">getUser()</h3>
+<div class="getuser"><div class="getuser-page"><p>returns user</p>
+</div><h5 id="methods_getuser_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getuser-page"><p>user</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_setlocation">setLocation(location)</h3>
+<div class="setlocation"><div class="setlocation-page"><p>sets firebaseHttp to given location</p>
+</div><h5 id="methods_setlocation_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>location</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="setlocation-page"><p>location of server</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_unauth">unAuth()</h3>
+<div class="unauth"><div class="unauth-page"><p>Unauthenticate user</p>
+</div></div>
+</li>
+</ul>
+</div>
+<div class="member property"><h2 id="properties">Properties</h2>
+<ul class="properties"><li><h3 id="properties_user">user</h3>
+<div class="user"><h5 id="properties_user_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="-user-page"><pre class="prettyprint linenums">
+user: {
+ loginData: {
+  email: string,
+  password: string
+ },
+ uid: string,
+ token: string,
+ loginFailed: boolean,
+ logoutFailed: boolean,
+ authenticated: boolean,
+ unAuthRequest: boolean
+}
+</pre>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

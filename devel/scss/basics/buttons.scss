@@ -1,6 +1,4 @@
 .btn {
-	@extend %text-bold;
-	@extend %text-uppercase;
 	@include box-shadow(0 2px 0 darken($button-color, 20%));
 	@include transition(all 0.25s ease-in-out);
 	background-color: $button-color;
@@ -9,9 +7,10 @@
 	padding: 10px 15px;
 	color: $white;
 	font-size: 17px;
-
+	border-top: 2px solid $button-color;
 	&:hover {
 		color: $white;
+		border-top: 2px solid lighten($button-color, 10%);
 		background-color: lighten($button-color, 10%);
 		box-shadow: none;
 	}
@@ -47,7 +46,6 @@
 		}
 	}
 	&-clear {
-		@extend %ext-regular;
 		text-transform: none;
 		background: transparent;
 		color: $blue;
@@ -67,6 +65,7 @@
 		text-transform: none;
 		box-shadow: none;
 		&:hover {
+			border: 2px solid $button-gray-color;
 			background: $button-gray-color;
 			color: $white;
 			box-shadow: none;

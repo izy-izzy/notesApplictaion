@@ -1,6 +1,6 @@
 /**
  *  Controller of notes 
- *  @author lukaskalcok@gmail.com
+ *  author lukaskalcok@gmail.com
  */
 angular
 	.module('notesApp')
@@ -15,8 +15,8 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert) 
 	vm.notes = databaseService.getNotes();
 
 	/**
-	*  @param {string} note id
-	*  @return {string} Full name of note author
+	*  param {string} note id
+	*  return {string} Full name of note author
 	*/
 	vm.getUserFullName = function(note){
 		return databaseService.getUserFullName(note.userID);
@@ -24,7 +24,7 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert) 
 
 	/**
 	*  Deletes a note. Prompts to confirm request and according to selected action it deletes the note or cancel the request.
-	*  @param {string} id of note 
+	*  param {string} id of note 
 	*/
 	vm.deleteNote = function(note){
 		SweetAlert.swal({

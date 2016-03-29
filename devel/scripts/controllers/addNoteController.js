@@ -1,6 +1,6 @@
 /**
  *  Controller for adding notes
- *  @author lukaskalcok@gmail.com
+ *  author lukaskalcok@gmail.com
  */
 angular
 	.module('notesApp')

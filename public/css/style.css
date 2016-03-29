@@ -6635,9 +6635,11 @@ hr {
   border: 0 solid #ffffff;
   padding: 10px 15px;
   color: #ffffff;
-  font-size: 17px; }
+  font-size: 17px;
+  border-top: 2px solid #18c4d3; }
   .btn:hover {
     color: #ffffff;
+    border-top: 2px solid #36dae8;
     background-color: #36dae8;
     box-shadow: none; }
   .btn-arrow-next::after {
@@ -6688,6 +6690,7 @@ hr {
     text-transform: none;
     box-shadow: none; }
     .btn-gray:hover {
+      border: 2px solid #183854;
       background: #183854;
       color: #ffffff;
       box-shadow: none; }
@@ -6824,7 +6827,8 @@ label {
   padding: 10px 15px;
   margin-top: 30px; }
 
-.text-bold {
+.text-bold, h1, h2,
+h3 {
   font-weight: 700; }
 
 .text-regular {
@@ -7059,5 +7063,56 @@ h3 {
   .notes .note .delete-icon {
     visibility: visible;
     opacity: 0.5; } }
+
+.sweet-overlay {
+  background-color: rgba(0, 0, 0, 0.75); }
+
+.sweet-alert {
+  border-radius: 0;
+  font-family: inherit; }
+  .sweet-alert button {
+    -webkit-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    border-radius: 0;
+    border: 0 solid #ffffff;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 17px; }
+    .sweet-alert button.confirm {
+      -webkit-box-shadow: 0 2px 0 #0e6f77 !important;
+      box-shadow: 0 2px 0 #0e6f77 !important;
+      background-color: #18c4d3 !important;
+      border-top: 2px solid #18c4d3; }
+      .sweet-alert button.confirm:hover {
+        color: #ffffff;
+        border-top: 2px solid #36dae8;
+        background-color: #36dae8 !important;
+        box-shadow: none !important; }
+    .sweet-alert button.cancel {
+      border: 2px solid #183854;
+      background: #ffffff;
+      color: #183854;
+      text-transform: none;
+      box-shadow: none; }
+      .sweet-alert button.cancel:hover {
+        background: #183854;
+        color: #ffffff;
+        box-shadow: none; }
+  .sweet-alert input {
+    -webkit-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+    border-radius: 0;
+    border: 1px solid #b0bdc1;
+    padding: 10px 15px;
+    height: auto; }
+    .sweet-alert input:focus {
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border-color: #18c4d3; }
+  .sweet-alert .sa-input-error {
+    top: 26px;
+    right: 15px; }
 
 /*# sourceMappingURL=style.css.map */

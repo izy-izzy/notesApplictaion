@@ -1,6 +1,6 @@
 /**
  *  Controller for authentication of a user
- *  @author lukaskalcok@gmail.com
+ *  author lukaskalcok@gmail.com
  */
 angular
     .module('notesApp')

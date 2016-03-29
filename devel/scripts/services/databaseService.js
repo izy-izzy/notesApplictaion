@@ -1,7 +1,11 @@
-/**
- *  Service for firebase database connection. 
- *  This service needs to be initialised via setFirebaseHttp and getFirebase methods.
- *  @author lukaskalcok@gmail.com
+ /**
+ * @ngdoc service
+ * @name notesApp.service:databaseService
+ * @function
+ *
+ * @description Service for firebase database connection. Holds all database accessible object except user. This service needs to be initialised via setFirebaseHttp and getFirebase methods.
+ *
+ * @requires angularfire
  */
 angular
 	.module('notesApp')
@@ -9,9 +13,51 @@ angular
 
 databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 
+/**
+ * @ngdoc property
+ * @name .#notes
+ * @propertyOf notesApp.service:databaseService 
+ * @returns {$firebaseObject} 
+ *
+ * Never access directly. Use <code>getNotes()</code> method instead.
+ *
+ * <pre>
+ * note: {
+ *  comments : [
+ *   XXXXXXXX-XXXXXXXX-XXXXXXXX : {
+ *    created: int (ms),
+ *    text: string,
+ *    userID: string
+ *   }
+ *   created: int (ms),
+ *   title: string, 
+ *   userID: string
+ * }
+ * </pre>
+ */
 
- function databaseService($firebaseArray, $firebaseObject) {
-		
+ /**
+ * @ngdoc property
+ * @name .#users
+ * @propertyOf notesApp.service:databaseService 
+ * @returns {$firebaseObject} 
+ *
+ * Never access directly. Use <code>getUsers()</code> or <code>getUser()</code> method instead.
+ *
+ * <pre>
+ * user: {
+ *  firstname: string,
+	 *  imagefile: string,
+ *  rightslevel: int, 
+ *  surname: string
+ * }
+ * </pre>
+ */
+
+
+
+function databaseService($firebaseArray, $firebaseObject) {
+
 	var service = {
 		firebaseHttp : undefined,
 		firebaseObj : undefined,
@@ -41,14 +87,25 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	};
 	return service;
 
-	function setFirebase(object){
-		service.firebaseObj = object;
+	/**
+	 * @ngdoc method
+	 * @name setFirebase
+	 * @methodOf notesApp.service:databaseService
+	 * @description Sets firebase object and loads all notes and users.
+	 * @param {object} loadedFirebase Already connected firebase object.
+	 */
+	function setFirebase(loadedFirebase){
+		service.firebaseObj = loadedFirebase;
 		service.getNotes();
 		service.getUsers();
 	}
 
 	/**
-	 *  @return {object} $firebaseArray of all notes
+	 * @ngdoc method
+	 * @name getNotes
+	 * @methodOf notesApp.service:databaseService
+	 * @description Load notes from database
+	 * @returns {object} notes as $firebaseObject
 	 */
 	function getNotes() {
 		if (service.firebaseObj && !service.notes){
@@ -58,7 +115,11 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	}
 
 	/**
-	 *  @return {object} $firebaseObject of all users
+	 * @ngdoc method
+	 * @name getUsers
+	 * @methodOf notesApp.service:databaseService
+	 * @description Load users from database
+	 * @returns {object} users as $firebaseObject
 	 */
 	function getUsers() {
 		if (service.firebaseObj && !service.users){
@@ -68,9 +129,12 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	}
 
 	/**
-	 *  Searches for a specific note and returns a note as object
-	 *  @param {string} note id
-	 *  @return {object} note as $firebaseObject
+	 * @ngdoc method
+	 * @name getNote
+	 * @methodOf notesApp.service:databaseService
+	 * @description Load note from database
+	 * @param {string} noteId Id of note to be returned
+	 * @returns {object} note as $firebaseObject 
 	 */
 	function getNote(noteId) {
 		if (noteId && service.firebaseObj) {
@@ -80,9 +144,13 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	}
 
 	/**
-	 *  Searches for a specific note and returns its comments
-	 *  @param {string} note id
-	 *  @return {object} note's comments as $firebaseArray
+	 * @ngdoc method
+	 * @name getNoteComments
+	 * @methodOf notesApp.service:databaseService
+	 * @description Searches for a specific note and returns its comments
+	 * @param {string} noteId Id of note to be returned
+	 * @param {string} noteId Id of note which comments should be loaded
+	 * @returns {object} Note's comments as $firebaseArray.
 	 */
 	function getNoteComments(noteId) {
 		if (noteId && service.firebaseObj) {
@@ -92,11 +160,14 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	}
 
 	/**
-	 *  Adds a new comment to a specific note
-	 *  @param {object} comment 
-	 *  @param {string} note id
-	 *  @param {string} comment id
-	 *  @return {object} result of comment insertion
+	 * @ngdoc method
+	 * @name getNoteComments
+	 * @methodOf notesApp.service:databaseService
+	 * @description Adds a new comment to a specific note.
+	 * @param {object} newComment New comment that should be added 
+	 * @param {string} noteId note id
+	 * @param {string} commentId comment id
+	 * @returns {object} result of comment insertion
 	 */
 	function setNoteComment(newComment, noteId, commentId) {
 		if (noteId && commentId && service.firebaseObj) {
@@ -108,10 +179,13 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	}
 
 	/**
-	 *  Adds a new note
-	 *  @param {object} note  
-	 *  @param {string} note id
-	 *  @return {object} result of note insertion
+	 * @ngdoc method
+	 * @name setNote
+	 * @methodOf notesApp.service:databaseService
+	 * @description Adds a new note.
+	 * @param {object} newNote Note to be added  
+	 * @param {string} noteId note id
+	 * @returns {object} result of note insertion
 	 */
 	function setNote(newNote, noteId) {
 		if (noteId && service.firebaseObj) {
@@ -123,9 +197,12 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	}
 
 	/**
-	 *  Removes a note
-	 *  @param {string} note id
-	 *  @return {object} result of note deletion
+	 * @ngdoc method
+	 * @name removeNote
+	 * @methodOf notesApp.service:databaseService
+	 * @description Removes a note.
+	 * @param {string} noteId note id
+	 * @returns {object} result of note insertion
 	 */
 	function removeNote(noteId) {
 		if (noteId && service.firebaseObj) {
@@ -137,10 +214,13 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	}
 
 	/**
-	 *  Removes note's comment
-	 *  @param {string} note id
-	 *  @param {string} comment id
-	 *  @return {object} result of comment deletion
+	 * @ngdoc method
+	 * @name removeNote
+	 * @methodOf notesApp.service:databaseService
+	 * @description Removes note's comment.
+	 * @param {string} noteId note id
+	 * @param {string} commentId comment id
+	 * @returns {object} result of note deletion
 	 */
 	function removeNoteComment(noteId, commentId) {
 		if (noteId && commentId && service.firebaseObj) {
@@ -152,7 +232,10 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 	}
 
 	/**
-	 *  Destroys all firebase objects
+	 * @ngdoc method
+	 * @name destroyFirebaseObjects
+	 * @methodOf notesApp.service:databaseService
+	 * @description Destroys all firebase objects.
 	 */
 	function destroyFirebaseObjects() {
 		var arr = [service.notes, service.users, service.note, service.comments];
@@ -163,6 +246,13 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 		});
 	}
 
+	/**
+	 * @ngdoc method
+	 * @name getUserFirstName
+	 * @methodOf notesApp.service:databaseService
+	 * @param {string} userId ID of user whose first name should be returned.
+	 * @returns {string} firstname of user or clear <code>string</code>
+	 */
 	function getUserFirstName(userId){
 		if (service.getUsers() && service.getUsers()[userId] && service.getUsers()[userId].firstname){
 			return service.getUsers()[userId].firstname;
@@ -171,6 +261,13 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 		}
 	}
 
+	/**
+	 * @ngdoc method
+	 * @name getUserSurName
+	 * @methodOf notesApp.service:databaseService
+	 * @param {string} userId ID of user whose surname should be returned.
+	 * @returns {string} surname of user or clear <code>string</code>
+	 */
 	function getUserSurName(userId){
 		if (service.getUsers() && service.getUsers()[userId] && service.getUsers()[userId].surname){
 			return service.getUsers()[userId].surname;
@@ -179,15 +276,30 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 		}
 	}
 
+	/**
+	 * @ngdoc method
+	 * @name getUserFullName
+	 * @methodOf notesApp.service:databaseService
+	 * @description uses <code>getUserFirstName</code> and <code>getUserSurName</code>
+	 * @param {string} userId ID of user whose full name should be returned.
+	 * @returns {string} fullname or partial name or clear <code>string</code>
+	 */
 	function getUserFullName(userId){
 		return service.getUserFirstName(userId) + " " + service.getUserSurName(userId);
 	}
 
+	/**
+	 * @ngdoc method
+	 * @name getUser
+	 * @methodOf notesApp.service:databaseService
+	 * @param {string} userId ID of user which should be returned.
+	 * @returns {object} user
+	 */
 	function getUser(userId){
 		if (service.getUsers() && service.getUsers()[userId]){
 			return service.getUsers()[userId];
 		} else {
-			return "";
+			return undefined;
 		}
 	}
 

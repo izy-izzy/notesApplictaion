@@ -1,6 +1,6 @@
 /**
  * @ngdoc filter
- * @name notesApp.customDateFilter
+ * @name notesApp.filter:customDateFilter
  * @function
  *
  * @description

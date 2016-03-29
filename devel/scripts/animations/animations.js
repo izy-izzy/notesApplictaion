@@ -1,7 +1,3 @@
-/**
- *  Animations used for page transitions
- *  @author lukaskalcok@gmail.com
- */
 angular
 	.module('notesApp')
 	.animation('.reveal-animation', revealAnimation);

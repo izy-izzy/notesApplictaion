@@ -11,14 +11,14 @@
 }
 
 h1 {
-	@extend %text-bold;
+	@extend .text-bold;
 	font-size: 20px;
 	color: $h1-color;
 }
 
 h2,
 h3 {
-	@extend %text-bold;
+	@extend .text-bold;
 	font-size: 13px;
 	color: $font-color;
 }

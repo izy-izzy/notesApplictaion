@@ -1,6 +1,13 @@
 /**
- *  Loads 'settings.json'  
- *  @return {object} promise containing data from a file or error information
+ * @ngdoc service
+ * @name notesApp.service:authService
+ * @function
+ *
+ * @description
+ * Authorize user and CRUD his data.
+ *
+ * @requires angularfire
+ *
  */
 angular
 	.module('notesApp')
@@ -8,6 +15,27 @@ angular
 
 authService.$inject = ['$firebaseArray', '$firebaseObject', '$firebaseAuth', '$q'];
 
+
+/**
+ * @ngdoc property
+ * @name .#user
+ * @propertyOf notesApp.service:authService 
+ * @returns {object} 
+ * <pre>
+ * user: {
+ *  loginData: {
+ *   email: string,
+ *   password: string
+ *  },
+ *  uid: string,
+ *  token: string,
+ *  loginFailed: boolean,
+ *  logoutFailed: boolean,
+ *  authenticated: boolean,
+ *  unAuthRequest: boolean
+ * }
+ * </pre>
+ */
 function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	var service = {
 		firebaseHttp : undefined,
@@ -38,14 +66,23 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 
 	return service;
 
-
+	/**
+	 * @ngdoc method
+	 * @name setLocation
+	 * @param {string} location location of server
+	 * @methodOf notesApp.service:authService
+	 * @description sets firebaseHttp to given location
+	 */
 	function setLocation(location) { 
 		service.firebaseHttp = location;
 	}
 
 	/**
-	 *  Connect to firebase database.
-	 *  @return {object} Firebase object.
+	 * @ngdoc method
+	 * @name getFirebase
+	 * @methodOf notesApp.service:authService
+	 * @description returns connection to database
+	 * @returns {object} firebaseObj
 	 */
 	function getFirebase() {
 		if (service.firebaseHttp){
@@ -54,6 +91,12 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 		return service.firebaseObj;
 	}
 
+	/**
+	 * @ngdoc method
+	 * @name clearUser
+	 * @methodOf notesApp.service:authService
+	 * @description clears user 
+	 */
 	function clearUser(){
 		service.user.uid = "";
 		service.user.token = "";
@@ -65,14 +108,24 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 		service.user.unAuthRequest = false;
 	}
 
+	/**
+	 * @ngdoc method
+	 * @name getUser
+	 * @methodOf notesApp.service:authService
+	 * @description returns user 
+	 * @returns {object} user
+	 */
 	function getUser(){
 		return service.user;
 	}
 
 	/**
-	 *  Authenticate user to database
-	 *  @param {oject} {email:string, password:string} user's credentials
-	 *  @return {object} promise containing information about authentication result
+	 * @ngdoc method
+	 * @name authWithPassword
+	 * @methodOf notesApp.service:authService
+	 * @description Authenticate user to database
+	 * @param {object} userdata email:string, password:string user's credentials
+	 * @returns {object} promise containing information about authentication result
 	 */
 	function authWithPassword(user) {
 		var defer;
@@ -92,13 +145,23 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	}
 
 	/**
-	 *  Unauthenticate user from database
+	 * @ngdoc method
+	 * @name unAuth
+	 * @methodOf notesApp.service:authService
+	 * @description Unauthenticate user
 	 */
 	function unAuth() {
 		service.user.unAuthRequest = true;
 		service.firebaseObj.unauth();
 	}
 
+	/**
+	 * @ngdoc method
+	 * @name getAuth
+	 * @methodOf notesApp.service:authService
+	 * @description get user authentification with database
+	 * @returns {promise} $firebaseAuth 
+	 */
 	function getAuth(){
 		if(service.firebaseObj !== undefined){
 			service.firebaseAuthObj = $firebaseAuth(service.firebaseObj);
@@ -107,9 +170,11 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	}
 
 	/**
-	 *  Sets application to logged / notlogged mode after authentication process. 
-	 *  If a user is authenticated and his current location is 'intro', user is redirected to notes overview.
-	 *  @param {object} contains authentication data.
+	 * @ngdoc method
+	 * @name getAuth
+	 * @methodOf notesApp.service:authService
+	 * @description Sets application to logged / notlogged mode after authentication process. If a user is authenticated and his current location is 'intro', user is redirected to notes overview.
+	 * @param {object} authData authentication data.
 	 */
 	function loginRoutine(authData) {
 		service.user.uid = authData.uid;
@@ -120,9 +185,10 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	}
 
 	/**
-	 *  Sets application to notlogged mode. 
-	 *  If user's session expires, user is informed about session expiration.
-	 *  If a user requested log out, user is informed about logout.
+	 * @ngdoc method
+	 * @name getAuth
+	 * @methodOf notesApp.service:authService
+	 * @description Sets application to notlogged mode. If user's session expires, user is informed about session expiration. If a user requested log out, user is informed about logout.
 	 */
 	function logoutRoutine() {
 		service.user.unAuthRequest = false;
@@ -130,6 +196,5 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 		service.user.uid = "";
 		service.user.token = "";
 	}
-
-   
+  
 }
