@@ -1,0 +1,80 @@
+<h1><code ng:non-bindable="">noteController</code>
+<div><span class="hint">controller in module <code ng:non-bindable="">notesApp</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="notesapp-controller-page notesapp-controller-notecontroller-page"><p>Controlls header</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/api/SweetAlert">SweetAlert</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/notesApp.service:authService">authService</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/notesApp.service:databaseService">databaseService</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/notesApp.service:uidFactory">uidFactory</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/notesApp.service:settingsService">settingsService</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/notesApp.service:fileSystemFactory">fileSystemFactory</a></code>
+</li>
+</ul>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_addnewcomment">addNewComment()</h3>
+<div class="addnewcomment"><div class="addnewcomment-page"><p>Adds a new comment. Checks whether text is not empty and inserts the comment to the active note. If text is empty, user is warned and action is canceled. New comment is added with text, current time and userID of the active user.</p>
+</div></div>
+</li>
+<li><h3 id="methods_checknotestatus">checkNoteStatus()</h3>
+<div class="checknotestatus"><div class="checknotestatus-page"><p>Checks if the current note is empty. If the note is empty/deleted, warning is shown and user is rerouted to notes overview.</p>
+</div></div>
+</li>
+<li><h3 id="methods_deletecomment">deleteComment(id)</h3>
+<div class="deletecomment"><div class="deletecomment-page"><p>Deletes a comment. Prompts to confirm request and according to selected action it deletes the comment or cancel the request.</p>
+</div><h5 id="methods_deletecomment_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>id</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="deletecomment-page"><p>of comment</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getuserfirstname">getUserFirstName(comment)</h3>
+<div class="getuserfirstname"><div class="getuserfirstname-page"><p>Returns a name of an author who created a comment</p>
+</div><h5 id="methods_getuserfirstname_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>comment</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfirstname-page"><p>id</p>
+</div></td></tr></tbody></table><h5 id="methods_getuserfirstname_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfirstname-page"><p>name of author</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getuserfullname">getUserFullName(note)</h3>
+<div class="getuserfullname"><div class="getuserfullname-page"><p>Returns full name of notes author</p>
+</div><h5 id="methods_getuserfullname_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>note</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfullname-page"><p>id</p>
+</div></td></tr></tbody></table><h5 id="methods_getuserfullname_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfullname-page"><p>Full name of note author</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getuserphoto">getUserPhoto(comment)</h3>
+<div class="getuserphoto"><div class="getuserphoto-page"><p>Returns imagePath of an author who created a comment</p>
+</div><h5 id="methods_getuserphoto_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>comment</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserphoto-page"><p>id</p>
+</div></td></tr></tbody></table><h5 id="methods_getuserphoto_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserphoto-page"><p>relative path to author&#39;s photo</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_initwatch">initwatch()</h3>
+<div class="initwatch"><div class="initwatch-page"><p>Watches for changes in a note. If a change is detected <code>checkNoteStatus()</code> is called.</p>
+</div></div>
+</li>
+</ul>
+</div>
+<div class="member property"><h2 id="properties">Properties</h2>
+<ul class="properties"><li><h3 id="properties_comments">comments</h3>
+<div class="comments"><h5 id="properties_comments_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="-comments-page"><p><a href="#/api/notesApp.service:databaseService#comments">notesApp.service:databaseService#comments</a> Comments of this note.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="properties_note">note</h3>
+<div class="note"><h5 id="properties_note_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="-note-page"><p><a href="#/api/notesApp.service:databaseService#note">notesApp.service:databaseService#note</a> this note.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="properties_noteid">noteId</h3>
+<div class="noteid"><h5 id="properties_noteid_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="-noteid-page"><p>Id of this note.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="properties_settings">settings</h3>
+<div class="settings"><h5 id="properties_settings_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="-settings-page"><p><a href="#/api/notesApp.service:settingsService#settings">notesApp.service:settingsService#settings</a></p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

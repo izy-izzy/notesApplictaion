@@ -16,8 +16,8 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 /**
  * @ngdoc property
  * @name .#notes
- * @propertyOf notesApp.service:databaseService 
- * @returns {$firebaseObject} 
+ * @propertyOf notesApp.service:databaseService
+ * @returns {$firebaseObject}
  *
  * Never access directly. Use <code>getNotes()</code> method instead.
  *
@@ -30,7 +30,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
  *    userID: string
  *   }
  *   created: int (ms),
- *   title: string, 
+ *   title: string,
  *   userID: string
  * }
  * </pre>
@@ -39,8 +39,8 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
  /**
  * @ngdoc property
  * @name .#users
- * @propertyOf notesApp.service:databaseService 
- * @returns {$firebaseObject} 
+ * @propertyOf notesApp.service:databaseService
+ * @returns {$firebaseObject}
  *
  * Never access directly. Use <code>getUsers()</code> or <code>getUser()</code> method instead.
  *
@@ -48,7 +48,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
  * user: {
  *  firstname: string,
 	 *  imagefile: string,
- *  rightslevel: int, 
+ *  rightslevel: int,
  *  surname: string
  * }
  * </pre>
@@ -77,7 +77,7 @@ function databaseService($firebaseArray, $firebaseObject) {
 
 		removeNote:removeNote,
 		removeNoteComment:removeNoteComment,
- 
+
 		destroyFirebaseObjects: destroyFirebaseObjects,
 
 		getUserFirstName: getUserFirstName,
@@ -110,7 +110,7 @@ function databaseService($firebaseArray, $firebaseObject) {
 	function getNotes() {
 		if (service.firebaseObj && !service.notes){
 			service.notes = $firebaseArray(service.firebaseObj.child("notes"));
-		} 
+		}
 		return service.notes;
 	}
 
@@ -124,7 +124,7 @@ function databaseService($firebaseArray, $firebaseObject) {
 	function getUsers() {
 		if (service.firebaseObj && !service.users){
 			service.users = $firebaseObject(service.firebaseObj.child("users"));
-		} 
+		}
 		return service.users;
 	}
 
@@ -134,12 +134,12 @@ function databaseService($firebaseArray, $firebaseObject) {
 	 * @methodOf notesApp.service:databaseService
 	 * @description Load note from database
 	 * @param {string} noteId Id of note to be returned
-	 * @returns {object} note as $firebaseObject 
+	 * @returns {object} note as $firebaseObject
 	 */
 	function getNote(noteId) {
 		if (noteId && service.firebaseObj) {
 			service.note = $firebaseObject(service.firebaseObj.child("notes").child(noteId));
-		} 
+		}
 		return service.note;
 	}
 
@@ -155,7 +155,7 @@ function databaseService($firebaseArray, $firebaseObject) {
 	function getNoteComments(noteId) {
 		if (noteId && service.firebaseObj) {
 			service.comments = $firebaseArray(service.firebaseObj.child("notes").child(noteId).child("comments"));
-		} 
+		}
 		return service.comments;
 	}
 
@@ -164,7 +164,7 @@ function databaseService($firebaseArray, $firebaseObject) {
 	 * @name getNoteComments
 	 * @methodOf notesApp.service:databaseService
 	 * @description Adds a new comment to a specific note.
-	 * @param {object} newComment New comment that should be added 
+	 * @param {object} newComment New comment that should be added
 	 * @param {string} noteId note id
 	 * @param {string} commentId comment id
 	 * @returns {object} result of comment insertion
@@ -183,7 +183,7 @@ function databaseService($firebaseArray, $firebaseObject) {
 	 * @name setNote
 	 * @methodOf notesApp.service:databaseService
 	 * @description Adds a new note.
-	 * @param {object} newNote Note to be added  
+	 * @param {object} newNote Note to be added
 	 * @param {string} noteId note id
 	 * @returns {object} result of note insertion
 	 */
@@ -240,8 +240,8 @@ function databaseService($firebaseArray, $firebaseObject) {
 	function destroyFirebaseObjects() {
 		var arr = [service.notes, service.users, service.note, service.comments];
 		angular.forEach(arr, function(value) {
-			if (value !== undefined) { 
-				value('name', value).$destroy(); 
+			if (value !== undefined) {
+				value('name', value).$destroy();
 			}
 		});
 	}
@@ -304,4 +304,3 @@ function databaseService($firebaseArray, $firebaseObject) {
 	}
 
 }
-

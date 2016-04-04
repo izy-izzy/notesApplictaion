@@ -15,12 +15,11 @@ angular
 
 authService.$inject = ['$firebaseArray', '$firebaseObject', '$firebaseAuth', '$q'];
 
-
 /**
  * @ngdoc property
  * @name .#user
- * @propertyOf notesApp.service:authService 
- * @returns {object} 
+ * @propertyOf notesApp.service:authService
+ * @returns {object}
  * <pre>
  * user: {
  *  loginData: {
@@ -73,7 +72,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	 * @methodOf notesApp.service:authService
 	 * @description sets firebaseHttp to given location
 	 */
-	function setLocation(location) { 
+	function setLocation(location) {
 		service.firebaseHttp = location;
 	}
 
@@ -87,7 +86,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	function getFirebase() {
 		if (service.firebaseHttp){
 			service.firebaseObj = new Firebase(service.firebaseHttp);
-		}  
+		}
 		return service.firebaseObj;
 	}
 
@@ -95,7 +94,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	 * @ngdoc method
 	 * @name clearUser
 	 * @methodOf notesApp.service:authService
-	 * @description clears user 
+	 * @description clears user
 	 */
 	function clearUser(){
 		service.user.uid = "";
@@ -112,7 +111,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	 * @ngdoc method
 	 * @name getUser
 	 * @methodOf notesApp.service:authService
-	 * @description returns user 
+	 * @description returns user
 	 * @returns {object} user
 	 */
 	function getUser(){
@@ -140,7 +139,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 					defer.reject();
 				}
 			});
-		} 
+		}
 		return defer.promise;
 	}
 
@@ -160,7 +159,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	 * @name getAuth
 	 * @methodOf notesApp.service:authService
 	 * @description get user authentification with database
-	 * @returns {promise} $firebaseAuth 
+	 * @returns {promise} $firebaseAuth
 	 */
 	function getAuth(){
 		if(service.firebaseObj !== undefined){
@@ -196,5 +195,5 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 		service.user.uid = "";
 		service.user.token = "";
 	}
-  
+
 }

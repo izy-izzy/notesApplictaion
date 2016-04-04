@@ -1,38 +1,52 @@
 /**
- *  Controller of intro 
- *  author lukaskalcok@gmail.com
+ * @ngdoc controller
+ * @name notesApp.controller:introController
+ *
+ * @description Controlls header
+ *
+ * @requires notesApp.service:authService
  */
 angular
 	.module('notesApp')
 	.controller("introController", introController);
 
-introController.$inject = ['$scope', '$state', 'authService', 'SweetAlert' ];
+introController.$inject = ['$scope', '$state', 'authService' ];
+
+/**
+ * @ngdoc property
+ * @name .#user
+ * @propertyOf notesApp.controller:introController
+ * @returns {object} {@link notesApp.service:authService#users}
+ */
 
 function introController($scope, $state, authService, SweetAlert ) {
 
 	var vm = this;
-	
+
 	vm.user = authService.getUser();
 
 	/**
-	 *  Logs in a vm.user. Credentials are taken from user data.
+	 * @ngdoc method
+	 * @name loginUser
+	 * @methodOf notesApp.controller:introController
+	 * @description Logs in user. Credentials are taken from user data. For authentication uses {@link notesApp.service:authService}.
 	 */
 	vm.loginUser = function() {
 		authService.authWithPassword(vm.user.loginData).then(
 			function(){
 				if (vm.user.authenticated){
 					$state.go('notes');
-				} 
+				}
 			},
 			function(){
 				// nothing
 			})
 		;
 	};
-
+/*
 	vm.sweetTest = function(type){
 		switch(type) {
-			case "success": 
+			case "success":
 				SweetAlert.swal({
 					title: "Swal Title",
 					text: "Swal text",
@@ -40,7 +54,7 @@ function introController($scope, $state, authService, SweetAlert ) {
 					showCancelButton: true
 					});
 				break;
-			case "warning": 
+			case "warning":
 				SweetAlert.swal({
 					title: "Swal Title",
 					text: "Swal text",
@@ -48,7 +62,7 @@ function introController($scope, $state, authService, SweetAlert ) {
 					showCancelButton: true
 					});
 				break;
-			case "error": 
+			case "error":
 				SweetAlert.swal({
 					title: "Swal Title",
 					text: "Swal text",
@@ -56,7 +70,7 @@ function introController($scope, $state, authService, SweetAlert ) {
 					showCancelButton: true
 					});
 				break;
-			case "info": 
+			case "info":
 				SweetAlert.swal({
 					title: "Swal Title",
 					text: "Swal text",
@@ -64,7 +78,7 @@ function introController($scope, $state, authService, SweetAlert ) {
 					showCancelButton: true
 					});
 				break;
-			case "input": 
+			case "input":
 				SweetAlert.swal({
 					title: "Swal Title",
 					text: "Swal text",
@@ -79,4 +93,5 @@ function introController($scope, $state, authService, SweetAlert ) {
 				break;
 		}
 	};
+	*/
 }

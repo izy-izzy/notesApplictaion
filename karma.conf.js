@@ -15,10 +15,8 @@ module.exports = function(config) {
         './node_modules/angularfire/dist/angularfire.min.js',
         './node_modules/angular-animate/angular-animate.min.js',
         './node_modules/angular-sweetalert/SweetAlert.min.js',
-        
-        './node_modules/angular-mocks/angular-mocks.js',
 
-        './devel/scripts/serviceModules/settingServiceS.js',
+        './node_modules/angular-mocks/angular-mocks.js',
 
         './devel/scripts/app.js',
         './devel/scripts/filters/*.js',

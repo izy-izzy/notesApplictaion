@@ -10,7 +10,70 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "notesApp",
       "shortDescription": "Some sophisticated text about the application.",
-      "keywords": "addnote api application intro module ngsweetalert note notes notesapp overview router sophisticated text url usersettings"
+      "keywords": "addnote api application intro kalcok lukas module ngsweetalert note notes notesapp overview router sophisticated text url usersettings"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.controller:addNoteController",
+      "shortName": "addNoteController",
+      "type": "controller",
+      "moduleName": "notesApp",
+      "shortDescription": "enables adding new note",
+      "keywords": "action active adding addnewnote adds api canceled checks comment controller current empty enables includes inserts method note notesapp service sweetalert text time title user warned"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.controller:authController",
+      "shortName": "authController",
+      "type": "controller",
+      "moduleName": "notesApp",
+      "shortDescription": "enables adding new note",
+      "keywords": "adding adds api authenticate authentication based callbvmks controller data database enables fail fails getfirebaseauth informed initialisation loadapplication method note notesapp property received service sets setting success sweetalert user users"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.controller:headerController",
+      "shortName": "headerController",
+      "type": "controller",
+      "moduleName": "notesApp",
+      "shortDescription": "Controlls header",
+      "keywords": "api authorised controller controlls currently default file full getusername getuserphoto header image logoutuser method notesapp path property request retrive service settings unauthenticate user users"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.controller:introController",
+      "shortName": "introController",
+      "type": "controller",
+      "moduleName": "notesApp",
+      "shortDescription": "Controlls header",
+      "keywords": "api authentication controller controlls credentials data header loginuser logs method notesapp property service user users"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.controller:noteController",
+      "shortName": "noteController",
+      "type": "controller",
+      "moduleName": "notesApp",
+      "shortDescription": "Controlls header",
+      "keywords": "action active addnewcomment adds api author called cancel canceled change changes checknotestatus checks comment comments confirm controller controlls created current deletecomment deletes detected empty full getuserfirstname getuserfullname getuserphoto header imagepath initwatch inserts method note noteid notes notesapp overview path photo prompts property relative request rerouted returns selected service settings sweetalert text time user userid warned warning watches"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.controller:notesController",
+      "shortName": "notesController",
+      "type": "controller",
+      "moduleName": "notesApp",
+      "shortDescription": "Controlls header",
+      "keywords": "action api author cancel confirm controller controlls deletenote deletes full getuserfullname header method note notes notesapp prompts property request selected service sweetalert"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.controller:userSettingsController",
+      "shortName": "userSettingsController",
+      "type": "controller",
+      "moduleName": "notesApp",
+      "shortDescription": "Controlls header",
+      "keywords": "api author avatar controller controlls full getusername getuserphoto header image method note notesapp path property service settings sweetalert user"
     },
     {
       "section": "api",
@@ -47,6 +110,15 @@ NG_DOCS={
       "moduleName": "notesApp",
       "shortDescription": "Service for firebase database connection. Holds all database accessible object except user. This service needs to be initialised via setFirebaseHttp and getFirebase methods.",
       "keywords": "$firebasearray $firebaseobject access accessible adds angularfire api clear comment commentid comments connected connection created database deletion destroyfirebaseobjects destroys directly firebase firstname full fullname getfirebase getnote getnotecomments getnotes getuser getuserfirstname getuserfullname getusers getusersurname holds imagefile initialised insertion int load loaded loadedfirebase loads method methods newcomment newnote note noteid notes notesapp object objects partial property removenote removes result returned returns rightslevel searches service setfirebase setfirebasehttp setnote sets specific string surname text title user userid users xxxxxxxx-xxxxxxxx-xxxxxxxx"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.service:fileSystemFactory",
+      "shortName": "fileSystemFactory",
+      "type": "service",
+      "moduleName": "notesApp",
+      "shortDescription": "Provides a routing for filesystem.",
+      "keywords": "api default empty file filesystem getuserphoto image method notesapp path picture returned routing service set setsettings settings user userphotofile"
     },
     {
       "section": "api",

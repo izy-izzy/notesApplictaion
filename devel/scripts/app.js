@@ -7,8 +7,10 @@
  * @requires module:ngAria
  * @requires module:oitozero.ngSweetAlert
  *
+ * @author {@link lukas.kalcok@gmail.com} (Lukas Kalcok)
+ *
  * @description
- * 
+ *
  * Some sophisticated text about the application.
  *
  * states:

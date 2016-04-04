@@ -3,7 +3,7 @@
  * @name notesApp.service:uidFactory
  * @description Factory for userID random generation.
  * @function
- */ 
+ */
 angular
 	.module('notesApp')
 	.factory("uidFactory", uidFactory);
@@ -30,7 +30,7 @@ function uidFactory() {
 	 * @ngdoc method
 	 * @name getUID
 	 * @methodOf notesApp.service:uidFactory
-	 * @description Get pseudorandom getUID  
+	 * @description Get pseudorandom getUID
 	 * @returns {string} format: <code>XXXXXXXX-XXXXXXXX-XXXXXXXX</code>; X represents a letter or a cypher
 	 */
 	function getUID() {

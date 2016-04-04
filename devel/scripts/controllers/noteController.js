@@ -1,15 +1,52 @@
 /**
- *  Controller of a note 
- *  author lukaskalcokgmail.com
+ * @ngdoc controller
+ * @name notesApp.controller:noteController
+ *
+ * @description Controlls header
+ *
+ * @requires SweetAlert
+ * @requires notesApp.service:authService
+ * @requires notesApp.service:databaseService
+ * @requires notesApp.service:uidFactory
+ * @requires notesApp.service:settingsService
+ * @requires notesApp.service:fileSystemFactory
  */
 angular
 	.module('notesApp')
 	.controller("noteController", noteController);
 
-noteController.$inject = ['$state','$scope','$stateParams','databaseService','uidFactory','SweetAlert', 'settingsService', 'authService'];
+noteController.$inject = ['$state','$scope','$stateParams','databaseService','uidFactory','SweetAlert', 'settingsService', 'authService', 'fileSystemFactory'];
 
-function noteController($state, $scope, $stateParams, databaseService, uidFactory, SweetAlert, settingsService, authService) {
-	
+/**
+ * @ngdoc property
+ * @name .#settings
+ * @propertyOf notesApp.controller:noteController
+ * @returns {object} {@link notesApp.service:settingsService#settings}
+ */
+
+/**
+ * @ngdoc property
+ * @name .#comments
+ * @propertyOf notesApp.controller:noteController
+ * @returns {object} {@link notesApp.service:databaseService#comments} Comments of this note.
+ */
+
+/**
+ * @ngdoc property
+ * @name .#note
+ * @propertyOf notesApp.controller:noteController
+ * @returns {object} {@link notesApp.service:databaseService#note} this note.
+ */
+
+/**
+ * @ngdoc property
+ * @name .#noteId
+ * @propertyOf notesApp.controller:noteController
+ * @returns {string} Id of this note.
+ */
+
+function noteController($state, $scope, $stateParams, databaseService, uidFactory, SweetAlert, settingsService, authService, fileSystemFactory) {
+
 	var vm = this;
 
 	vm.commentsAddingMode = false;
@@ -28,7 +65,10 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	});
 
 	/**
-	 *  Watches for changes in a note. If a change is detected checkNoteStatus() is called.  
+	 * @ngdoc method
+	 * @name initwatch
+	 * @methodOf notesApp.controller:noteController
+	 * @description Watches for changes in a note. If a change is detected <code>checkNoteStatus()</code> is called.
 	 */
 	vm.initwatch = function(){
 		if (vm.note){
@@ -40,21 +80,27 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	vm.initwatch();
 
 	/**
-	 *  Checks if the current note is empty. If the note is empty/deleted, warning is shown and user is rerouted to notes overview.
+	 * @ngdoc method
+	 * @name checkNoteStatus
+	 * @methodOf notesApp.controller:noteController
+	 * @description Checks if the current note is empty. If the note is empty/deleted, warning is shown and user is rerouted to notes overview.
 	 */
 	vm.checkNoteStatus = function(){
 		if (vm.note && vm.note.title && vm.note.created && vm.note.userID){
 		} else {
 			SweetAlert.swal({
 				title: "This note has been deleted.",
-				type: "warning"});  
+				type: "warning"});
 			$state.go('notes');
 		}
 	};
 
 	/**
-	 *  Deletes a comment. Prompts to confirm request and according to selected action it deletes the comment or cancel the request.
-	 *  @param {string} id of comment 
+	 * @ngdoc method
+	 * @name deleteComment
+	 * @methodOf notesApp.controller:noteController
+	 * @description Deletes a comment. Prompts to confirm request and according to selected action it deletes the comment or cancel the request.
+	 * @param {string} id of comment
 	 */
 	vm.deleteComment = function(comment){
 		SweetAlert.swal({
@@ -81,16 +127,18 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	};
 
 	/**
-	*  Adds a new comment. Checks whether text is not empty and inserts the comment to the active note. If text is empty, user is warned and action is canceled. 
-	*  New comment is added with text, current time and userID of the active user.
-	*/
+	 * @ngdoc method
+	 * @name addNewComment
+	 * @methodOf notesApp.controller:noteController
+	 * @description Adds a new comment. Checks whether text is not empty and inserts the comment to the active note. If text is empty, user is warned and action is canceled. New comment is added with text, current time and userID of the active user.
+	 */
 	vm.addNewComment = function(){
 		if (vm.newcomment.text !== ""){
 			if (!vm.note.comments){
 				vm.note.comments = {};
 			}
-			vm.note.comments[""+uidFactory.getUID()+""] = { 
-				text: vm.newcomment, 
+			vm.note.comments[""+uidFactory.getUID()+""] = {
+				text: vm.newcomment,
 				created: Date.now(),
 				userID: authService.getUser().uid
 			};
@@ -108,10 +156,13 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	};
 
 	/**
-	*  Returns a name of an author who created a comment
-	*  @param {string} comment id
-	*  @return {string} name of author 
-	*/
+	 * @ngdoc method
+	 * @name getUserFirstName
+	 * @methodOf notesApp.controller:noteController
+	 * @description Returns a name of an author who created a comment
+	 * @param {string} comment id
+	 * @return {string} name of author
+	 */
 	vm.getUserFirstName = function(comment){
 		if (comment) {
 			return databaseService.getUserFirstName(comment.userID);
@@ -121,24 +172,31 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	};
 
 	/**
-	*  Returns imagePath of an author who created a comment
-	*  @param {string} comment id
-	*  @return {string} relative path to author's photo
-	*/
+	 * @ngdoc method
+	 * @name getUserPhoto
+	 * @methodOf notesApp.controller:noteController
+	 * @description Returns imagePath of an author who created a comment
+	 * @param {string} comment id
+	 * @return {string} relative path to author's photo
+	 */
 	vm.getUserPhoto = function(comment){
-		var imageFileName = "avatar_default.png";
-		if (comment && settingsService.getSettings() && databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile !== ""){
-			imageFileName = databaseService.getUser(comment.userID).imagefile;
-		} 
-		return vm.settings.pathToUserPictures + imageFileName;
+		var imageFileName;
+ 		if (comment && databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile !== ""){
+ 			imageFileName = databaseService.getUser(comment.userID).imagefile;
+ 		}
+ 		return fileSystemFactory.getUserPhoto(imageFileName);
 	};
 
 	/**
-	*  @param {string} note id
-	*  @return {string} Full name of note author
-	*/
+	 * @ngdoc method
+	 * @name getUserFullName
+	 * @methodOf notesApp.controller:noteController
+	 * @description Returns full name of notes author
+	 * @param {string} note id
+	 * @return {string} Full name of note author
+	 */
 	vm.getUserFullName = function(note){
 		return databaseService.getUserFullName(note.userID);
 	};
-   
+
 }

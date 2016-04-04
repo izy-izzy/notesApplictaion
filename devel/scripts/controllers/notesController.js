@@ -1,12 +1,26 @@
 /**
- *  Controller of notes 
- *  author lukaskalcok@gmail.com
+ * @ngdoc controller
+ * @name notesApp.controller:notesController
+ *
+ * @description Controlls header
+ *
+ * @requires SweetAlert
+ * @requires notesApp.service:authService
+ * @requires notesApp.service:databaseService
+ * @requires notesApp.service:uidFactory
  */
 angular
 	.module('notesApp')
 	.controller("notesController", notesController);
 
 notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert'];
+
+/**
+ * @ngdoc property
+ * @name .#notes
+ * @propertyOf notesApp.controller:notesController
+ * @returns {object} {@link notesApp.service:databaseService#notes}
+ */
 
 function notesController($scope, $state,databaseService,uidFactory, SweetAlert) {
 
@@ -15,17 +29,23 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert) 
 	vm.notes = databaseService.getNotes();
 
 	/**
-	*  param {string} note id
-	*  return {string} Full name of note author
-	*/
+	 * @ngdoc method
+	 * @name getUserFullName
+	 * @methodOf notesApp.controller:notesController
+	 * @param {string} note id
+	 * @returns {string} Full name of note author
+	 */
 	vm.getUserFullName = function(note){
 		return databaseService.getUserFullName(note.userID);
 	};
 
 	/**
-	*  Deletes a note. Prompts to confirm request and according to selected action it deletes the note or cancel the request.
-	*  param {string} id of note 
-	*/
+	 * @ngdoc method
+	 * @name deleteNote
+	 * @methodOf notesApp.controller:notesController
+	 * @description Deletes a note. Prompts to confirm request and according to selected action it deletes the note or cancel the request.
+	 * @param {string} id of note
+	 */
 	vm.deleteNote = function(note){
 		SweetAlert.swal({
 			title: "Do you really want to delete this note?",
@@ -51,4 +71,3 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert) 
 		});
 	};
 }
-
