@@ -1,4 +1,5 @@
 [ ![Codeship Status for izy-izzy/notesApplictaion](https://codeship.com/projects/30c48e10-c497-0133-8fe4-1e716c1e31dd/status?branch=master)](https://codeship.com/projects/138430)
+[![GitHub version](https://badge.fury.io/gh/izy-izzy%2FnotesApplictaion.svg)](https://badge.fury.io/gh/izy-izzy%2FnotesApplictaion)
 
 ## Synopsis
 
@@ -16,7 +17,7 @@ Ruby, GEM, Node
 
 ## Technology
 
-Firebase, Angular.js, GULP, CSS3, HTML5, Karma, Jasmine 
+Firebase, Angular.js, GULP, CSS3, HTML5, Karma, Jasmine
 
 ## Tests
 
@@ -38,8 +39,8 @@ lukaskalcok@gmail.com (Lukas Kalcok)
 
 ## Notes
 
-* User session is set to 12 hours. After being idle for more than 12 hours, Firebase will destroy the session and user will be prompt to log in. 
-* Set of tests could be expanded. At the moment, only controllers initilisation and filters are tested. 
+* User session is set to 12 hours. After being idle for more than 12 hours, Firebase will destroy the session and user will be prompt to log in.
+* Set of tests could be expanded. At the moment, only controllers initilisation and filters are tested.
 * Application uses SweetAlert module instead of a classic Javascript alert. This solution was incorporated to inform the user about their action resolvement in a more user-friendly way.
 * Application is fully responsive and was tested on the following setups:
 	Microsoft Windows 10:
