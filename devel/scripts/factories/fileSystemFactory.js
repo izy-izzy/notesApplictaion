@@ -26,7 +26,6 @@ function fileSystemFactory() {
 	 */
 	function setSettings(settings){
 		factory.settings = settings;
-		console.log(factory.settings);
 	};
 
 	/**
@@ -37,7 +36,6 @@ function fileSystemFactory() {
 	 * @returns {string} Path to file. If the userPhotoFile is empty the default user picture is returned
 	 */
 	function getUserPhoto(userPhotoFile) {
-		console.log(factory.settings);
 		if (!userPhotoFile && factory.settings && factory.settings.defaultUserPicture){
 			userPhotoFile = factory.settings.defaultUserPicture;
 		}

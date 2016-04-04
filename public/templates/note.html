@@ -7,9 +7,9 @@
 			<div class="col-xs-12 animate-add-comment-show-hide" ng-show="vm.commentsAddingMode == true">
 				<div class="form-group">
 					<textarea
-						id="note-text" 
-						class="form-control" 
-						ng-model="vm.newcomment.text" 
+						id="note-text"
+						class="form-control"
+						ng-model="vm.newcomment.text"
 						ng-keypress="($event.which === 13)?vm.addNewComment():0">
 					</textarea>
 				</div>
@@ -31,7 +31,7 @@
 		<section>
 			<div class="row">
 				<div class="col-xs-12 comments">
-					<article ng-repeat="comment in vm.comments | orderBy:'created':true" class="comment zipper">
+					<article ng-repeat="comment in vm.comments | orderBy:'created':true" class="comment zipper" ng-if="vm.getUserCommentPermissions(comment).read">
 						<div class="avatar">
 							<img ng-src="{{vm.getUserPhoto(comment)}}" alt="user avatar" />
 						</div>
@@ -49,7 +49,7 @@
 							<p>
 								{{comment.text}}
 							</p>
-							<button class="delete-icon" ng-click="vm.deleteComment(comment)"></button>
+							<button ng-if="vm.getUserCommentPermissions(comment).delete" class="delete-icon" ng-click="vm.deleteComment(comment)"></button>
 						</div>
 					</article>
 				</div>

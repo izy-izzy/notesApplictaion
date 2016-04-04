@@ -8,12 +8,13 @@
  * @requires notesApp.service:authService
  * @requires notesApp.service:databaseService
  * @requires notesApp.service:uidFactory
+ * @requires notesApp.service:permissionFactory
  */
 angular
 	.module('notesApp')
 	.controller("notesController", notesController);
 
-notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert'];
+notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert', 'authService', 'permissionFactory'];
 
 /**
  * @ngdoc property
@@ -22,11 +23,19 @@ notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 
  * @returns {object} {@link notesApp.service:databaseService#notes}
  */
 
-function notesController($scope, $state,databaseService,uidFactory, SweetAlert) {
+/**
+ * @ngdoc property
+ * @name .#user
+ * @propertyOf notesApp.controller:noteController
+ * @returns {object} {@link notesApp.service:databaseService#user}
+ */
+
+function notesController($scope, $state,databaseService, uidFactory, SweetAlert, authService, permissionFactory) {
 
 	var vm = this;
 
 	vm.notes = databaseService.getNotes();
+	vm.user = authService.getUser();
 
 	/**
 	 * @ngdoc method
@@ -36,7 +45,7 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert) 
 	 * @returns {string} Full name of note author
 	 */
 	vm.getUserFullName = function(note){
-		return databaseService.getUserFullName(note.userID);
+		return databaseService.getUserFullName(note.userId);
 	};
 
 	/**
@@ -69,5 +78,17 @@ function notesController($scope, $state,databaseService,uidFactory, SweetAlert) 
 				});
 			}
 		});
+	};
+
+	/**
+	 * @ngdoc method
+	 * @name getUserNotePermissions
+	 * @methodOf notesApp.controller:notesController
+	 * @description Returns users permissions for note
+	 * @param {object} note Note
+	 * @return {object} user permissions
+	 */
+	vm.getUserNotePermissions = function(note){
+		return permissionFactory.getNotePermissions(note, databaseService.getUser(vm.user.uid));
 	};
 }

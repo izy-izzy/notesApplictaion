@@ -297,7 +297,9 @@ function databaseService($firebaseArray, $firebaseObject) {
 	 */
 	function getUser(userId){
 		if (service.getUsers() && service.getUsers()[userId]){
-			return service.getUsers()[userId];
+			var user = service.getUsers()[userId];
+			user.userId = userId;
+			return user;
 		} else {
 			return undefined;
 		}

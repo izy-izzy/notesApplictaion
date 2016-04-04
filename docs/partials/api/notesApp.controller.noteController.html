@@ -22,7 +22,7 @@
 </ul>
 <div class="member method"><h2 id="methods">Methods</h2>
 <ul class="methods"><li><h3 id="methods_addnewcomment">addNewComment()</h3>
-<div class="addnewcomment"><div class="addnewcomment-page"><p>Adds a new comment. Checks whether text is not empty and inserts the comment to the active note. If text is empty, user is warned and action is canceled. New comment is added with text, current time and userID of the active user.</p>
+<div class="addnewcomment"><div class="addnewcomment-page"><p>Adds a new comment. Checks whether text is not empty and inserts the comment to the active note. If text is empty, user is warned and action is canceled. New comment is added with text, current time and userId of the active user.</p>
 </div></div>
 </li>
 <li><h3 id="methods_checknotestatus">checkNoteStatus()</h3>
@@ -33,6 +33,12 @@
 <div class="deletecomment"><div class="deletecomment-page"><p>Deletes a comment. Prompts to confirm request and according to selected action it deletes the comment or cancel the request.</p>
 </div><h5 id="methods_deletecomment_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>id</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="deletecomment-page"><p>of comment</p>
 </div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_getusercommentpermissions">getUserCommentPermissions(comment)</h3>
+<div class="getusercommentpermissions"><div class="getusercommentpermissions-page"><p>Returns users permissions for comment</p>
+</div><h5 id="methods_getusercommentpermissions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>comment</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getusercommentpermissions-page"><p>Commment</p>
+</div></td></tr></tbody></table><h5 id="methods_getusercommentpermissions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getusercommentpermissions-page"><p>user permissions</p>
+</div></td></tr></table></div>
 </li>
 <li><h3 id="methods_getuserfirstname">getUserFirstName(comment)</h3>
 <div class="getuserfirstname"><div class="getuserfirstname-page"><p>Returns a name of an author who created a comment</p>
@@ -73,6 +79,14 @@
 </li>
 <li><h3 id="properties_settings">settings</h3>
 <div class="settings"><h5 id="properties_settings_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="-settings-page"><p><a href="#/api/notesApp.service:settingsService#settings">notesApp.service:settingsService#settings</a></p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="properties_user">user</h3>
+<div class="user"><h5 id="properties_user_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="-user-page"><p><a href="#/api/notesApp.service:databaseService#user">notesApp.service:databaseService#user</a></p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="properties_user">user</h3>
+<div class="user"><h5 id="properties_user_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="-user-page"><p><a href="#/api/notesApp.service:databaseService#user">notesApp.service:databaseService#user</a></p>
 </div></td></tr></table></div>
 </li>
 </ul>

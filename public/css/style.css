@@ -7012,7 +7012,8 @@ h3 {
     color: #000000; }
     .footer .logo-github:hover {
       color: #4078c0; }
-  .footer .logo-codeship {
+  .footer .logo-codeship,
+  .footer .logo-version {
     margin-top: 5px;
     margin-right: 30px;
     line-height: 28px; }

@@ -1,0 +1,63 @@
+<h1><code ng:non-bindable="">permissionFactory</code>
+<div><span class="hint">service in module <code ng:non-bindable="">notesApp</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="notesapp-service-page notesapp-service-permissionfactory-page"><p>Deals with permissions for user</p>
+<p>Permissions object:
+<pre class="prettyprint linenums">
+{
+ read : true/false,
+ update : true/false,
+ create : true/false,
+ delete : true/false
+}
+</pre>
+<p>user&#39;s rights level:
+<pre class="prettyprint linenums">
+2 : visitor : May only view comments and notes.
+1 : default user. May create new notes and comments. May delete and update own notes and comments.
+0 : admin user. May create, delete and update any comments.
+</pre>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_createclearpermission">createClearPermission(rightslevel)</h3>
+<div class="createclearpermission"><h5 id="methods_createclearpermission_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>rightslevel</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="createclearpermission-page"><p>User&#39;s rights level</p>
+</div></td></tr></tbody></table><h5 id="methods_createclearpermission_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="createclearpermission-page"><p>Default permissions are:
+<pre class="prettyprint linenums">
+{
+ read : true,
+ update : false,
+ create : true,
+ delete : false
+}
+</pre>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_createclearpermission">createClearPermission(rightslevel)</h3>
+<div class="createclearpermission"><h5 id="methods_createclearpermission_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>rightslevel</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="createclearpermission-page"><p>User&#39;s rights level</p>
+</div></td></tr></tbody></table><h5 id="methods_createclearpermission_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="createclearpermission-page"><p>Permissions are all set to false</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_createtruepermissions">createTruePermissions(rightslevel)</h3>
+<div class="createtruepermissions"><h5 id="methods_createtruepermissions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>rightslevel</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="createtruepermissions-page"><p>User&#39;s rights level</p>
+</div></td></tr></tbody></table><h5 id="methods_createtruepermissions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="createtruepermissions-page"><p>Permissions are all set to false</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getcommentpermissions">getCommentPermissions(note, comment, user)</h3>
+<div class="getcommentpermissions"><h5 id="methods_getcommentpermissions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>note</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getcommentpermissions-page"><p><a href="#/api/notesApp.service:databaseService#note">notesApp.service:databaseService#note</a></p>
+</div></td></tr><tr><td>comment</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getcommentpermissions-page"><p><a href="#/api/notesApp.service:databaseService#comment">notesApp.service:databaseService#comment</a></p>
+</div></td></tr><tr><td>user</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getcommentpermissions-page"><p><a href="#/api/notesApp.service:databaseService#user">notesApp.service:databaseService#user</a></p>
+</div></td></tr></tbody></table><h5 id="methods_getcommentpermissions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getcommentpermissions-page"><p>permissions for comment of the note for user</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getnotepermissions">getNotePermissions(note, user)</h3>
+<div class="getnotepermissions"><h5 id="methods_getnotepermissions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>note</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getnotepermissions-page"><p><a href="#/api/notesApp.service:databaseService#note">notesApp.service:databaseService#note</a></p>
+</div></td></tr><tr><td>user</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getnotepermissions-page"><p><a href="#/api/notesApp.service:databaseService#user">notesApp.service:databaseService#user</a></p>
+</div></td></tr></tbody></table><h5 id="methods_getnotepermissions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getnotepermissions-page"><p>permissions for note and user</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

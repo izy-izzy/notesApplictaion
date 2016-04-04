@@ -15,6 +15,8 @@
 </li>
 <li><code ng:non-bindable=""><a href="#/api/notesApp.service:uidFactory">uidFactory</a></code>
 </li>
+<li><code ng:non-bindable=""><a href="#/api/notesApp.service:permissionFactory">permissionFactory</a></code>
+</li>
 </ul>
 <div class="member method"><h2 id="methods">Methods</h2>
 <ul class="methods"><li><h3 id="methods_deletenote">deleteNote(id)</h3>
@@ -25,6 +27,12 @@
 <li><h3 id="methods_getuserfullname">getUserFullName(note)</h3>
 <div class="getuserfullname"><h5 id="methods_getuserfullname_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>note</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfullname-page"><p>id</p>
 </div></td></tr></tbody></table><h5 id="methods_getuserfullname_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="getuserfullname-page"><p>Full name of note author</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getusernotepermissions">getUserNotePermissions(note)</h3>
+<div class="getusernotepermissions"><div class="getusernotepermissions-page"><p>Returns users permissions for note</p>
+</div><h5 id="methods_getusernotepermissions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>note</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getusernotepermissions-page"><p>Note</p>
+</div></td></tr></tbody></table><h5 id="methods_getusernotepermissions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getusernotepermissions-page"><p>user permissions</p>
 </div></td></tr></table></div>
 </li>
 </ul>

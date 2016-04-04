@@ -38,10 +38,10 @@ function addNoteController($scope, databaseService, $state, uidFactory, SweetAle
 			vm.newnote.comments["" + uidFactory.getUID() + ""] = {
 				text: vm.newcomment,
 				created: Date.now(),
-				userID: authService.getUser().uid
+				userId: authService.getUser().uid
 			};
 			vm.newnote.created = Date.now();
-			vm.newnote.userID = authService.getUser().uid;
+			vm.newnote.userId = authService.getUser().uid;
 			databaseService.setNote(vm.newnote, uidFactory.getUID()).then(function() {
 				SweetAlert.swal({
 					title: "Your note has been saved.",

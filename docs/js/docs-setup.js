@@ -55,7 +55,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "notesApp",
       "shortDescription": "Controlls header",
-      "keywords": "action active addnewcomment adds api author called cancel canceled change changes checknotestatus checks comment comments confirm controller controlls created current deletecomment deletes detected empty full getuserfirstname getuserfullname getuserphoto header imagepath initwatch inserts method note noteid notes notesapp overview path photo prompts property relative request rerouted returns selected service settings sweetalert text time user userid warned warning watches"
+      "keywords": "action active addnewcomment adds api author called cancel canceled change changes checknotestatus checks comment comments commment confirm controller controlls created current deletecomment deletes detected empty full getusercommentpermissions getuserfirstname getuserfullname getuserphoto header imagepath initwatch inserts method note noteid notes notesapp overview path permissions photo prompts property relative request rerouted returns selected service settings sweetalert text time user userid users warned warning watches"
     },
     {
       "section": "api",
@@ -64,7 +64,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "notesApp",
       "shortDescription": "Controlls header",
-      "keywords": "action api author cancel confirm controller controlls deletenote deletes full getuserfullname header method note notes notesapp prompts property request selected service sweetalert"
+      "keywords": "action api author cancel confirm controller controlls deletenote deletes full getuserfullname getusernotepermissions header method note notes notesapp permissions prompts property request returns selected service sweetalert user users"
     },
     {
       "section": "api",
@@ -119,6 +119,15 @@ NG_DOCS={
       "moduleName": "notesApp",
       "shortDescription": "Provides a routing for filesystem.",
       "keywords": "api default empty file filesystem getuserphoto image method notesapp path picture returned routing service set setsettings settings user userphotofile"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.service:permissionFactory",
+      "shortName": "permissionFactory",
+      "type": "service",
+      "moduleName": "notesApp",
+      "shortDescription": "Deals with permissions for user",
+      "keywords": "admin api comment comments create createclearpermission createtruepermissions deals default delete false getcommentpermissions getnotepermissions level method note notes notesapp object permissions read rights rightslevel service set true update user view visitor"
     },
     {
       "section": "api",

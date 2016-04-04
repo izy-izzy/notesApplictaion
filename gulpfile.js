@@ -60,7 +60,7 @@ gulp.task('watch', ['default'], function(){
 gulp.task('scss', function () {
   return gulp.src('./devel/scss/style.scss')
   	.pipe(sourcemaps.init())
-    .pipe(scss().on('error', 
+    .pipe(scss().on('error',
     	function(e) {
     		gutil.log(e);
     		this.emit('end');
@@ -96,7 +96,7 @@ gulp.task('scripts', function() {
 		])
 	.pipe(concat('app.min.js'))
 	.pipe(sourcemaps.init())
-	/*.pipe(minifyJS({mangle: true}).on('error', 
+	/*.pipe(minifyJS({mangle: true}).on('error',
     	function(e) {
     		gutil.log(e);
     		this.emit('end');
@@ -157,7 +157,7 @@ gulp.task('documentation', function(){
         .pipe(gulp.dest('./docs'));
 });
 
-gulp.task('view_ngDocs', ['documentation'], function() {
+gulp.task('ngdoc', ['documentation'], function() {
 var connect = require('gulp-connect');
   connect.server({
     root: 'docs',

@@ -15,7 +15,9 @@ angular
 	.module('notesApp')
 	.controller("noteController", noteController);
 
-noteController.$inject = ['$state','$scope','$stateParams','databaseService','uidFactory','SweetAlert', 'settingsService', 'authService', 'fileSystemFactory'];
+noteController.$inject = [	'$state','$scope','$stateParams','databaseService',
+							'uidFactory','SweetAlert', 'settingsService', 'authService',
+							'fileSystemFactory', 'permissionFactory'];
 
 /**
  * @ngdoc property
@@ -45,7 +47,17 @@ noteController.$inject = ['$state','$scope','$stateParams','databaseService','ui
  * @returns {string} Id of this note.
  */
 
-function noteController($state, $scope, $stateParams, databaseService, uidFactory, SweetAlert, settingsService, authService, fileSystemFactory) {
+/**
+ * @ngdoc property
+ * @name .#user
+ * @propertyOf notesApp.controller:noteController
+ * @returns {object} {@link notesApp.service:databaseService#user}
+ */
+
+
+function noteController($state, $scope, $stateParams, databaseService,
+						uidFactory, SweetAlert, settingsService, authService,
+						fileSystemFactory, permissionFactory) {
 
 	var vm = this;
 
@@ -63,6 +75,8 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	settingsService.getSettings().then(function(data){
 		vm.settings = data;
 	});
+
+	vm.user = authService.getUser();
 
 	/**
 	 * @ngdoc method
@@ -86,7 +100,7 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	 * @description Checks if the current note is empty. If the note is empty/deleted, warning is shown and user is rerouted to notes overview.
 	 */
 	vm.checkNoteStatus = function(){
-		if (vm.note && vm.note.title && vm.note.created && vm.note.userID){
+		if (vm.note && vm.note.title && vm.note.created && vm.note.userId){
 		} else {
 			SweetAlert.swal({
 				title: "This note has been deleted.",
@@ -130,7 +144,7 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	 * @ngdoc method
 	 * @name addNewComment
 	 * @methodOf notesApp.controller:noteController
-	 * @description Adds a new comment. Checks whether text is not empty and inserts the comment to the active note. If text is empty, user is warned and action is canceled. New comment is added with text, current time and userID of the active user.
+	 * @description Adds a new comment. Checks whether text is not empty and inserts the comment to the active note. If text is empty, user is warned and action is canceled. New comment is added with text, current time and userId of the active user.
 	 */
 	vm.addNewComment = function(){
 		if (vm.newcomment.text !== ""){
@@ -140,10 +154,10 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 			vm.note.comments[""+uidFactory.getUID()+""] = {
 				text: vm.newcomment,
 				created: Date.now(),
-				userID: authService.getUser().uid
+				userId: authService.getUser().uid
 			};
 			vm.newcomment.created = Date.now();
-			vm.newcomment.userID = authService.getUser().uid;
+			vm.newcomment.userId = authService.getUser().uid;
 			databaseService.setNoteComment(vm.newcomment, vm.note.$id, uidFactory.getUID());
 		} else {
 			SweetAlert.swal({
@@ -165,7 +179,7 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	 */
 	vm.getUserFirstName = function(comment){
 		if (comment) {
-			return databaseService.getUserFirstName(comment.userID);
+			return databaseService.getUserFirstName(comment.userId);
 		} else {
 			return undefined;
 		}
@@ -181,8 +195,8 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	 */
 	vm.getUserPhoto = function(comment){
 		var imageFileName;
- 		if (comment && databaseService.getUser(comment.userID) && databaseService.getUser(comment.userID).imagefile !== ""){
- 			imageFileName = databaseService.getUser(comment.userID).imagefile;
+ 		if (comment && databaseService.getUser(comment.userId) && databaseService.getUser(comment.userId).imagefile !== ""){
+ 			imageFileName = databaseService.getUser(comment.userId).imagefile;
  		}
  		return fileSystemFactory.getUserPhoto(imageFileName);
 	};
@@ -196,7 +210,18 @@ function noteController($state, $scope, $stateParams, databaseService, uidFactor
 	 * @return {string} Full name of note author
 	 */
 	vm.getUserFullName = function(note){
-		return databaseService.getUserFullName(note.userID);
+		return databaseService.getUserFullName(note.userId);
 	};
 
+	/**
+	 * @ngdoc method
+	 * @name getUserCommentPermissions
+	 * @methodOf notesApp.controller:noteController
+	 * @description Returns users permissions for comment
+	 * @param {object} comment Commment
+	 * @return {object} user permissions
+	 */
+	vm.getUserCommentPermissions = function(comment){
+		return permissionFactory.getCommentPermissions(vm.note, comment,  databaseService.getUser(vm.user.uid));
+	};
 }
