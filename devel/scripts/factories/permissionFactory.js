@@ -30,7 +30,7 @@ function permissionFactory() {
 	// permission if the current node is not owner
 	var usersPermissionsFalse = [
 		{create : true,		read : true,	update : true,	delete : true	},	// level 0
-		{create : false,	read : true,	update : false,	delete : false	},	// level 1
+		{create : true,		read : true,	update : false,	delete : false	},	// level 1
 		{create : false,	read : true,	update : false,	delete : false	},	// level 2
 		{create : false,	read : false,	update : false, delete : false	}	// level 3
 	];
@@ -60,7 +60,7 @@ function permissionFactory() {
 	 * @returns {object} Permissions for user
 	 */
 	function createPermissions(rightslevel, hasRight){
-		if (!rightslevel){
+		if (rightslevel === undefined){
 			rightslevel = undefinedUserRightsLevel;
 		}
 		return hasRight ? usersPermissionsTrue[rightslevel] : usersPermissionsFalse[rightslevel];

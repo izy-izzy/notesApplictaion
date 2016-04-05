@@ -224,4 +224,16 @@ function noteController($state, $scope, $stateParams, databaseService,
 	vm.getUserCommentPermissions = function(comment){
 		return permissionFactory.getCommentPermissions(vm.note, comment,  databaseService.getUser(vm.user.uid));
 	};
+
+	/**
+	 * @ngdoc method
+	 * @name getUserNotePermissions
+	 * @methodOf notesApp.controller:notesController
+	 * @description Returns users permissions for note
+	 * @param {object} note Note
+	 * @return {object} user permissions
+	 */
+	vm.getUserNotePermissions = function(note){
+		return permissionFactory.getNotePermissions(note, databaseService.getUser(vm.user.uid));
+	};
 }
