@@ -27,30 +27,44 @@ angular
 	.factory('permissionFactory', permissionFactory);
 
 function permissionFactory() {
-
-	var usersPermissionsDefault = [
-		{create : true,		read : true,	update : true,	delete : true	},	// level 0
-		{create : true, 	read : true,	update : false,	delete : false	},	// level 1
-		{create : false,	read : true,	update : false,	delete : false	}	// level 2
-	];
-
+	// permission if the current node is not owner
 	var usersPermissionsFalse = [
 		{create : true,		read : true,	update : true,	delete : true	},	// level 0
-		{create : false,	read : false,	update : false,	delete : false	},	// level 1
-		{create : false,	read : false,	update : false,	delete : false	}	// level 2
+		{create : false,	read : true,	update : false,	delete : false	},	// level 1
+		{create : false,	read : true,	update : false,	delete : false	},	// level 2
+		{create : false,	read : false,	update : false, delete : false	}	// level 3
 	];
-
+	// permission if the current node is owner
 	var usersPermissionsTrue = [
-		{ create : true,	read : true,	update : true,	delete : true	},	// level 0
-		{ create : true,	read : true,	update : true,	delete : true	},	// level 1
-		{ create : false,	read : true,	update : false,	delete : false	}	// level 2
+		{create : true,		read : true,	update : true,	delete : true	},	// level 0
+		{create : true,		read : true,	update : true,	delete : true	},	// level 1
+		{create : false,	read : true,	update : false,	delete : false	},	// level 2
+		{create : false, 	read : false,	update : false, delete : false	}	// level 3
 	];
 
-	var service = {
+	var undefinedUserRightsLevel = 3;
+
+	var factory = {
 		getCommentPermissions: getCommentPermissions,
-		getNotePermissions: getNotePermissions
+		getNotePermissions: getNotePermissions,
+		createPermissions : createPermissions
 	};
-	return service;
+	return factory;
+
+	/**
+	 * @ngdoc method
+	 * @name createPermissions
+	 * @methodOf notesApp.service:permissionFactory
+	 * @param {number} rightslevel User's rights level
+	 * @param {boolean} hasRight User has rights for object
+	 * @returns {object} Permissions for user
+	 */
+	function createPermissions(rightslevel, hasRight){
+		if (!rightslevel){
+			rightslevel = undefinedUserRightsLevel;
+		}
+		return hasRight ? usersPermissionsTrue[rightslevel] : usersPermissionsFalse[rightslevel];
+	}
 
 	/**
 	 * @ngdoc method
@@ -62,59 +76,18 @@ function permissionFactory() {
 	 * @returns {object} permissions for comment of the note for user
 	 */
 	function getCommentPermissions(note, comment, user) {
-		var permissions = getNotePermissions(note, user);
-		if (comment && user) {
-			if (comment.userId === user.userId){
-				permissions = createTruePermissions(user.rightslevel);
-			}
-		}
+		var permissionsNote = getNotePermissions(note, user);
+		var permissions = {};
+		var userRights = user ? user.rightslevel : undefinedUserRightsLevel;
+		var permissionsAdd = factory.createPermissions(userRights, comment && user && (comment.userId === user.userId));
+		permissions.create = permissionsNote.create || permissionsAdd.create;
+		permissions.read = permissionsNote.read || permissionsAdd.read;
+		permissions.update = permissionsNote.update || permissionsAdd.update;
+		permissions.delete = permissionsNote.delete || permissionsAdd.delete;
 		return permissions;
 	};
 
-	/**
-	 * @ngdoc method
-	 * @name createClearPermission
-	 * @methodOf notesApp.service:permissionFactory
-	 * @param {number} rightslevel User's rights level
-	 * @returns {object}
-	 * Default permissions are:
-	 * <pre>
-	 * {
-	 *  read : true,
-	 *  update : false,
-	 *  create : true,
-	 *  delete : false
-	 * }
-	 * </pre>
-	 */
-	function createClearPermission(rightslevel){
-		var permissions = usersPermissionsDefault[rightslevel];
-		return permissions;
-	};
 
-	/**
-	 * @ngdoc method
-	 * @name createClearPermission
-	 * @methodOf notesApp.service:permissionFactory
-	 * @param {number} rightslevel User's rights level
-	 * @returns {object} Permissions are all set to false
-	 */
-	function createFalsePermissions(rightslevel){
-		var permissions = usersPermissionsFalse[rightslevel];
-		return permissions;
-	}
-
-	/**
-	 * @ngdoc method
-	 * @name createTruePermissions
-	 * @methodOf notesApp.service:permissionFactory
-	 * @param {number} rightslevel User's rights level
-	 * @returns {object} Permissions are all set to false
-	 */
-	function createTruePermissions(rightslevel){
-		var permissions = usersPermissionsTrue[rightslevel];
-		return permissions;
-	}
 
 	/**
 	 * @ngdoc method
@@ -125,18 +98,7 @@ function permissionFactory() {
 	 * @returns {object} permissions for note and user
 	 */
 	function getNotePermissions(note, user){
-		console.log(user, note);
-		var permissions = createClearPermission(user.rightslevel);
-		if (note && user){
-			if (note.userId === user.userId){
-				permissions.create = false;
-				permissions.read = true;
-				permissions.update = false;
-				permissions.delete = true;
-			}
-		} else {
-			permissions = createFalsePermissions(user.rightslevel);
-		}
-		return permissions;
+		var userRights = user ? user.rightslevel : undefinedUserRightsLevel;
+		return factory.createPermissions(userRights, note && user && note.userId === user.userId);
 	};
 }

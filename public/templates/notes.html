@@ -30,7 +30,7 @@
 							</div>
 						</div>
 					</div>
-					<button ui-sref="addnote" class="btn btn-arrow-next">Create a new note</button>
+					<button ng-if="vm.getUserNotePermissions(note).create" ui-sref="addnote" class="btn btn-arrow-next">Create a new note</button>
 				</div>
 			</div>
 		</div>

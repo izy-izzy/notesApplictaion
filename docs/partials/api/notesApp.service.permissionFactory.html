@@ -22,27 +22,10 @@
 </pre>
 </div></div>
 <div class="member method"><h2 id="methods">Methods</h2>
-<ul class="methods"><li><h3 id="methods_createclearpermission">createClearPermission(rightslevel)</h3>
-<div class="createclearpermission"><h5 id="methods_createclearpermission_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>rightslevel</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="createclearpermission-page"><p>User&#39;s rights level</p>
-</div></td></tr></tbody></table><h5 id="methods_createclearpermission_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="createclearpermission-page"><p>Default permissions are:
-<pre class="prettyprint linenums">
-{
- read : true,
- update : false,
- create : true,
- delete : false
-}
-</pre>
-</div></td></tr></table></div>
-</li>
-<li><h3 id="methods_createclearpermission">createClearPermission(rightslevel)</h3>
-<div class="createclearpermission"><h5 id="methods_createclearpermission_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>rightslevel</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="createclearpermission-page"><p>User&#39;s rights level</p>
-</div></td></tr></tbody></table><h5 id="methods_createclearpermission_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="createclearpermission-page"><p>Permissions are all set to false</p>
-</div></td></tr></table></div>
-</li>
-<li><h3 id="methods_createtruepermissions">createTruePermissions(rightslevel)</h3>
-<div class="createtruepermissions"><h5 id="methods_createtruepermissions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>rightslevel</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="createtruepermissions-page"><p>User&#39;s rights level</p>
-</div></td></tr></tbody></table><h5 id="methods_createtruepermissions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="createtruepermissions-page"><p>Permissions are all set to false</p>
+<ul class="methods"><li><h3 id="methods_createpermissions">createPermissions(rightslevel, hasRight)</h3>
+<div class="createpermissions"><h5 id="methods_createpermissions_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>rightslevel</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="createpermissions-page"><p>User&#39;s rights level</p>
+</div></td></tr><tr><td>hasRight</td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="createpermissions-page"><p>User has rights for object</p>
+</div></td></tr></tbody></table><h5 id="methods_createpermissions_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="createpermissions-page"><p>Permissions for user</p>
 </div></td></tr></table></div>
 </li>
 <li><h3 id="methods_getcommentpermissions">getCommentPermissions(note, comment, user)</h3>

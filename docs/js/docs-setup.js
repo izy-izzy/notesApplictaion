@@ -127,7 +127,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "notesApp",
       "shortDescription": "Deals with permissions for user",
-      "keywords": "admin api comment comments create createclearpermission createtruepermissions deals default delete false getcommentpermissions getnotepermissions level method note notes notesapp object permissions read rights rightslevel service set true update user view visitor"
+      "keywords": "admin api comment comments create createpermissions deals default delete getcommentpermissions getnotepermissions hasright level method note notes notesapp object permissions read rights rightslevel service true update user view visitor"
     },
     {
       "section": "api",
