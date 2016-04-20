@@ -26,7 +26,7 @@ function fileSystemFactory() {
 	 */
 	function setSettings(settings){
 		factory.settings = settings;
-	};
+	}
 
 	/**
 	 * @ngdoc method
@@ -44,5 +44,5 @@ function fileSystemFactory() {
 		} else {
 			return userPhotoFile;
 		}
-	};
+	}
 }

@@ -1,0 +1,17 @@
+.avatars{
+	&-selection{
+		.avatar{
+			display: block;
+			float: left;
+			height: 100px;
+			width: 100px;
+		}
+	}
+}
+.avatar{
+	&-main{
+		display: block;
+		height: 120px;
+		width: 120px;
+	}
+}

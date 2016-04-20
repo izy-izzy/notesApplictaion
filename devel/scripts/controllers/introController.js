@@ -5,12 +5,13 @@
  * @description Controlls header
  *
  * @requires notesApp.service:authService
+ * @requires SweetAlert
  */
 angular
 	.module('notesApp')
 	.controller("introController", introController);
 
-introController.$inject = ['$scope', '$state', 'authService' ];
+introController.$inject = ['$scope', '$state', 'authService', 'SweetAlert' ];
 
 /**
  * @ngdoc property
@@ -39,7 +40,10 @@ function introController($scope, $state, authService, SweetAlert ) {
 				}
 			},
 			function(){
-				// nothing
+				SweetAlert.swal({
+					title: "Unable to authenticate.",
+					text: "Login or Password may be wrong",
+					type: "error"});
 			})
 		;
 	};

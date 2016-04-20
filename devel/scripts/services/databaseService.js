@@ -83,7 +83,9 @@ function databaseService($firebaseArray, $firebaseObject) {
 		getUserFirstName: getUserFirstName,
 		getUserSurName: getUserSurName,
 		getUserFullName: getUserFullName,
-		getUser: getUser
+		getUser: getUser,
+		updateUserName: updateUserName,
+		updateUserEmail: updateUserEmail
 	};
 	return service;
 
@@ -305,4 +307,71 @@ function databaseService($firebaseArray, $firebaseObject) {
 		}
 	}
 
+	/**
+	 * @ngdoc method
+	 * @name updateUserName
+	 * @methodOf notesApp.service:databaseService
+	 * @param {string} userId ID of user which should be updated.
+	 * @param {string} firstName First name of user.
+	 * @param {string} surName Surname of user.
+	 * @returns {Exception} if not sucessfully updated.
+	 */
+	function updateUserName(userId, firstName, surName){
+		var user = service.firebaseObj.child("users").child(userId);
+		user.update({
+			firstname: firstName,
+			surname: surName
+		},function(error) {
+  			if (error) {
+    			return error;
+  			}
+		});
+	}
+
+	/**
+	 * @ngdoc method
+	 * @name updateUserName
+	 * @methodOf notesApp.service:databaseService
+	 * @param {string} userId ID of user which should be updated.
+	 * @param {string} fileName Name of file for selected avatar.
+	 * @returns {Exception} if not sucessfully updated.
+	 */
+	function updateUserAvatar(userId, fileName){
+		var user = service.firebaseObj.child("users").child(userId);
+		user.update({
+			imagefile: fileName
+		},function(error) {
+			if (error) {
+				return error;
+			}
+		});
+	}
+
+	/**
+	 * @ngdoc method
+	 * @name updateUserName
+	 * @methodOf notesApp.service:databaseService
+	 * @param {string} userId ID of user which should be updated.
+	 * @param {string} oldEmail user's old email
+	 * @param {string} newEmail user's new email
+	 * @param {string} passWord user's password
+	 * @returns {Exception} if not sucessfully updated.
+	 */
+	function updateUserEmail(userId, oldEmail, newEmail, passWord){
+		var ref = service.firebaseObj;
+		console.log(
+			"oldEmail " , oldEmail,
+			"newEmail " , newEmail,
+			"password " , passWord
+		);
+		ref.changeEmail({
+			oldEmail : oldEmail,
+ 			newEmail : newEmail,
+ 			password : passWord
+		},function(error) {
+			if (error) {
+				return error;
+			}
+		});
+	}
 }

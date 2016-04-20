@@ -85,9 +85,7 @@ function permissionFactory() {
 		permissions.update = permissionsNote.update || permissionsAdd.update;
 		permissions.delete = permissionsNote.delete || permissionsAdd.delete;
 		return permissions;
-	};
-
-
+	}
 
 	/**
 	 * @ngdoc method
@@ -100,5 +98,5 @@ function permissionFactory() {
 	function getNotePermissions(note, user){
 		var userRights = user ? user.rightslevel : undefinedUserRightsLevel;
 		return factory.createPermissions(userRights, note && user && note.userId === user.userId);
-	};
+	}
 }

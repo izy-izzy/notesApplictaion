@@ -46,7 +46,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "notesApp",
       "shortDescription": "Controlls header",
-      "keywords": "api authentication controller controlls credentials data header loginuser logs method notesapp property service user users"
+      "keywords": "api authentication controller controlls credentials data header loginuser logs method notesapp property service sweetalert user users"
     },
     {
       "section": "api",
@@ -73,7 +73,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "notesApp",
       "shortDescription": "Controlls header",
-      "keywords": "api author avatar controller controlls full getusername getuserphoto header image method note notesapp path property service settings sweetalert user"
+      "keywords": "alert api author avatar changename changeuseremail controller controlls database email field file filename firs form full getimagefile getuserfirstname getusername getuserphoto getusersurname header image input match method note notesapp path property saves service set settings surname sweetalert temporal user values"
     },
     {
       "section": "api",
@@ -109,7 +109,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "notesApp",
       "shortDescription": "Service for firebase database connection. Holds all database accessible object except user. This service needs to be initialised via setFirebaseHttp and getFirebase methods.",
-      "keywords": "$firebasearray $firebaseobject access accessible adds angularfire api clear comment commentid comments connected connection created database deletion destroyfirebaseobjects destroys directly firebase firstname full fullname getfirebase getnote getnotecomments getnotes getuser getuserfirstname getuserfullname getusers getusersurname holds imagefile initialised insertion int load loaded loadedfirebase loads method methods newcomment newnote note noteid notes notesapp object objects partial property removenote removes result returned returns rightslevel searches service setfirebase setfirebasehttp setnote sets specific string surname text title user userid users xxxxxxxx-xxxxxxxx-xxxxxxxx"
+      "keywords": "$firebasearray $firebaseobject access accessible adds angularfire api avatar clear comment commentid comments connected connection created database deletion destroyfirebaseobjects destroys directly email file filename firebase firstname full fullname getfirebase getnote getnotecomments getnotes getuser getuserfirstname getuserfullname getusers getusersurname holds imagefile initialised insertion int load loaded loadedfirebase loads method methods newcomment newemail newnote note noteid notes notesapp object objects oldemail partial password property removenote removes result returned returns rightslevel searches selected service setfirebase setfirebasehttp setnote sets specific string sucessfully surname text title updated updateusername user userid users xxxxxxxx-xxxxxxxx-xxxxxxxx"
     },
     {
       "section": "api",
@@ -146,6 +146,15 @@ NG_DOCS={
       "moduleName": "notesApp",
       "shortDescription": "Factory for userID random generation.",
       "keywords": "api chunk cypher factory format generation gets4 getuid letter method notesapp pseudorandom random represents s4 service userid"
+    },
+    {
+      "section": "api",
+      "id": "notesApp.service:validationFactory",
+      "shortName": "validationFactory",
+      "type": "service",
+      "moduleName": "notesApp",
+      "shortDescription": "Factory for validation of Format",
+      "keywords": "address api email factory format method notesapp number phone phonenumber service telephone true valid validate validateemail validatename validatephone validates validation"
     }
   ],
   "apis": {

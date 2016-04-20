@@ -67,6 +67,7 @@ function authController($scope, databaseService, $state, settingsService, SweetA
 					if ($state.current.name === 'intro'){
 						$state.go('notes');
 					}
+					console.log(vm.user);
 					authService.loginRoutine(authData);
 				} else {
 					$state.go('intro');
