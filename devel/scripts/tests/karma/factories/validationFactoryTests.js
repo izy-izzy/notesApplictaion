@@ -42,7 +42,7 @@ describe("validationFactory", function() {
 		expect(validName);
 	});
 
-	it("Expect ' ' and '' to be not valid name.", function(){
+	it("Expect ' ' and '' to be not valid names.", function(){
 		var validName = validationFactory.validateName(" ");
 		expect(!validName);
 		var validName2 = validationFactory.validateName("");
@@ -63,5 +63,17 @@ describe("validationFactory", function() {
 	it("Expect '#Jane487' to be not valid phone numbers.", function(){
 		var validName3 = validationFactory.validateName("#Jane487");
 		expect(!validName3);
+	});
+
+	it("Expect 'MyPass89' to be valid password.", function(){
+		var validName = validatePassword.validateName("MyPass89");
+		expect(validName);
+	});
+
+	it("Expect ' ' and '' to be not a valied passwords.", function(){
+		var validName = validatePassword.validateName(" ");
+		expect(!validName);
+		var validName2 = validatePassword.validateName("");
+		expect(!validName2);
 	});
 });

@@ -12,7 +12,8 @@ function validationFactory() {
 	var factory = {
 		validateEmail : validateEmail,
 		validatePhone : validatePhone,
-		validateName : validateName
+		validateName : validateName,
+		validatePassword : validatePassword
 	};
 	return factory;
 
@@ -51,6 +52,19 @@ function validationFactory() {
 	 * @returns {boolean} true if valid
 	 */
 	function validateName(name){
+		var str = name.replace(/\s+/g, '');
+		return (str.length > 0);
+	}
+
+	/**
+	 * @ngdoc method
+	 * @name validatePassword
+	 * @methodOf notesApp.service:validationFactory
+	 * @description Validates name
+	 * @param {string} password Password to validate
+	 * @returns {boolean} true if valid
+	 */
+	function validatePassword(password){
 		var str = name.replace(/\s+/g, '');
 		return (str.length > 0);
 	}

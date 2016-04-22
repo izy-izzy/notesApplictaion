@@ -11,7 +11,7 @@ angular
 	.module('notesApp')
 	.service('databaseService', databaseService);
 
-databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
+databaseService.$inject = ['$firebaseArray', '$firebaseObject', '$q'];
 
 /**
  * @ngdoc property
@@ -56,7 +56,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject'];
 
 
 
-function databaseService($firebaseArray, $firebaseObject) {
+function databaseService($firebaseArray, $firebaseObject, $q) {
 
 	var service = {
 		firebaseHttp : undefined,
@@ -85,7 +85,8 @@ function databaseService($firebaseArray, $firebaseObject) {
 		getUserFullName: getUserFullName,
 		getUser: getUser,
 		updateUserName: updateUserName,
-		updateUserEmail: updateUserEmail
+		updateUserEmail: updateUserEmail,
+		updateUserPassword: updateUserPassword
 	};
 	return service;
 
@@ -314,37 +315,45 @@ function databaseService($firebaseArray, $firebaseObject) {
 	 * @param {string} userId ID of user which should be updated.
 	 * @param {string} firstName First name of user.
 	 * @param {string} surName Surname of user.
-	 * @returns {Exception} if not sucessfully updated.
+	 * @returns {pormise} Error message or <code>{firstname, surname}</code>.
 	 */
 	function updateUserName(userId, firstName, surName){
+		var p = $q.defer();
 		var user = service.firebaseObj.child("users").child(userId);
 		user.update({
 			firstname: firstName,
 			surname: surName
 		},function(error) {
-  			if (error) {
-    			return error;
-  			}
+			if (error) {
+				p.reject(error);
+			} else {
+				p.resolve({ firstname: firstName, surname: surName});
+			}
 		});
+		return p.promise;
 	}
 
 	/**
 	 * @ngdoc method
-	 * @name updateUserName
+	 * @name updateUserAvatar
 	 * @methodOf notesApp.service:databaseService
 	 * @param {string} userId ID of user which should be updated.
 	 * @param {string} fileName Name of file for selected avatar.
-	 * @returns {Exception} if not sucessfully updated.
+	 * @return {promise} Promise : Error message or "success"
 	 */
 	function updateUserAvatar(userId, fileName){
+		var p = $q.defer();
 		var user = service.firebaseObj.child("users").child(userId);
 		user.update({
 			imagefile: fileName
 		},function(error) {
 			if (error) {
-				return error;
+				p.reject(error);
+			} else {
+				p.resolve("success");
 			}
 		});
+		return p.promise;
 	}
 
 	/**
@@ -355,23 +364,50 @@ function databaseService($firebaseArray, $firebaseObject) {
 	 * @param {string} oldEmail user's old email
 	 * @param {string} newEmail user's new email
 	 * @param {string} passWord user's password
-	 * @returns {Exception} if not sucessfully updated.
+	 * @return {pormise} Error message or <code>{email}</code>
 	 */
 	function updateUserEmail(userId, oldEmail, newEmail, passWord){
+		var p = $q.defer();
 		var ref = service.firebaseObj;
-		console.log(
-			"oldEmail " , oldEmail,
-			"newEmail " , newEmail,
-			"password " , passWord
-		);
 		ref.changeEmail({
 			oldEmail : oldEmail,
  			newEmail : newEmail,
  			password : passWord
 		},function(error) {
 			if (error) {
-				return error;
+				p.reject(error);
+			} else {
+				p.resolve({email: newEmail});
 			}
 		});
+		return p.promise;
 	}
+
+	/**
+	 * @ngdoc method
+	 * @name updateUserPassword
+	 * @methodOf notesApp.service:databaseService
+	 * @param {string} userId ID of user which should be updated.
+	 * @param {string} eMail user's email
+	 * @param {string} oldPassWord user's old password
+	 * @param {string} newPassWord user's new password
+	 * @return {promise} Error message or <code>{email}</code>
+	 */
+	function updateUserPassword(userId, eMail, oldPassWord, newPassWord){
+		var ref = service.firebaseObj;
+		var p = $q.defer();
+		ref.changePassword({
+			email : eMail,
+			oldPassword: oldPassWord,
+		    newPassword: newPassWord
+		},function(error) {
+			if (error) {
+				p.reject(error);
+			} else {
+				p.resolve({email: eMail})
+			}
+		});
+		return p.promise;
+	}
+
 }

@@ -11,37 +11,55 @@
 					<img class="avatar avatar-main" ng-src="{{vm.getUserPhoto()}}" src="./images/users/avatar_default.png" alt="user avatar"/>
 				</div>
 				<div class="col-xs-8">
-					<h3>Name and Surname</h3>
+					<h3>Name change</h3>
 					<label for="" class="required">first name:</label>
 					<div class="form-group">
-						<input placeholder="{{vm.getUserFirstName()}}" ng-model="vm.firstName" class="form-control" type="text"/>
+						<input placeholder="{{vm.getUserFirstName()}}" ng-model="vm.nameChange.firstName" class="form-control" type="text"/>
 					</div>
 					<label for="" class="required">surname:</label>
 					<div class="form-group">
-						<input placeholder="{{vm.getUserSurName()}}" ng-model="vm.surName" class="form-control" type="text"/>
+						<input placeholder="{{vm.getUserSurName()}}" ng-model="vm.nameChange.surName" class="form-control" type="text"/>
 					</div>
 					<button ng-click="vm.changeName()" class="btn">Change Name</button>
 					<hr/>
-					<h3>Login email address</h3>
+					<h3>Login email change</h3>
 					<label for="" class="required">old email:</label>
 					<div class="form-group">
-						<input placeholder="your old email" ng-model="vm.oldEmail" class="form-control" type="email"/>
+						<input placeholder="your old email" ng-model="vm.email.oldEmail" class="form-control" type="email"/>
 					</div>
 					<label for="" class="required">new email:</label>
 					<div class="form-group">
-						<input placeholder="your new email" ng-model="vm.newEmail" class="form-control" type="email"/>
+						<input placeholder="your new email" ng-model="vm.email.newEmail" class="form-control" type="email"/>
 					</div>
 					<label for="" class="required">new email <span class="small">(double check)</span>:</label>
 					<div class="form-group">
-						<input placeholder="your new email" ng-model="vm.newEmailCheck" class="form-control" type="email"/>
+						<input placeholder="your new email" ng-model="vm.email.newEmailCheck" class="form-control" type="email"/>
 					</div>
 					<label for="" class="required">password:</label>
 					<div class="form-group">
-						<input placeholder="your current password" ng-model="vm.passWord" class="form-control" type="password"/>
+						<input placeholder="your current password" ng-model="vm.email.passWord" class="form-control" type="password"/>
 					</div>
 					<button ng-click="vm.changeUserEmail()" class="btn">Change Email</button>
+					<hr/>
+					<h3>Password change</h3>
+					<label for="" class="required">email:</label>
+					<div class="form-group">
+						<input placeholder="your email" ng-model="vm.pass.email" class="form-control" type="email"/>
+					</div>
+					<label for="" class="required">old password:</label>
+					<div class="form-group">
+						<input placeholder="your old password" ng-model="vm.pass.oldPassWord" class="form-control" type="password"/>
+					</div>
+					<label for="" class="required">new passoword:</label>
+					<div class="form-group">
+						<input placeholder="your new password" ng-model="vm.pass.newPassWord" class="form-control" type="password"/>
+					</div>
+					<label for="" class="required">new password <span class="small">(double check)</span>:</label>
+					<div class="form-group">
+						<input placeholder="your new password" ng-model="vm.pass.newPassWordCheck" class="form-control" type="password"/>
+					</div>
+					<button ng-click="vm.changeUserPassword()" class="btn">Change Password</button>
 				</div>
-
 			</div>
 			<!--<div class="row">
 				<div class="col-xs-12">

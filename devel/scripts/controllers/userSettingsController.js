@@ -35,12 +35,26 @@ function userSettingsController($scope, $state, databaseService, authService, se
 	var vm = this;
 
 	//fake user
-	vm.firstName = "";
-	vm.surName = "";
-	vm.oldEmail = "";
-	vm.newEmail = "";
-	vm.newEmailCheck = "";
-	vm.passWord = "";
+
+	vm.nameChange = {
+		firstName : "",
+		surName : ""
+	}
+
+	vm.email = {
+		oldEmail : "",
+		newEmail : "",
+		newEmailCheck : "",
+		passWord : ""
+	}
+
+	vm.pass = {
+		email : "",
+		oldPassWord : "",
+		newPassWord : "",
+		newPassWordCheck : ""
+	}
+
 
 	vm.user = authService.getUser();
 
@@ -111,7 +125,21 @@ function userSettingsController($scope, $state, databaseService, authService, se
 	 * @methodOf notesApp.controller:userSettingsController
 	 */
 	vm.changeName = function(){
-		databaseService.updateUserName(vm.user.uid, vm.firstName, vm.surName);
+		databaseService.updateUserName(vm.user.uid, vm.nameChange.firstName, vm.nameChange.surName).then(
+			function(data){
+				SweetAlert.swal({
+					title: "User name has been changed to: " + data.firstname + data.surname,
+					type: "success"
+				});
+			},
+			function(error){
+				SweetAlert.swal({
+					title: "User name could not be changed.",
+					text: error,
+					type: "error"
+				});
+			}
+		);
 	};
 
 	/**
@@ -120,6 +148,7 @@ function userSettingsController($scope, $state, databaseService, authService, se
 	 * @description Set user's email to a new value according to a temporal value from input. If values in field do not match the Alert is shown.
 	 * @methodOf notesApp.controller:userSettingsController
 	 */
+
 	vm.changeUserEmail = function(){
 		if (vm.settings.demo){
 			SweetAlert.swal({
@@ -128,10 +157,23 @@ function userSettingsController($scope, $state, databaseService, authService, se
 				type: "info"
 			});
 		} else {
-			if (validationFactory.validateEmail(vm.oldEmail) || validationFactory.validateEmail(vm.newEmail) || validationFactory.validateEmail(vm.newEmailCheck)
+			if (validationFactory.validateEmail(vm.email.oldEmail) || validationFactory.validateEmail(vm.email.newEmail) || validationFactory.validateEmail(vm.email.newEmailCheck)
 				){
-				if (vm.newEmail === vm.newEmailCheck){
-					databaseService.updateUserEmail(vm.user.uid, vm.oldEmail, vm.newEmail, vm.passWord);
+				if (vm.email.newEmail === vm.email.newEmailCheck){
+					databaseService.updateUserEmail(vm.user.uid, vm.email.oldEmail, vm.email.newEmail, vm.email.passWord).then(
+						function(data){
+							SweetAlert.swal({
+								title: "Your Email has been changed to:" + data.email,
+								type: "success"
+							});
+						},
+						function(error){
+							SweetAlert.swal({
+								title: "Your email could not been changed",
+								text: error,
+								type : "error"
+							});
+						});
 				} else {
 					SweetAlert.swal({
 						title: "Emails in New Email fields do not match.",
@@ -140,6 +182,51 @@ function userSettingsController($scope, $state, databaseService, authService, se
 			} else {
 				SweetAlert.swal({
 					title: "Email is not valid.",
+					type: "error"});
+			}
+		}
+	};
+
+	/**
+	 * @ngdoc method
+	 * @name changeUserPassword
+	 * @description Set user's password to a new value according to a temporal value from input. If values in field do not match the Alert is shown.
+	 * @methodOf notesApp.controller:userSettingsController
+	 */
+	vm.changeUserPassword = function(){
+		if (vm.settings.demo){
+			SweetAlert.swal({
+				title: "This feature is temporarly disabled",
+				text: "Fork this on GitHub and you may use it as you wish. :)",
+				type: "info"
+			});
+		} else {
+			if (validationFactory.validateEmail(vm.pass.email) || validationFactory.validatePassword(vm.pass.newPassWord) || validationFactory.validatePassword(vm.pass.newPassWordCheck)
+				){
+				if (vm.pass.newPassWord === vm.pass.newPassWordCheck){
+					databaseService.updateUserPassword(vm.user.uid, vm.pass.email, vm.pass.oldPassWord, vm.pass.newPassWord).then(
+						function(data){
+							SweetAlert.swal({
+								title: "Your Password for email " + data.email + " has been changed",
+								type: "success"
+							});
+						},
+						function(error){
+							SweetAlert.swal({
+								title: "Your email could not been changed",
+								text: error,
+								type : "error"
+							});
+						}
+					);
+				} else {
+					SweetAlert.swal({
+						title: "new passwords do not match.",
+						type: "error"});
+				}
+			} else {
+				SweetAlert.swal({
+					title: "Email or passwords are not in valid format.",
 					type: "error"});
 			}
 		}
