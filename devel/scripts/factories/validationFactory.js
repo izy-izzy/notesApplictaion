@@ -27,7 +27,7 @@ function validationFactory() {
 	 */
 	function validateEmail(email) {
 		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		return re.test(email);
+		return email && re.test(email);
 	}
 
 	/**
@@ -40,7 +40,7 @@ function validationFactory() {
 	 */
 	function validatePhone(phonenumberString) {
 		var phoneRe = /^[0-9\+\(\)]+$/;
-		return phonenumberString.match(phoneRe);
+		return phonenumberString && phonenumberString.match(phoneRe);
 	}
 
 	/**
@@ -52,8 +52,10 @@ function validationFactory() {
 	 * @returns {boolean} true if valid
 	 */
 	function validateName(name){
-		var str = name.replace(/\s+/g, '');
-		return (str.length > 0);
+		if (name){
+			var str = name.replace(/\s+/g, '');
+		}
+		return name && (str.length > 0);
 	}
 
 	/**
@@ -65,7 +67,9 @@ function validationFactory() {
 	 * @returns {boolean} true if valid
 	 */
 	function validatePassword(password){
-		var str = name.replace(/\s+/g, '');
-		return (str.length > 0);
+		if (name){
+			var str = name.replace(/\s+/g, '');
+		}
+		return name && (str.length > 0);
 	}
 }
