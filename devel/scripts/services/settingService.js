@@ -3,20 +3,20 @@
  * @name notesApp.service:settingsService
  * @function
  *
- * @description Loads <code>settings.json</code>.
+ * @description Loads <code>settings.json</code> (on any domain) or <code>settings_localhost.json</code> (on localhost).
  *
  */
 angular
 	.module('notesApp')
 	.service('settingsService', settingsService);
 
-settingsService.$inject = ['$http', '$q'];
+settingsService.$inject = ['$http', '$q', '$location'];
 
 /**
  * @ngdoc property
  * @name .#settings
- * @propertyOf notesApp.service:settingsService 
- * @returns {object} 
+ * @propertyOf notesApp.service:settingsService
+ * @returns {object}
  * <pre>
  * settings: {
  *  fireBaseHttp: string,
@@ -26,7 +26,7 @@ settingsService.$inject = ['$http', '$q'];
  * </pre>
  */
 
-function settingsService($http, $q) {
+function settingsService($http, $q, $location) {
 	var service = {
 		getSettings: getSettings,
 		settings : {
@@ -38,7 +38,7 @@ function settingsService($http, $q) {
 	};
 
 	return service;
-	
+
 	/**
 	 * @ngdoc method
 	 * @name getSettings
@@ -49,7 +49,9 @@ function settingsService($http, $q) {
 	function getSettings(){
 		if (service.settingsResource === undefined){
 			service.settingsResource = $q.defer();
-			$http.get('settings.json').then(function(object){
+			var host = $location.host();
+			var filename = "settings" + "_" + host + ".json";
+			$http.get(filename).then(function(object){
 					service.settings = object.data;
 					service.settingsResource.resolve(service.settings);
 				})

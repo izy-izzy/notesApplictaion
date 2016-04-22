@@ -135,8 +135,8 @@ NG_DOCS={
       "shortName": "settingsService",
       "type": "service",
       "moduleName": "notesApp",
-      "shortDescription": "Loads settings.json.",
-      "keywords": "api data defaultuserpicture error file firebasehttp getsettings json loads method notesapp pathtouserpictures promise property service settings string"
+      "shortDescription": "Loads settings.json (on any domain) or settings_localhost.json (on localhost).",
+      "keywords": "api data defaultuserpicture domain error file firebasehttp getsettings json loads localhost method notesapp pathtouserpictures promise property service settings string"
     },
     {
       "section": "api",
