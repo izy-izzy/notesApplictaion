@@ -9,10 +9,20 @@ describe("settings service", function() {
 	}));
 
 	it("testings settings service", function() {
-		httpBackend.whenGET("settings.json").respond({
-			"fireBaseHttp": "https://simplenotestest.firebaseio.com",
-			"pathToUserPictures": "./images/users/",
-			"defaultUserPicture": "default_user.jpg"
+		httpBackend.whenGET("settings_server.json").respond({
+			"demo" : false,
+		    "fireBaseHttp": "https://simplenotestest.firebaseio.com",
+			"fireBaseLogHttp": "https://simplenotestest.firebaseio.com",
+		    "pathToUserPictures": "./images/users/",
+		    "defaultUserPicture": "avatar_default.png",
+			"avatars" : [
+				"avatar_0.png",
+				"avatar_1.png",
+				"avatar_2.png",
+				"avatar_3.png",
+				"avatar_4.png",
+				"avatar_5.png"
+			]
 		});
 		settingsService.getSettings().then(
 			function(data) {

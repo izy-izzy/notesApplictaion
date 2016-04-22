@@ -1,0 +1,38 @@
+<h1><code ng:non-bindable="">logService</code>
+<div><span class="hint">service in module <code ng:non-bindable="">notesApp</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="notesapp-service-page notesapp-service-logservice-page"><p>Service for firebase logging. Responsible for logging operations.</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/api/angularfire">angularfire</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/notesApp.service:uidFactory">uidFactory</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/api/notesApp.service:authService">authService</a></code>
+</li>
+</ul>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_log">log(Text)</h3>
+<div class="log"><div class="log-page"><p>Push log into Firebase Database.
+<pre class="prettyprint linenums">
+{
+ text: text,
+ time: (ms),
+ userId: userId,
+ userrights: user rights || "N/A"
+}
+</pre>
+</div><h5 id="methods_log_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>Text</td><td><a href="" class="label type-hint type-hint-text">text</a></td><td><div class="log-page"><p>that should be send to log.</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_setfirebase">setFirebase(loadedFirebase)</h3>
+<div class="setfirebase"><div class="setfirebase-page"><p>Sets firebase object.</p>
+</div><h5 id="methods_setfirebase_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>loadedFirebase</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="setfirebase-page"><p>Already connected firebase object.</p>
+</div></td></tr></tbody></table></div>
+</li>
+</ul>
+</div>
+</div>

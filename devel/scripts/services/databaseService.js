@@ -101,6 +101,16 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 		service.firebaseObj = loadedFirebase;
 		service.getNotes();
 		service.getUsers();
+		var firebaseLoadedPromise = $q.defer();
+		$q.all([
+			service.notes.$loaded,
+			service.users.$loaded
+		]).then(function(){
+			firebaseLoadedPromise.resolve({notes: service.notes, users: service.users});
+		}, function(error){
+			firebaseLoadedPromise.reject(error);
+		});
+		return firebaseLoadedPromise.promise;
 	}
 
 	/**
@@ -299,6 +309,7 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	 * @returns {object} user
 	 */
 	function getUser(userId){
+		console.log(userId, service.getUsers()[userId]);
 		if (service.getUsers() && service.getUsers()[userId]){
 			var user = service.getUsers()[userId];
 			user.userId = userId;
@@ -404,7 +415,7 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 			if (error) {
 				p.reject(error);
 			} else {
-				p.resolve({email: eMail})
+				p.resolve({email: eMail});
 			}
 		});
 		return p.promise;

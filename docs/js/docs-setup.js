@@ -122,6 +122,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "notesApp.service:logService",
+      "shortName": "logService",
+      "type": "service",
+      "moduleName": "notesApp",
+      "shortDescription": "Service for firebase logging. Responsible for logging operations.",
+      "keywords": "angularfire api connected database firebase loadedfirebase log logging method notesapp object operations push responsible rights send service setfirebase sets text time user userid userrights"
+    },
+    {
+      "section": "api",
       "id": "notesApp.service:permissionFactory",
       "shortName": "permissionFactory",
       "type": "service",

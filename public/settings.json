@@ -1,6 +1,7 @@
 {
 	"demo" : true,
     "fireBaseHttp": "https://simplenotestest.firebaseio.com",
+	"fireBaseLogHttp": "https://simplenotestest.firebaseio.com",
     "pathToUserPictures": "./images/users/",
     "defaultUserPicture": "avatar_default.png",
 	"avatars" : [

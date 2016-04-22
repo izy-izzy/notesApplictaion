@@ -52,8 +52,9 @@ function validationFactory() {
 	 * @returns {boolean} true if valid
 	 */
 	function validateName(name){
+		var str;
 		if (name){
-			var str = name.replace(/\s+/g, '');
+			str = name.replace(/\s+/g, '');
 		}
 		return name && (str.length > 0);
 	}
@@ -67,9 +68,10 @@ function validationFactory() {
 	 * @returns {boolean} true if valid
 	 */
 	function validatePassword(password){
-		if (name){
-			var str = name.replace(/\s+/g, '');
+		var str;
+		if (password){
+			str = password.replace(/\s+/g, '');
 		}
-		return name && (str.length > 0);
+		return password && (str.length > 0);
 	}
 }

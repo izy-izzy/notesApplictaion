@@ -15,7 +15,7 @@ angular
 	.module('notesApp')
 	.controller("authController", authController);
 
-authController.$inject = ['$scope','databaseService','$state','settingsService','SweetAlert','authService', 'fileSystemFactory'];
+authController.$inject = ['$scope','databaseService','$state','settingsService','SweetAlert','authService', 'fileSystemFactory', 'logService', '$q'];
 
 /**
  * @ngdoc property
@@ -24,7 +24,7 @@ authController.$inject = ['$scope','databaseService','$state','settingsService',
  * @returns {object} {@link notesApp.service:authService#users}
  */
 
-function authController($scope, databaseService, $state, settingsService, SweetAlert, authService, fileSystemFactory) {
+function authController($scope, databaseService, $state, settingsService, SweetAlert, authService, fileSystemFactory, logService, $q) {
 
 	var vm = this;
 
@@ -41,8 +41,19 @@ function authController($scope, databaseService, $state, settingsService, SweetA
 			vm.settings = data;
 			authService.setLocation(vm.settings.fireBaseHttp);
 			fileSystemFactory.setSettings(vm.settings);
-			databaseService.setFirebase(authService.getFirebase());
-			vm.getFireBaseAuth();
+			$q.all([
+				databaseService.setFirebase(authService.getFirebase()),
+				logService.setFirebase(authService.getFirebase())
+			]).then(function(value){
+				console.log(value);
+				vm.getFireBaseAuth();
+			}, function(error){
+				SweetAlert.swal({
+					title: "Initialisation failed",
+					text: error,
+					type: "error"
+				});
+			});
 		}, function(response) {
 			SweetAlert.swal({
 				title: "Web service initialisation failed.",
@@ -67,8 +78,8 @@ function authController($scope, databaseService, $state, settingsService, SweetA
 					if ($state.current.name === 'intro'){
 						$state.go('notes');
 					}
-					console.log(vm.user);
 					authService.loginRoutine(authData);
+					logService.log("User Logged In");
 				} else {
 					$state.go('intro');
 					if (vm.user.authenticated) {

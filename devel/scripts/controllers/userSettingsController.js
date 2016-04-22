@@ -39,21 +39,21 @@ function userSettingsController($scope, $state, databaseService, authService, se
 	vm.nameChange = {
 		firstName : "",
 		surName : ""
-	}
+	};
 
 	vm.email = {
 		oldEmail : "",
 		newEmail : "",
 		newEmailCheck : "",
 		passWord : ""
-	}
+	};
 
 	vm.pass = {
 		email : "",
 		oldPassWord : "",
 		newPassWord : "",
 		newPassWordCheck : ""
-	}
+	};
 
 
 	vm.user = authService.getUser();
@@ -162,6 +162,9 @@ function userSettingsController($scope, $state, databaseService, authService, se
 				if (vm.email.newEmail === vm.email.newEmailCheck){
 					databaseService.updateUserEmail(vm.user.uid, vm.email.oldEmail, vm.email.newEmail, vm.email.passWord).then(
 						function(data){
+							vm.email.oldEmail = undefined;
+							vm.email.newEmail = undefined;
+							vm.email.passWord = undefined;
 							SweetAlert.swal({
 								title: "Your Email has been changed to:" + data.email,
 								type: "success"
@@ -206,6 +209,9 @@ function userSettingsController($scope, $state, databaseService, authService, se
 				if (vm.pass.newPassWord === vm.pass.newPassWordCheck){
 					databaseService.updateUserPassword(vm.user.uid, vm.pass.email, vm.pass.oldPassWord, vm.pass.newPassWord).then(
 						function(data){
+							vm.pass.email = undefined;
+							vm.pass.oldPassWord = undefined;
+							vm.pass.newPassWord = undefined;
 							SweetAlert.swal({
 								title: "Your Password for email " + data.email + " has been changed",
 								type: "success"

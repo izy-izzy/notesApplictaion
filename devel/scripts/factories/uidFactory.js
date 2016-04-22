@@ -30,7 +30,7 @@ function uidFactory() {
 	 * @ngdoc method
 	 * @name getUID
 	 * @methodOf notesApp.service:uidFactory
-	 * @description Get pseudorandom getUID
+	 * @description Get pseudorandom ID
 	 * @returns {string} format: <code>XXXXXXXX-XXXXXXXX-XXXXXXXX</code>; X represents a letter or a cypher
 	 */
 	function getUID() {
