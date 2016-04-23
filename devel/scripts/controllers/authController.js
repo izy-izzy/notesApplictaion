@@ -45,7 +45,6 @@ function authController($scope, databaseService, $state, settingsService, SweetA
 				databaseService.setFirebase(authService.getFirebase()),
 				logService.setFirebase(authService.getFirebase())
 			]).then(function(value){
-				console.log(value);
 				vm.getFireBaseAuth();
 			}, function(error){
 				SweetAlert.swal({

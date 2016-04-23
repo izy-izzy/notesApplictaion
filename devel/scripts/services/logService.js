@@ -13,9 +13,9 @@ angular
    .module('notesApp')
    .service('logService', logService);
 
-logService.$inject = ['$firebaseArray', '$firebaseObject', '$q', 'uidFactory', 'authService', 'databaseService'];
+logService.$inject = ['$firebaseArray', '$firebaseObject', '$q', 'uidFactory', 'authService'];
 
-function logService($firebaseArray, $firebaseObject, $q, uidFactory, authService, databaseService) {
+function logService($firebaseArray, $firebaseObject, $q, uidFactory, authService) {
 	var service = {
 		firebaseHttp : undefined,
 		firebaseObj : undefined,
@@ -52,26 +52,34 @@ function logService($firebaseArray, $firebaseObject, $q, uidFactory, authService
 	 *  userrights: user rights || "N/A"
  	 * }
 	 * </pre>
-	 * @param {text} Text that should be send to log.
+	 * @param {string} text that should be send to log.
+	 * @param {object} node that should be attached to log.
 	 */
-	function log(text){
-		console.log(authService.getUser().uid);
-		console.log(databaseService.getUsers());
-		var rightslevel;
-		if (databaseService.getUser(authService.getUser().uid)){
-			rightslevel = databaseService.getUser(authService.getUser().uid).rightslevel;
-		} else {
-			rightslevel = 'N/A';
-		}
+	function log(text, node){
 		if (service.firebaseObj){
 			var logNote = {
 				text: text,
 				time: Date.now(),
 				userId: authService.getUser().uid,
-				userrights: rightslevel
+				node: nodeToString(node)
 			};
 			var fb = service.firebaseObj.child("log").child(Date.now() + "_" + authService.getUser().uid);
 			return fb.set(logNote);
 		}
+	}
+
+	/**
+	 * @ngdoc method
+	 * @name nodeToString
+	 * @methodOf notesApp.service:logService
+	 * @description Convert object to string.
+	 * @param {object} node Object that will be converted.
+	 */
+	function nodeToString(node){
+		var returnStr = "";
+		if (node){
+			returnStr = JSON.stringify(node);
+		}
+		return returnStr;
 	}
 }

@@ -109,7 +109,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "notesApp",
       "shortDescription": "Service for firebase database connection. Holds all database accessible object except user. This service needs to be initialised via setFirebaseHttp and getFirebase methods.",
-      "keywords": "$firebasearray $firebaseobject access accessible adds angularfire api avatar clear comment commentid comments connected connection created database deletion destroyfirebaseobjects destroys directly email error file filename firebase firstname full fullname getfirebase getnote getnotecomments getnotes getuser getuserfirstname getuserfullname getusers getusersurname holds imagefile initialised insertion int load loaded loadedfirebase loads message method methods newcomment newemail newnote newpassword note noteid notes notesapp object objects oldemail oldpassword partial password promise property removenote removes result returned returns rightslevel searches selected service setfirebase setfirebasehttp setnote sets specific string success surname text title updated updateuseravatar updateusername updateuserpassword user userid users xxxxxxxx-xxxxxxxx-xxxxxxxx"
+      "keywords": "$firebasearray $firebaseobject access accessible adds angularfire api avatar clear comment commentid comments connected connection created database deletion destroyfirebaseobjects destroys directly email error file filename firebase firstname full fullname getfirebase getnote getnotecomments getnotes getuser getuserfirstname getuserfullname getusers getusersurname holds imagefile initialised insertion int load loaded loadedfirebase loads message method methods newcomment newemail newnote newpassword note noteid notes notesapp object objects oldemail oldpassword partial password promise property removed removenote removes result returned returns rightslevel searches selected service setfirebase setfirebasehttp setnote sets specific string success surname text title updated updateuseravatar updateusername updateuserpassword user userid users xxxxxxxx-xxxxxxxx-xxxxxxxx"
     },
     {
       "section": "api",
@@ -127,7 +127,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "notesApp",
       "shortDescription": "Service for firebase logging. Responsible for logging operations.",
-      "keywords": "angularfire api connected database firebase loadedfirebase log logging method notesapp object operations push responsible rights send service setfirebase sets text time user userid userrights"
+      "keywords": "angularfire api attached connected convert converted database firebase loadedfirebase log logging method node nodetostring notesapp object operations push responsible rights send service setfirebase sets string text time user userid userrights"
     },
     {
       "section": "api",

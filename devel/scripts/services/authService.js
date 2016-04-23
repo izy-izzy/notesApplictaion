@@ -50,8 +50,7 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 			loginFailed: false,
 			logoutFailed: false,
 			authenticated: false,
-			unAuthRequest: false,
-			rightslevel: 9
+			unAuthRequest: false
 		},
 		setLocation : setLocation,
 		getFirebase : getFirebase,

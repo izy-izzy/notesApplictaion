@@ -14,7 +14,7 @@ angular
 	.module('notesApp')
 	.controller("notesController", notesController);
 
-notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert', 'authService', 'permissionFactory'];
+notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert', 'authService', 'permissionFactory', 'logService'];
 
 /**
  * @ngdoc property
@@ -30,7 +30,7 @@ notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 
  * @returns {object} {@link notesApp.service:databaseService#user}
  */
 
-function notesController($scope, $state,databaseService, uidFactory, SweetAlert, authService, permissionFactory) {
+function notesController($scope, $state,databaseService, uidFactory, SweetAlert, authService, permissionFactory, logService) {
 
 	var vm = this;
 
@@ -67,7 +67,7 @@ function notesController($scope, $state,databaseService, uidFactory, SweetAlert,
 			cancelButtonText: "Cancel"
 		}, function(isConfirm){
 			if (isConfirm){
-				databaseService.removeNote(note.$id).then(function(){
+				databaseService.removeNote(note).then(function(){
 					SweetAlert.swal({
 						title: "Your note has been removed.",
 						type: "success"});

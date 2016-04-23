@@ -15,7 +15,7 @@
 </li>
 </ul>
 <div class="member method"><h2 id="methods">Methods</h2>
-<ul class="methods"><li><h3 id="methods_log">log(Text)</h3>
+<ul class="methods"><li><h3 id="methods_log">log(text, node)</h3>
 <div class="log"><div class="log-page"><p>Push log into Firebase Database.
 <pre class="prettyprint linenums">
 {
@@ -25,7 +25,13 @@
  userrights: user rights || "N/A"
 }
 </pre>
-</div><h5 id="methods_log_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>Text</td><td><a href="" class="label type-hint type-hint-text">text</a></td><td><div class="log-page"><p>that should be send to log.</p>
+</div><h5 id="methods_log_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>text</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="log-page"><p>that should be send to log.</p>
+</div></td></tr><tr><td>node</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="log-page"><p>that should be attached to log.</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_nodetostring">nodeToString(node)</h3>
+<div class="nodetostring"><div class="nodetostring-page"><p>Convert object to string.</p>
+</div><h5 id="methods_nodetostring_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>node</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="nodetostring-page"><p>Object that will be converted.</p>
 </div></td></tr></tbody></table></div>
 </li>
 <li><h3 id="methods_setfirebase">setFirebase(loadedFirebase)</h3>

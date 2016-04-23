@@ -67,9 +67,9 @@
 </div><h5 id="methods_getusers_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="getusers-page"><p>users as $firebaseObject</p>
 </div></td></tr></table></div>
 </li>
-<li><h3 id="methods_removenote">removeNote(noteId)</h3>
+<li><h3 id="methods_removenote">removeNote(note)</h3>
 <div class="removenote"><div class="removenote-page"><p>Removes a note.</p>
-</div><h5 id="methods_removenote_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>noteId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="removenote-page"><p>note id</p>
+</div><h5 id="methods_removenote_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>note</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="removenote-page"><p>the note that should be removed.</p>
 </div></td></tr></tbody></table><h5 id="methods_removenote_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="removenote-page"><p>result of note insertion</p>
 </div></td></tr></table></div>
 </li>
@@ -92,29 +92,29 @@
 </div></td></tr></tbody></table><h5 id="methods_setnote_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="setnote-page"><p>result of note insertion</p>
 </div></td></tr></table></div>
 </li>
-<li><h3 id="methods_updateuseravatar">updateUserAvatar(userId, fileName)</h3>
-<div class="updateuseravatar"><h5 id="methods_updateuseravatar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateuseravatar-page"><p>ID of user which should be updated.</p>
+<li><h3 id="methods_updateuseravatar">updateUserAvatar(user, fileName)</h3>
+<div class="updateuseravatar"><h5 id="methods_updateuseravatar_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>user</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="updateuseravatar-page"><p>which should be updated.</p>
 </div></td></tr><tr><td>fileName</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateuseravatar-page"><p>Name of file for selected avatar.</p>
 </div></td></tr></tbody></table><h5 id="methods_updateuseravatar_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">promise</a></td><td><div class="updateuseravatar-page"><p>Promise : Error message or &quot;success&quot;</p>
 </div></td></tr></table></div>
 </li>
-<li><h3 id="methods_updateusername">updateUserName(userId, firstName, surName)</h3>
-<div class="updateusername"><h5 id="methods_updateusername_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateusername-page"><p>ID of user which should be updated.</p>
+<li><h3 id="methods_updateusername">updateUserName(user, firstName, surName)</h3>
+<div class="updateusername"><h5 id="methods_updateusername_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>user</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="updateusername-page"><p>which should be updated.</p>
 </div></td></tr><tr><td>firstName</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateusername-page"><p>First name of user.</p>
 </div></td></tr><tr><td>surName</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateusername-page"><p>Surname of user.</p>
 </div></td></tr></tbody></table><h5 id="methods_updateusername_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-pormise">pormise</a></td><td><div class="updateusername-page"><p>Error message or <code>{firstname, surname}</code>.</p>
 </div></td></tr></table></div>
 </li>
-<li><h3 id="methods_updateusername">updateUserName(userId, oldEmail, newEmail, passWord)</h3>
-<div class="updateusername"><h5 id="methods_updateusername_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateusername-page"><p>ID of user which should be updated.</p>
+<li><h3 id="methods_updateusername">updateUserName(user, oldEmail, newEmail, passWord)</h3>
+<div class="updateusername"><h5 id="methods_updateusername_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>user</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="updateusername-page"><p>which should be updated.</p>
 </div></td></tr><tr><td>oldEmail</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateusername-page"><p>user&#39;s old email</p>
 </div></td></tr><tr><td>newEmail</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateusername-page"><p>user&#39;s new email</p>
 </div></td></tr><tr><td>passWord</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateusername-page"><p>user&#39;s password</p>
 </div></td></tr></tbody></table><h5 id="methods_updateusername_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-pormise">pormise</a></td><td><div class="updateusername-page"><p>Error message or <code>{email}</code></p>
 </div></td></tr></table></div>
 </li>
-<li><h3 id="methods_updateuserpassword">updateUserPassword(userId, eMail, oldPassWord, newPassWord)</h3>
-<div class="updateuserpassword"><h5 id="methods_updateuserpassword_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>userId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateuserpassword-page"><p>ID of user which should be updated.</p>
+<li><h3 id="methods_updateuserpassword">updateUserPassword(user, eMail, oldPassWord, newPassWord)</h3>
+<div class="updateuserpassword"><h5 id="methods_updateuserpassword_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>user</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="updateuserpassword-page"><p>which should be updated.</p>
 </div></td></tr><tr><td>eMail</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateuserpassword-page"><p>user&#39;s email</p>
 </div></td></tr><tr><td>oldPassWord</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateuserpassword-page"><p>user&#39;s old password</p>
 </div></td></tr><tr><td>newPassWord</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="updateuserpassword-page"><p>user&#39;s new password</p>

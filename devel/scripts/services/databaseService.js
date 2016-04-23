@@ -11,7 +11,7 @@ angular
 	.module('notesApp')
 	.service('databaseService', databaseService);
 
-databaseService.$inject = ['$firebaseArray', '$firebaseObject', '$q'];
+databaseService.$inject = ['$firebaseArray', '$firebaseObject', '$q', 'logService'];
 
 /**
  * @ngdoc property
@@ -56,7 +56,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject', '$q'];
 
 
 
-function databaseService($firebaseArray, $firebaseObject, $q) {
+function databaseService($firebaseArray, $firebaseObject, $q, logService) {
 
 	var service = {
 		firebaseHttp : undefined,
@@ -185,7 +185,13 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	function setNoteComment(newComment, noteId, commentId) {
 		if (noteId && commentId && service.firebaseObj) {
 			var fbReg = service.firebaseObj.child("notes").child(noteId).child("comments").child(commentId);
-			return fbReg.set(newComment);
+			var ret = fbReg.set(newComment);
+			ret.then(function(data){
+				logService.log("New comment: "+commentId+" added to note: " + noteId, newComment);
+			}, function(error){
+				logService.log("Unable to add comment to note: " + noteId + " due to: "+ error, newComment);
+			})
+			return ret;
 		} else {
 			return undefined;
 		}
@@ -203,7 +209,13 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	function setNote(newNote, noteId) {
 		if (noteId && service.firebaseObj) {
 			var fbReg = service.firebaseObj.child("notes").child(noteId);
-			return fbReg.set(newNote);
+			var ret = fbReg.set(newNote);
+			ret.then(function(data){
+				logService.log("New note: "+noteId + " added.", newNote);
+			}, function(error){
+				logService.log("Unable to add note due to: " + error, newNote);
+			})
+			return ret;
 		} else {
 			return undefined;
 		}
@@ -214,13 +226,19 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	 * @name removeNote
 	 * @methodOf notesApp.service:databaseService
 	 * @description Removes a note.
-	 * @param {string} noteId note id
+	 * @param {object} note the note that should be removed.
 	 * @returns {object} result of note insertion
 	 */
-	function removeNote(noteId) {
-		if (noteId && service.firebaseObj) {
-			var fbReg = service.firebaseObj.child("notes").child(noteId);
-			return fbReg.remove();
+	function removeNote(note) {
+		if (note.$id && service.firebaseObj) {
+			var fbReg = service.firebaseObj.child("notes").child(note.$id);
+			var ret = fbReg.remove();
+			ret.then(function(data){
+				logService.log("Note: "+note.$id+" removed.", note);
+			}, function(error){
+				logService.log("Note: "+note.$id+" could not been removed.", note);
+			});
+			return ret;
 		} else {
 			return undefined;
 		}
@@ -235,10 +253,16 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	 * @param {string} commentId comment id
 	 * @returns {object} result of note deletion
 	 */
-	function removeNoteComment(noteId, commentId) {
-		if (noteId && commentId && service.firebaseObj) {
-			var fbReg = service.firebaseObj.child("notes").child(noteId).child("comments").child(commentId);
-			return fbReg.remove();
+	function removeNoteComment(noteId, comment) {
+		if (noteId && comment.$id && service.firebaseObj) {
+			var fbReg = service.firebaseObj.child("notes").child(noteId).child("comments").child(comment.$id);
+			var ret = fbReg.remove();
+			ret.then(function(data){
+				logService.log("Comment: " + comment.$id + " from: " + noteId + " was removed.", comment);
+			}, function(error){
+				logService.log("Comment: " + comment.$id + " from: " + noteId + " could note been removed.", comment);
+			})
+			return ret;
 		} else {
 			return undefined;
 		}
@@ -309,7 +333,6 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	 * @returns {object} user
 	 */
 	function getUser(userId){
-		console.log(userId, service.getUsers()[userId]);
 		if (service.getUsers() && service.getUsers()[userId]){
 			var user = service.getUsers()[userId];
 			user.userId = userId;
@@ -323,21 +346,23 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	 * @ngdoc method
 	 * @name updateUserName
 	 * @methodOf notesApp.service:databaseService
-	 * @param {string} userId ID of user which should be updated.
+	 * @param {object} user which should be updated.
 	 * @param {string} firstName First name of user.
 	 * @param {string} surName Surname of user.
 	 * @returns {pormise} Error message or <code>{firstname, surname}</code>.
 	 */
-	function updateUserName(userId, firstName, surName){
+	function updateUserName(user, firstName, surName){
 		var p = $q.defer();
-		var user = service.firebaseObj.child("users").child(userId);
-		user.update({
+		var userRef = service.firebaseObj.child("users").child(user.uid);
+		userRef.update({
 			firstname: firstName,
 			surname: surName
 		},function(error) {
 			if (error) {
+				logService.log("User name of user: "+ user.uid +" could not have been changed due to: "+ error, user);
 				p.reject(error);
 			} else {
+				logService.log("User name of user: " + user.uid + " has been changed to: " + firstName +" "+ surName, user);
 				p.resolve({ firstname: firstName, surname: surName});
 			}
 		});
@@ -348,19 +373,21 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	 * @ngdoc method
 	 * @name updateUserAvatar
 	 * @methodOf notesApp.service:databaseService
-	 * @param {string} userId ID of user which should be updated.
+	 * @param {object} user which should be updated.
 	 * @param {string} fileName Name of file for selected avatar.
 	 * @return {promise} Promise : Error message or "success"
 	 */
-	function updateUserAvatar(userId, fileName){
+	function updateUserAvatar(user, fileName){
 		var p = $q.defer();
-		var user = service.firebaseObj.child("users").child(userId);
-		user.update({
+		var userRef = service.firebaseObj.child("users").child(user.uid);
+		userRef.update({
 			imagefile: fileName
 		},function(error) {
 			if (error) {
+				logService.log("Avatar of user: " + user.uid + " could not have been changed: "+ error , user);
 				p.reject(error);
 			} else {
+				logService.log("Avatar of user: " + user.uid + " has been changed to: " + fileName , user);
 				p.resolve("success");
 			}
 		});
@@ -371,13 +398,13 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	 * @ngdoc method
 	 * @name updateUserName
 	 * @methodOf notesApp.service:databaseService
-	 * @param {string} userId ID of user which should be updated.
+	 * @param {object} user which should be updated.
 	 * @param {string} oldEmail user's old email
 	 * @param {string} newEmail user's new email
 	 * @param {string} passWord user's password
 	 * @return {pormise} Error message or <code>{email}</code>
 	 */
-	function updateUserEmail(userId, oldEmail, newEmail, passWord){
+	function updateUserEmail(user, oldEmail, newEmail, passWord){
 		var p = $q.defer();
 		var ref = service.firebaseObj;
 		ref.changeEmail({
@@ -386,8 +413,10 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
  			password : passWord
 		},function(error) {
 			if (error) {
+				logService.log("Email of user: " + user.uid + " could not have been cahnged: "+ error , user);
 				p.reject(error);
 			} else {
+				logService.log("Email of user: " + user.uid + " has been changed to: "+ newEmail , user);
 				p.resolve({email: newEmail});
 			}
 		});
@@ -398,13 +427,13 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 	 * @ngdoc method
 	 * @name updateUserPassword
 	 * @methodOf notesApp.service:databaseService
-	 * @param {string} userId ID of user which should be updated.
+	 * @param {object} user which should be updated.
 	 * @param {string} eMail user's email
 	 * @param {string} oldPassWord user's old password
 	 * @param {string} newPassWord user's new password
 	 * @return {promise} Error message or <code>{email}</code>
 	 */
-	function updateUserPassword(userId, eMail, oldPassWord, newPassWord){
+	function updateUserPassword(user, eMail, oldPassWord, newPassWord){
 		var ref = service.firebaseObj;
 		var p = $q.defer();
 		ref.changePassword({
@@ -413,12 +442,13 @@ function databaseService($firebaseArray, $firebaseObject, $q) {
 		    newPassword: newPassWord
 		},function(error) {
 			if (error) {
+				logService.log("Password of user: " + user.uid + " could not have been changed due to: "+ error, user);
 				p.reject(error);
 			} else {
+				logService.log("Password of user: " + user.uid + " has been changed." , user);
 				p.resolve({email: eMail});
 			}
 		});
 		return p.promise;
 	}
-
 }

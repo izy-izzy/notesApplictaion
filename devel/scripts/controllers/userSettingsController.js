@@ -10,12 +10,13 @@
  * @requires notesApp.service:settingsService
  * @requires notesApp.service:fileSystemFactory
  * @requires notesApp.service:validationFactory
+ * @requires notesApp.service:logService
   */
 angular
 	.module('notesApp')
 	.controller("userSettingsController", userSettingsController);
 
-userSettingsController.$inject = ['$scope', '$state', 'databaseService', 'authService', 'settingsService', 'fileSystemFactory', 'SweetAlert', 'validationFactory'];
+userSettingsController.$inject = ['$scope', '$state', 'databaseService', 'authService', 'settingsService', 'fileSystemFactory', 'SweetAlert', 'validationFactory', 'logService'];
 
 /**
  * @ngdoc property
@@ -31,7 +32,7 @@ userSettingsController.$inject = ['$scope', '$state', 'databaseService', 'authSe
  * @returns {object} {@link notesApp.service:settingsService#settings}
  */
 
-function userSettingsController($scope, $state, databaseService, authService, settingsService, fileSystemFactory, SweetAlert, validationFactory) {
+function userSettingsController($scope, $state, databaseService, authService, settingsService, fileSystemFactory, SweetAlert, validationFactory, logService) {
 	var vm = this;
 
 	//fake user
@@ -125,10 +126,10 @@ function userSettingsController($scope, $state, databaseService, authService, se
 	 * @methodOf notesApp.controller:userSettingsController
 	 */
 	vm.changeName = function(){
-		databaseService.updateUserName(vm.user.uid, vm.nameChange.firstName, vm.nameChange.surName).then(
+		databaseService.updateUserName(vm.user, vm.nameChange.firstName, vm.nameChange.surName).then(
 			function(data){
 				SweetAlert.swal({
-					title: "User name has been changed to: " + data.firstname + data.surname,
+					title: "User name has been changed to: " + data.firstname + " " + data.surname,
 					type: "success"
 				});
 			},
@@ -160,8 +161,9 @@ function userSettingsController($scope, $state, databaseService, authService, se
 			if (validationFactory.validateEmail(vm.email.oldEmail) || validationFactory.validateEmail(vm.email.newEmail) || validationFactory.validateEmail(vm.email.newEmailCheck)
 				){
 				if (vm.email.newEmail === vm.email.newEmailCheck){
-					databaseService.updateUserEmail(vm.user.uid, vm.email.oldEmail, vm.email.newEmail, vm.email.passWord).then(
+					databaseService.updateUserEmail(vm.user, vm.email.oldEmail, vm.email.newEmail, vm.email.passWord).then(
 						function(data){
+							logService.log("User email has been changed.");
 							vm.email.oldEmail = undefined;
 							vm.email.newEmail = undefined;
 							vm.email.passWord = undefined;
@@ -171,6 +173,7 @@ function userSettingsController($scope, $state, databaseService, authService, se
 							});
 						},
 						function(error){
+							logService.log("User email could not been changed due to: " + error);
 							SweetAlert.swal({
 								title: "Your email could not been changed",
 								text: error,
@@ -207,17 +210,20 @@ function userSettingsController($scope, $state, databaseService, authService, se
 			if (validationFactory.validateEmail(vm.pass.email) || validationFactory.validatePassword(vm.pass.newPassWord) || validationFactory.validatePassword(vm.pass.newPassWordCheck)
 				){
 				if (vm.pass.newPassWord === vm.pass.newPassWordCheck){
-					databaseService.updateUserPassword(vm.user.uid, vm.pass.email, vm.pass.oldPassWord, vm.pass.newPassWord).then(
+					databaseService.updateUserPassword(vm.user, vm.pass.email, vm.pass.oldPassWord, vm.pass.newPassWord).then(
 						function(data){
+							logService.log("Users password has been changed.");
 							vm.pass.email = undefined;
 							vm.pass.oldPassWord = undefined;
 							vm.pass.newPassWord = undefined;
+							vm.pass.newPassWordCheck = undefined;
 							SweetAlert.swal({
 								title: "Your Password for email " + data.email + " has been changed",
 								type: "success"
 							});
 						},
 						function(error){
+							logService.log("Users password could not have been changed due to: " + error);
 							SweetAlert.swal({
 								title: "Your email could not been changed",
 								text: error,

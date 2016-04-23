@@ -17,7 +17,7 @@ angular
 
 noteController.$inject = [	'$state','$scope','$stateParams','databaseService',
 							'uidFactory','SweetAlert', 'settingsService', 'authService',
-							'fileSystemFactory', 'permissionFactory'];
+							'fileSystemFactory', 'permissionFactory', 'logService'];
 
 /**
  * @ngdoc property
@@ -57,7 +57,7 @@ noteController.$inject = [	'$state','$scope','$stateParams','databaseService',
 
 function noteController($state, $scope, $stateParams, databaseService,
 						uidFactory, SweetAlert, settingsService, authService,
-						fileSystemFactory, permissionFactory) {
+						fileSystemFactory, permissionFactory, logService) {
 
 	var vm = this;
 
@@ -127,15 +127,17 @@ function noteController($state, $scope, $stateParams, databaseService,
 			cancelButtonText: "Cancel"
 		}, function(isConfirm){
 			if (isConfirm){
-				databaseService.removeNoteComment(vm.note.$id, comment.$id).then(function(){
-					SweetAlert.swal({
-						title: "Your note has been removed.",
-						type: "success"});
-				},function(){
-					SweetAlert.swal({
-						title: "Unable to remove this note.",
-						type: "error"});
-				});
+				databaseService.removeNoteComment(vm.note.$id, comment)
+					.then(function(){
+						SweetAlert.swal({
+							title: "Your note has been removed.",
+							type: "success"});
+					},function(error){
+						SweetAlert.swal({
+							title: "Unable to remove this note.",
+							text: error,
+							type: "error"});
+					});
 			}
 		});
 	};
@@ -158,7 +160,15 @@ function noteController($state, $scope, $stateParams, databaseService,
 			};
 			vm.newcomment.created = Date.now();
 			vm.newcomment.userId = authService.getUser().uid;
-			databaseService.setNoteComment(vm.newcomment, vm.note.$id, uidFactory.getUID());
+			databaseService.setNoteComment(vm.newcomment, vm.note.$id, uidFactory.getUID())
+				.then(function(){
+					// users can see that their comment has been added.
+				}, function(error){
+					SweetAlert.swal({
+						title: "Unable to add this comment.",
+						text: error,
+						type: "error"});
+				});
 		} else {
 			SweetAlert.swal({
 				title: "Your note can not be empty.",
