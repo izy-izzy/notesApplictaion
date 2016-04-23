@@ -14,7 +14,7 @@ angular
 	.module('notesApp')
 	.controller("notesController", notesController);
 
-notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert', 'authService', 'permissionFactory', 'logService'];
+notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 'SweetAlert', 'authService', 'permissionFactory'];
 
 /**
  * @ngdoc property
@@ -30,7 +30,7 @@ notesController.$inject = ['$scope', '$state', 'databaseService', 'uidFactory', 
  * @returns {object} {@link notesApp.service:databaseService#user}
  */
 
-function notesController($scope, $state,databaseService, uidFactory, SweetAlert, authService, permissionFactory, logService) {
+function notesController($scope, $state,databaseService, uidFactory, SweetAlert, authService, permissionFactory) {
 
 	var vm = this;
 

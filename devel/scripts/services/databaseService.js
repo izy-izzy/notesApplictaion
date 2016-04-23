@@ -11,7 +11,7 @@ angular
 	.module('notesApp')
 	.service('databaseService', databaseService);
 
-databaseService.$inject = ['$firebaseArray', '$firebaseObject', '$q', 'logService'];
+databaseService.$inject = ['$firebaseArray', '$firebaseObject', '$q', 'logService', 'authService'];
 
 /**
  * @ngdoc property
@@ -56,7 +56,7 @@ databaseService.$inject = ['$firebaseArray', '$firebaseObject', '$q', 'logServic
 
 
 
-function databaseService($firebaseArray, $firebaseObject, $q, logService) {
+function databaseService($firebaseArray, $firebaseObject, $q, logService, authService) {
 
 	var service = {
 		firebaseHttp : undefined,
@@ -186,11 +186,11 @@ function databaseService($firebaseArray, $firebaseObject, $q, logService) {
 		if (noteId && commentId && service.firebaseObj) {
 			var fbReg = service.firebaseObj.child("notes").child(noteId).child("comments").child(commentId);
 			var ret = fbReg.set(newComment);
-			ret.then(function(data){
-				logService.log("New comment: "+commentId+" added to note: " + noteId, newComment);
+			ret.then(function(){
+				logService.log("New comment: "+commentId+" added to note: " + noteId, newComment, authService.getUser());
 			}, function(error){
-				logService.log("Unable to add comment to note: " + noteId + " due to: "+ error, newComment);
-			})
+				logService.log("Unable to add comment to note: " + noteId + " due to: "+ error, newComment, authService.getUser());
+			});
 			return ret;
 		} else {
 			return undefined;
@@ -210,11 +210,11 @@ function databaseService($firebaseArray, $firebaseObject, $q, logService) {
 		if (noteId && service.firebaseObj) {
 			var fbReg = service.firebaseObj.child("notes").child(noteId);
 			var ret = fbReg.set(newNote);
-			ret.then(function(data){
-				logService.log("New note: "+noteId + " added.", newNote);
+			ret.then(function(){
+				logService.log("New note: "+noteId + " added.", newNote, authService.getUser());
 			}, function(error){
-				logService.log("Unable to add note due to: " + error, newNote);
-			})
+				logService.log("Unable to add note due to: " + error, newNote, authService.getUser());
+			});
 			return ret;
 		} else {
 			return undefined;
@@ -233,10 +233,10 @@ function databaseService($firebaseArray, $firebaseObject, $q, logService) {
 		if (note.$id && service.firebaseObj) {
 			var fbReg = service.firebaseObj.child("notes").child(note.$id);
 			var ret = fbReg.remove();
-			ret.then(function(data){
-				logService.log("Note: "+note.$id+" removed.", note);
+			ret.then(function(){
+				logService.log("Note: "+note.$id+" removed.", note, authService.getUser());
 			}, function(error){
-				logService.log("Note: "+note.$id+" could not been removed.", note);
+				logService.log("Note: "+note.$id+" could not been removed due to: "+error, note, authService.getUser());
 			});
 			return ret;
 		} else {
@@ -257,11 +257,11 @@ function databaseService($firebaseArray, $firebaseObject, $q, logService) {
 		if (noteId && comment.$id && service.firebaseObj) {
 			var fbReg = service.firebaseObj.child("notes").child(noteId).child("comments").child(comment.$id);
 			var ret = fbReg.remove();
-			ret.then(function(data){
-				logService.log("Comment: " + comment.$id + " from: " + noteId + " was removed.", comment);
+			ret.then(function(){
+				logService.log("Comment: " + comment.$id + " from: " + noteId + " was removed.", comment, authService.getUser());
 			}, function(error){
-				logService.log("Comment: " + comment.$id + " from: " + noteId + " could note been removed.", comment);
-			})
+				logService.log("Comment: " + comment.$id + " from: " + noteId + " could note been removed due to: "+ error, comment, authService.getUser());
+			});
 			return ret;
 		} else {
 			return undefined;
@@ -359,10 +359,10 @@ function databaseService($firebaseArray, $firebaseObject, $q, logService) {
 			surname: surName
 		},function(error) {
 			if (error) {
-				logService.log("User name of user: "+ user.uid +" could not have been changed due to: "+ error, user);
+				logService.log("User name of user: "+ user.uid +" could not have been changed due to: "+ error, user, authService.getUser());
 				p.reject(error);
 			} else {
-				logService.log("User name of user: " + user.uid + " has been changed to: " + firstName +" "+ surName, user);
+				logService.log("User name of user: " + user.uid + " has been changed to: " + firstName +" "+ surName, user, authService.getUser());
 				p.resolve({ firstname: firstName, surname: surName});
 			}
 		});
@@ -384,10 +384,10 @@ function databaseService($firebaseArray, $firebaseObject, $q, logService) {
 			imagefile: fileName
 		},function(error) {
 			if (error) {
-				logService.log("Avatar of user: " + user.uid + " could not have been changed: "+ error , user);
+				logService.log("Avatar of user: " + user.uid + " could not have been changed: "+ error , user, authService.getUser());
 				p.reject(error);
 			} else {
-				logService.log("Avatar of user: " + user.uid + " has been changed to: " + fileName , user);
+				logService.log("Avatar of user: " + user.uid + " has been changed to: " + fileName , user, authService.getUser());
 				p.resolve("success");
 			}
 		});
@@ -413,10 +413,10 @@ function databaseService($firebaseArray, $firebaseObject, $q, logService) {
  			password : passWord
 		},function(error) {
 			if (error) {
-				logService.log("Email of user: " + user.uid + " could not have been cahnged: "+ error , user);
+				logService.log("Email of user: " + user.uid + " could not have been cahnged: "+ error , user, authService.getUser());
 				p.reject(error);
 			} else {
-				logService.log("Email of user: " + user.uid + " has been changed to: "+ newEmail , user);
+				logService.log("Email of user: " + user.uid + " has been changed to: "+ newEmail , user, authService.getUser());
 				p.resolve({email: newEmail});
 			}
 		});
@@ -442,10 +442,10 @@ function databaseService($firebaseArray, $firebaseObject, $q, logService) {
 		    newPassword: newPassWord
 		},function(error) {
 			if (error) {
-				logService.log("Password of user: " + user.uid + " could not have been changed due to: "+ error, user);
+				logService.log("Password of user: " + user.uid + " could not have been changed due to: "+ error, user, authService.getUser());
 				p.reject(error);
 			} else {
-				logService.log("Password of user: " + user.uid + " has been changed." , user);
+				logService.log("Password of user: " + user.uid + " has been changed." , user, authService.getUser());
 				p.resolve({email: eMail});
 			}
 		});

@@ -100,7 +100,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "notesApp",
       "shortDescription": "Authorize user and CRUD his data.",
-      "keywords": "$firebaseauth angularfire api application authdata authenticate authenticated authentication authentification authorize authwithpassword boolean clears clearuser connection credentials crud current data database email expiration expires firebasehttp firebaseobj getauth getfirebase getuser informed intro location log logged logindata loginfailed logout logoutfailed method mode notes notesapp notlogged overview password process promise property redirected requested result returns server service session setlocation sets string token uid unauth unauthenticate unauthrequest user userdata"
+      "keywords": "angularfire api application authdata authenticate authenticated authentication authentification authorisation authorize authwithpassword boolean called clears clearuser connection credentials crud current data database email error expiration expires firebasehttp firebaseobj funcerr funcsucc getauth getfirebase getuser informed intro location log logged login logindata loginfailed logout logoutfailed method mode notes notesapp notlogged overview password process promise property redirected requested result returns server service session setlocation sets string successfull token uid unauth unauthenticate unauthrequest user userdata"
     },
     {
       "section": "api",
@@ -127,7 +127,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "notesApp",
       "shortDescription": "Service for firebase logging. Responsible for logging operations.",
-      "keywords": "angularfire api attached connected convert converted database firebase loadedfirebase log logging method node nodetostring notesapp object operations push responsible rights send service setfirebase sets string text time user userid userrights"
+      "keywords": "angularfire api attached connected convert converted database firebase loadedfirebase log logging method node nodetostring notesapp object operation operations push responsible rights send service setfirebase sets string text time user userid userrights"
     },
     {
       "section": "api",

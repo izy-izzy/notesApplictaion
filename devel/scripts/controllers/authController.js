@@ -44,7 +44,7 @@ function authController($scope, databaseService, $state, settingsService, SweetA
 			$q.all([
 				databaseService.setFirebase(authService.getFirebase()),
 				logService.setFirebase(authService.getFirebase())
-			]).then(function(value){
+			]).then(function(){
 				vm.getFireBaseAuth();
 			}, function(error){
 				SweetAlert.swal({
@@ -71,30 +71,24 @@ function authController($scope, databaseService, $state, settingsService, SweetA
 	 * @description Authenticate a user to database service. Adds callbvmks for authentication success or fail.
 	 */
 	vm.getFireBaseAuth = function() {
-		authService.getAuth().$onAuth(
-			function(authData){
-				if (authData){
-					if ($state.current.name === 'intro'){
-						$state.go('notes');
+		authService.getAuth( undefined , function(){$state.go('intro')} ).then(
+			function(){
+				if ($state.current.name === 'intro'){
+					$state.go('notes');
+				}
+			}, function(){
+				if (vm.user.authenticated) {
+					if (!vm.user.unAuthRequest) {
+						SweetAlert.swal({
+							title: "Your session expired.",
+							type: "warning"
+						});
+					} else {
+						SweetAlert.swal({
+							title: "You have been sucessfully logged out.",
+							type: "success"
+						});
 					}
-					authService.loginRoutine(authData);
-					logService.log("User Logged In");
-				} else {
-					$state.go('intro');
-					if (vm.user.authenticated) {
-						if (!vm.user.unAuthRequest) {
-							SweetAlert.swal({
-								title: "Your session expired.",
-								type: "warning"
-							});
-						} else {
-							SweetAlert.swal({
-								title: "You have been sucessfully logged out.",
-								type: "success"
-							});
-						}
-					}
-					authService.logoutRoutine();
 				}
 			}
 		);

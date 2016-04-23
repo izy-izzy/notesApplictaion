@@ -8,7 +8,7 @@
 		&-row {
 			display: table-row;
 			&-cell {
-				@extend %text-bold;
+				@extend .text-bold;
 				display: table-cell;
 				padding: 13px;
 				border-bottom: 0 solid $white;

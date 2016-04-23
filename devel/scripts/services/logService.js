@@ -7,15 +7,14 @@
 *
 * @requires angularfire
 * @requires notesApp.service:uidFactory
-* @requires notesApp.service:authService
 */
 angular
    .module('notesApp')
    .service('logService', logService);
 
-logService.$inject = ['$firebaseArray', '$firebaseObject', '$q', 'uidFactory', 'authService'];
+logService.$inject = ['$firebaseArray', '$firebaseObject', '$q', 'uidFactory'];
 
-function logService($firebaseArray, $firebaseObject, $q, uidFactory, authService) {
+function logService($firebaseArray, $firebaseObject, $q, uidFactory) {
 	var service = {
 		firebaseHttp : undefined,
 		firebaseObj : undefined,
@@ -54,16 +53,17 @@ function logService($firebaseArray, $firebaseObject, $q, uidFactory, authService
 	 * </pre>
 	 * @param {string} text that should be send to log.
 	 * @param {object} node that should be attached to log.
+	 * @param {object} user which done the operation.
 	 */
-	function log(text, node){
+	function log(text, node, user){
 		if (service.firebaseObj){
 			var logNote = {
 				text: text,
 				time: Date.now(),
-				userId: authService.getUser().uid,
+				userId: user.uid,
 				node: nodeToString(node)
 			};
-			var fb = service.firebaseObj.child("log").child(Date.now() + "_" + authService.getUser().uid);
+			var fb = service.firebaseObj.child("log").child(Date.now() + "_" + user.uid + uidFactory.getS4());
 			return fb.set(logNote);
 		}
 	}

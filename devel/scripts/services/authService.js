@@ -13,7 +13,7 @@ angular
 	.module('notesApp')
 	.service('authService', authService);
 
-authService.$inject = ['$firebaseArray', '$firebaseObject', '$firebaseAuth', '$q'];
+authService.$inject = ['$firebaseArray', '$firebaseObject', '$firebaseAuth', '$q', 'logService'];
 
 /**
  * @ngdoc property
@@ -35,10 +35,10 @@ authService.$inject = ['$firebaseArray', '$firebaseObject', '$firebaseAuth', '$q
  * }
  * </pre>
  */
-function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
+function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q, logService) {
 	var service = {
-		firebaseHttp : undefined,
-		firebaseObj : undefined,
+		firebaseHttp: undefined,
+		firebaseObj: undefined,
 		firebaseAuthObj : undefined,
 		user: {
 			loginData: {
@@ -52,12 +52,12 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 			authenticated: false,
 			unAuthRequest: false
 		},
-		setLocation : setLocation,
-		getFirebase : getFirebase,
+		setLocation: setLocation,
+		getFirebase: getFirebase,
 		clearUser: clearUser,
 		getUser: getUser,
-		authWithPassword:authWithPassword,
-		unAuth:unAuth,
+		authWithPassword: authWithPassword,
+		unAuth: unAuth,
 		getAuth: getAuth,
 		loginRoutine: loginRoutine,
 		logoutRoutine: logoutRoutine
@@ -129,14 +129,15 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	function authWithPassword(user) {
 		var defer;
 		defer = $q.defer();
+		console.log(user);
 		if (service.firebaseObj){
-			service.firebaseObj.authWithPassword(user, function onAuth(err, user) {
+			service.firebaseObj.authWithPassword(user, function onAuth(err, userData) {
 				if (err) {
 					service.user.loginFailed = true;
-					defer.resolve(true);
+					defer.reject(err);
 				}
-				if (user) {
-					defer.reject();
+				if (userData) {
+					defer.resolve(userData);
 				}
 			});
 		}
@@ -159,13 +160,33 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q) {
 	 * @name getAuth
 	 * @methodOf notesApp.service:authService
 	 * @description get user authentification with database
-	 * @returns {promise} $firebaseAuth
+	 * @param {function} funcSucc called after each successfull login
+	 * @param {function} funcErr called after each successfull log out
+	 * @returns {promise} contain authorisation data or <code>"error"</code>
 	 */
-	function getAuth(){
+	function getAuth(funcSucc, funcErr){
+		var defer = $q.defer();
 		if(service.firebaseObj !== undefined){
 			service.firebaseAuthObj = $firebaseAuth(service.firebaseObj);
-			return service.firebaseAuthObj;
+			service.firebaseAuthObj.$onAuth(function(authData){
+					if (authData){
+						service.loginRoutine(authData);
+						defer.resolve(authData);
+						logService.log("User authenticated.", undefined, service.getUser());
+						if (funcSucc){
+							funcSucc();
+						}
+					} else {
+						service.logoutRoutine();
+						defer.reject("error");
+						logService.log("User's session expired.", undefined, service.getUser());
+						if (funcErr){
+							funcErr();
+						}
+					}
+				});
 		}
+		return defer.promise;
 	}
 
 	/**

@@ -36,16 +36,14 @@ function introController($scope, $state, authService, SweetAlert, validationFact
 		if (validationFactory.validateName(vm.user.loginData.email)){
 			authService.authWithPassword(vm.user.loginData).then(
 				function(){
-					if (vm.user.authenticated){
-						$state.go('notes');
-					} else {
-						SweetAlert.swal({
-							title: "Unable to authenticate.",
-							text: "Login or Password may be wrong",
-							type: "error"});
-					}
+					$state.go('notes');
 				},
-				function(){}
+				function(){
+					SweetAlert.swal({
+						title: "Unable to authenticate.",
+						text: "Login or Password may be wrong",
+						type: "error"});
+				}
 			);
 		} else {
 			SweetAlert.swal({
@@ -53,55 +51,4 @@ function introController($scope, $state, authService, SweetAlert, validationFact
 				type: "warning"});
 		}
 	};
-/*
-	vm.sweetTest = function(type){
-		switch(type) {
-			case "success":
-				SweetAlert.swal({
-					title: "Swal Title",
-					text: "Swal text",
-					type: type,
-					showCancelButton: true
-					});
-				break;
-			case "warning":
-				SweetAlert.swal({
-					title: "Swal Title",
-					text: "Swal text",
-					type: type,
-					showCancelButton: true
-					});
-				break;
-			case "error":
-				SweetAlert.swal({
-					title: "Swal Title",
-					text: "Swal text",
-					type: type,
-					showCancelButton: true
-					});
-				break;
-			case "info":
-				SweetAlert.swal({
-					title: "Swal Title",
-					text: "Swal text",
-					type: type,
-					showCancelButton: true
-					});
-				break;
-			case "input":
-				SweetAlert.swal({
-					title: "Swal Title",
-					text: "Swal text",
-					type: type,
-					closeOnConfirm: false,
-					showCancelButton: true},
-					function(inputValue){
-						    SweetAlert.swal.showInputError("You need to write something else! not just "+inputValue);
-				            return false;
-				       	}
-				    );
-				break;
-		}
-	};
-	*/
 }

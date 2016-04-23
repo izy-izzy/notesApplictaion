@@ -21,9 +21,11 @@
 <div class="clearuser"><div class="clearuser-page"><p>clears user</p>
 </div></div>
 </li>
-<li><h3 id="methods_getauth">getAuth()</h3>
+<li><h3 id="methods_getauth">getAuth(funcSucc, funcErr)</h3>
 <div class="getauth"><div class="getauth-page"><p>get user authentification with database</p>
-</div><h5 id="methods_getauth_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">promise</a></td><td><div class="getauth-page"><p>$firebaseAuth</p>
+</div><h5 id="methods_getauth_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>funcSucc</td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="getauth-page"><p>called after each successfull login</p>
+</div></td></tr><tr><td>funcErr</td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="getauth-page"><p>called after each successfull log out</p>
+</div></td></tr></tbody></table><h5 id="methods_getauth_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">promise</a></td><td><div class="getauth-page"><p>contain authorisation data or <code>&quot;error&quot;</code></p>
 </div></td></tr></table></div>
 </li>
 <li><h3 id="methods_getauth">getAuth(authData)</h3>

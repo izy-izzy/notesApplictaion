@@ -17,7 +17,7 @@ angular
 
 noteController.$inject = [	'$state','$scope','$stateParams','databaseService',
 							'uidFactory','SweetAlert', 'settingsService', 'authService',
-							'fileSystemFactory', 'permissionFactory', 'logService'];
+							'fileSystemFactory', 'permissionFactory'];
 
 /**
  * @ngdoc property
@@ -57,7 +57,7 @@ noteController.$inject = [	'$state','$scope','$stateParams','databaseService',
 
 function noteController($state, $scope, $stateParams, databaseService,
 						uidFactory, SweetAlert, settingsService, authService,
-						fileSystemFactory, permissionFactory, logService) {
+						fileSystemFactory, permissionFactory) {
 
 	var vm = this;
 
