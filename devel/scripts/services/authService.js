@@ -129,7 +129,6 @@ function authService($firebaseArray, $firebaseObject, $firebaseAuth, $q, logServ
 	function authWithPassword(user) {
 		var defer;
 		defer = $q.defer();
-		console.log(user);
 		if (service.firebaseObj){
 			service.firebaseObj.authWithPassword(user, function onAuth(err, userData) {
 				if (err) {
