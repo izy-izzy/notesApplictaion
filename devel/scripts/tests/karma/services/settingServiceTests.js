@@ -9,7 +9,7 @@ describe("settings service", function() {
 	}));
 
 	it("testings settings service", function() {
-		httpBackend.whenGET("settings_server.json").respond({
+		httpBackend.whenGET("settings.json").respond({
 			"demo" : false,
 		    "fireBaseHttp": "https://simplenotestest.firebaseio.com",
 			"fireBaseLogHttp": "https://simplenotestest.firebaseio.com",

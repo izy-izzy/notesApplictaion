@@ -50,7 +50,10 @@ function settingsService($http, $q, $location) {
 		if (service.settingsResource === undefined){
 			service.settingsResource = $q.defer();
 			var host = $location.host();
-			var filename = "settings" + "_" + host + ".json";
+			var filename = "settings.json";
+			if (host === "localhost"){
+				filename = "settings_localhost.json";
+			}
 			$http.get(filename).then(function(object){
 					service.settings = object.data;
 					service.settingsResource.resolve(service.settings);
